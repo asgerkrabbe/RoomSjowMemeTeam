@@ -5,10 +5,8 @@ public class Profile {
     private String password;
     private String email;
 
-    /**
-     * wauw
-     */
-    public void createProfile(){
 
-}
+    public void createProfile() {
+
+    }
 }

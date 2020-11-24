@@ -1,5 +1,5 @@
 package com.kea;
 
-public enum EnumGenre {
+public enum Genre {
     SPORT,FASHION,BOLIG,GAMING,COMEDY,CLASSES,
 }
