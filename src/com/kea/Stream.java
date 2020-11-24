@@ -9,4 +9,5 @@ public class Stream {
     private DateTimeFormatter airTime;
     private int duration;
 
+
 }
