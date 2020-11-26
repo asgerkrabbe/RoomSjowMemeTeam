@@ -1,7 +1,5 @@
 package com.kea;
 
-import com.sun.security.jgss.GSSUtil;
-
 import java.util.Scanner;
 
 public class Profile {
@@ -12,10 +10,9 @@ public class Profile {
     Scanner sc = new Scanner(System.in);
 
     public Profile() {
-
     }
 
-    public void createProfile() {
+    public void makeProfile() {
         System.out.println("Enter email address: ");
         String email1 = sc.nextLine();
         System.out.println("Confirm email address: ");
@@ -43,16 +40,17 @@ public class Profile {
 
         String userNameRegex = "";
 
-        //if (*UsernameTAken method*)
-        if (username.matches(userNameRegex)) {
+        //if (*UsernameTaken method=boolean*){}
+ /*       if (username.matches(userNameRegex)) {
 
 
 
-            username1 = username;
+            username = username1;
         }
+*/
 
+        String passwordRegex = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$";
 
-        String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$";
         if (password1.matches(passwordRegex)) {
             if (password1.equals(password2)) {
                 password = password1;
