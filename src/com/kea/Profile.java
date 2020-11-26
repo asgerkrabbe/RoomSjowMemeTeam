@@ -66,8 +66,5 @@ public class Profile {
                     "\n" + " Password must contain at least one special character which includes !@#$%&*()-+=^.\n" +
                     "\n" + " Password must not contain any white space.");
         }
-
-
     }
-
 }
