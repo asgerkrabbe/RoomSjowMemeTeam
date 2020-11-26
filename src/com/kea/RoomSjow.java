@@ -5,4 +5,7 @@ import java.util.ArrayList;
 public class RoomSjow {
 
     ArrayList<Stream> streams = new ArrayList<Stream>();
+
+    ArrayList<Profile> profiles = new ArrayList<>();
+
 }
