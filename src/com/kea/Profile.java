@@ -9,6 +9,12 @@ public class Profile {
     //private Scanner sc;
     Scanner sc = new Scanner(System.in);
 
+    public Profile(String username, String password, String email){
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
     public Profile() {
     }
 
