@@ -12,5 +12,7 @@ public class Main {
         rs.run();
         //System.out.println(rs.profiles);
         rs.createProfile();
+
+        //rs.homeMenu();
     }
 }

@@ -18,9 +18,7 @@ public class RoomSjow {
         loadProfiles();
         loadStreams();
 
-        promptEmail();
-        promptUsername();
-        promptPassword();
+        homeMenu();
     }
 
     private void loadProfiles() throws FileNotFoundException {
@@ -40,61 +38,71 @@ public class RoomSjow {
     public void promptEmail() {
         //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         String emailRegex = "";
+        boolean emailBoo = true;
 
-        System.out.println("Enter email address: ");
-        String email1 = sc.nextLine();
-        System.out.println("Confirm email address: ");
-        String email2 = sc.nextLine();
+        do  {
+            System.out.println("Enter email address: ");
+            String email1 = sc.nextLine();
+            System.out.println("Confirm email address: ");
+            String email2 = sc.nextLine();
 
-        if (email1.matches(emailRegex)) {
-            if (email1.equals(email2)) {
-                email = email1;
+            if (email1.matches(emailRegex)) {
+                if (email1.equals(email2)) {
+                    email = email1;
+                    emailBoo = false;
+                } else {
+                    System.out.println("Emails do not match. Please try again.");
+                }
             } else {
-                System.out.println("Emails do not match. Please try again.");
+                System.out.println("Email format is invalid, please enter email again.");
             }
-        } else {
-            System.out.println("Email format is invalid, please enter email again.");
-        }
+        } while (emailBoo);
     }
 
     public void promptPassword() {
         String passwordRegex = "";
+        boolean pwBoo = true;
 
-        System.out.println("Enter password: ");
-        String password1 = sc.nextLine();
-        System.out.println("Confirm password: ");
-        String password2 = sc.nextLine();
+        do {
+            System.out.println("Enter password: ");
+            String password1 = sc.nextLine();
+            System.out.println("Confirm password: ");
+            String password2 = sc.nextLine();
 
-        if (password1.matches(passwordRegex)) {
-            if (password1.equals(password2)) {
-                password = password1;
-
+            if (password1.matches(passwordRegex)) {
+                if (password1.equals(password2)) {
+                    password = password1;
+                    pwBoo = false;
+                } else {
+                    System.out.println("Passwords does not match, please try again");
+                }
             } else {
-                System.out.println("Passwords does not match, please try again");
+                System.out.println("Password format is invalid, please enter password again.");
             }
-        } else {
-            System.out.println("Password must contain at least 8 characters and at most 20 characters.\n" +
-                    "\n" + " Password must contain at least one digit.\n" +
-                    "\n" + " Password must contain at least one upper case alphabet.\n" +
-                    "\n" + " Password must contain at least one lower case alphabet.\n" +
-                    "\n" + " Password must not contain any white space.");
-        }
+        } while (pwBoo);
     }
 
     public void promptUsername() {
-        String userNameRegex = "";
-
-        System.out.println("Enter username: ");
-        String userName1 = sc.nextLine();
-        if (isUserNameTaken(userName1)) {
-            System.out.println("Typed user name is already taken, please try again.");
-        } else if (userName1.matches(userNameRegex)) {
-            username = userName1;
-        }
+        String userNameRegex = "asger";
+        boolean usernameBoo = true;
+        do {
+            System.out.println("Enter username: ");
+            String userName1 = sc.nextLine();
+            if (isUserNameTaken(userName1)) {
+                System.out.println("Typed user name is already taken, please try again.");
+            } else if (userName1.matches(userNameRegex)) {
+                username = userName1;
+                usernameBoo = false;
+            }
+        } while (usernameBoo);
     }
 
 
     public void createProfile() {
+        promptEmail();
+        promptUsername();
+        promptPassword();
+
         Profile profile = new Profile(username, password, email);
         profiles.add(profile);
     }
@@ -105,5 +113,27 @@ public class RoomSjow {
                 return true;
         }
         return false;
+    }
+
+    public void homeMenu() {
+        System.out.println("Choose what to do next: ");
+        System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
+        String choice = sc.nextLine();
+
+
+        if (choice.contains("1")) {
+            System.out.println("Pressed 1");
+        }
+        else if (choice.contains("2")) {
+            System.out.println("Pressed 2");
+            createProfile();
+        }
+        else if (choice.contains("3")) {
+            System.out.println("Pressed 3");
+        }
+        else {
+            System.out.println("Input incorrect, please try again.");
+        }
+
     }
 }
