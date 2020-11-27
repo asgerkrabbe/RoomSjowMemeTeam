@@ -17,6 +17,10 @@ public class RoomSjow {
     public void run() throws FileNotFoundException {
         loadProfiles();
         loadStreams();
+
+        promptEmail();
+        promptUsername();
+        promptPassword();
     }
 
     private void loadProfiles() throws FileNotFoundException {
@@ -91,12 +95,6 @@ public class RoomSjow {
 
 
     public void createProfile() {
-        RoomSjow roomSjow = new RoomSjow();
-
-        roomSjow.promptEmail();
-        roomSjow.promptUsername();
-        roomSjow.promptPassword();
-
         Profile profile = new Profile(username, password, email);
         profiles.add(profile);
     }
@@ -108,5 +106,4 @@ public class RoomSjow {
         }
         return false;
     }
-
 }
