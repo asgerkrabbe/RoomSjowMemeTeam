@@ -6,5 +6,4 @@ abstract public class Payment {
 
     protected void pay() {
     }
-
 }

@@ -10,7 +10,7 @@ public class Main {
 
         RoomSjow rs = new RoomSjow();
         rs.run();
-        System.out.println(rs.profiles);
+        //System.out.println(rs.profiles);
         rs.createProfile();
     }
 }
