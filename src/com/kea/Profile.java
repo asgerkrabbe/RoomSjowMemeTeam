@@ -1,7 +1,5 @@
 package com.kea;
 
-import java.util.Scanner;
-
 public class Profile {
     private String username;
 
@@ -21,7 +19,4 @@ public class Profile {
     public String toString(){
         return "Username: "+username;
     }
-
-
-
 }
