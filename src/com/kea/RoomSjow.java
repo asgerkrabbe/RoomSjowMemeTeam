@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// RoomSjow Class
 public class RoomSjow {
-    //comment 2
     String username = null;
     String email = null;
     String password = null;
