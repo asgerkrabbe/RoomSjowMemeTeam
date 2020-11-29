@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RoomSjow {
-    //comment
+    //comment 2
     String username = null;
     String email = null;
     String password = null;
