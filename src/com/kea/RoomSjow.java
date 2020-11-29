@@ -37,7 +37,7 @@ public class RoomSjow {
 
     public void promptEmail() {
         //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        String emailRegex = "";
+        String emailRegex = ""; 
         boolean emailBoo = true;
 
         do  {
