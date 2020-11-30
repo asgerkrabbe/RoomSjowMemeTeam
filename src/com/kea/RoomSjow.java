@@ -44,7 +44,7 @@ public class RoomSjow {
 
     public void promptEmail() {
         //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        String emailRegex = "";
+        String emailRegex = "email";
         boolean emailBoo = true;
 
         do  {
@@ -67,7 +67,7 @@ public class RoomSjow {
     }
 
     public void promptPassword() {
-        String passwordRegex = "";
+        String passwordRegex = "password";
         boolean pwBoo = true;
 
         do {
@@ -90,14 +90,14 @@ public class RoomSjow {
     }
 
     public void promptUsername() {
-        String userNameRegex = "asger";
+        //String userNameRegex = "username";
         boolean usernameBoo = true;
         do {
             System.out.println("Enter username: ");
             String userName1 = sc.nextLine();
             if (isUserNameTaken(userName1)) {
                 System.out.println("Typed user name is already taken, please try again.");
-            } else if (userName1.matches(userNameRegex)) {
+            } else/* (userName1.matches(userNameRegex))*/ {
                 username = userName1;
                 usernameBoo = false;
             }
@@ -114,7 +114,7 @@ public class RoomSjow {
         profiles.add(profile);
 
         FileWriter fileWriter = new FileWriter("Profiles.txt", true);
-        fileWriter.write(profile.getUsername()+","+profile.getPassword()+","+profile.getEmail());
+        fileWriter.write("\n"+profile.getUsername()+","+profile.getPassword()+","+profile.getEmail());
         fileWriter.close();
 
     }
