@@ -129,9 +129,9 @@ public class RoomSjow {
 
     public void login() {
         boolean isEmailFound = false;
-        System.out.println("Inter Email: ");
+        System.out.println("Enter Email: ");
         String email1 = sc.next();
-        System.out.println("Inter Parsword: ");
+        System.out.println("Enter Password: ");
         String password1 = sc.next();
 
         for (Profile p : profiles) {
@@ -140,12 +140,12 @@ public class RoomSjow {
                 if (p.getPassword().equals(password1)) {
                     Session session = new Session(p);
                 } else {
-                    System.out.println("password was incorrect");
+                    System.out.println("Password was incorrect");
                     login();
                 }
             }
         } if (!isEmailFound){
-            System.out.println("Email was not found.");
+            System.out.println("Email was not found");
             login();
         }
     }
