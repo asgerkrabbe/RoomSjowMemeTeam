@@ -3,6 +3,7 @@ package com.kea;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class RoomSjow {
     ArrayList<Stream> streams = new ArrayList<Stream>();
     ArrayList<Profile> profiles = new ArrayList<>();
 
-    public void run() throws FileNotFoundException {
+    public void run() throws IOException {
         loadProfiles();
         loadStreams();
         homeMenu();
@@ -103,15 +104,19 @@ public class RoomSjow {
         } while (usernameBoo);
     }
 
-    public void createProfile() {
+
+    public void createProfile() throws IOException {
         promptEmail();
         promptUsername();
         promptPassword();
 
         Profile profile = new Profile(username, password, email);
         profiles.add(profile);
-        FileWriter fileWriter = new FileWriter("Profiles.txt",true);
-        System.out.print(profile.getUsername()+","+profile.getPassword()+","+profile.getEmail());
+
+        FileWriter fileWriter = new FileWriter("Profiles.txt", true);
+        fileWriter.write(profile.getUsername()+","+profile.getPassword()+","+profile.getEmail());
+        fileWriter.close();
+
     }
 
     public boolean isUserNameTaken(String userName) {
@@ -122,7 +127,7 @@ public class RoomSjow {
         return false;
     }
 
-    public void homeMenu() {
+    public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
         System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
         String choice = sc.nextLine();
