@@ -44,7 +44,7 @@ public class RoomSjow {
 
     public void promptEmail() {
         //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        String emailRegex = "email";
+        String emailRegex = "email1";
         boolean emailBoo = true;
 
         do  {
@@ -53,7 +53,11 @@ public class RoomSjow {
             System.out.println("Confirm email address: ");
             String email2 = sc.nextLine();
 
-            if (email1.matches(emailRegex)) {
+            if  (email1.matches(emailRegex)) {
+                if (isEmailTaken(email1)) {
+                    System.out.println("Typed user name is already taken, please try again.");
+                continue;
+                }
                 if (email1.equals(email2)) {
                     email = email1;
                     emailBoo = false;
@@ -119,6 +123,14 @@ public class RoomSjow {
         homeMenu();
     }
 
+    public boolean isEmailTaken(String email) {
+        for (Profile p : profiles) {
+            if (p.getEmail().equals(email))
+                return true;
+        }
+        return false;
+    }
+
     public boolean isUserNameTaken(String userName) {
         for (Profile p : profiles) {
             if (p.getUsername().equals(userName))
@@ -144,7 +156,8 @@ public class RoomSjow {
             System.out.println("Pressed 3");
         }
         else {
-            System.out.println("Input incorrect, please try again.");
+            System.out.println("Input incorrect, please try again.\n");
+            homeMenu();
         }
 
     }
