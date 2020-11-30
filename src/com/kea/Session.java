@@ -6,6 +6,5 @@ public class Session {
     public void sessionMenu() {
     System.out.println("What do you want next?");
 
-
     }
 }
