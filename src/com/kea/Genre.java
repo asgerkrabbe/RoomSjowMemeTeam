@@ -1,7 +1,7 @@
 package com.kea;
 
 public enum Genre {
-    SPORT,FASHION,BOLIG,GAMING,COMEDY,CLASSES,
+    PYTHON,JAVA,C_SHARP,JAVASCRIPT
 
 
 }

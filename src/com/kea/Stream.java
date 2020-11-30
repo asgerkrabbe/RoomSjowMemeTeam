@@ -6,18 +6,18 @@ default time pattern to parse from a string
 String time = "2019-03-27T10:15:30";
 LocalDateTime localTimeObj = LocalDateTime.parse(time);
  */
-
 public class Stream implements Comparable<Stream> {
-    private double price = 0;
-    private String titel;
+    private double price;
+    private String title;
     private LocalDateTime startTime = LocalDateTime.of(2020,9,1,13,30 );
-    private int duration;
     private Genre genre;
 
-    public Stream(LocalDateTime start, String titel, Genre genre){
+
+    public Stream(LocalDateTime start, String title, Genre genre){
         startTime = start;
-        this.titel = titel;
+        this.title = title;
         this.genre = genre;
+        price = 5;
     }
 
     public LocalDateTime getStartTime() {
@@ -30,5 +30,9 @@ public class Stream implements Comparable<Stream> {
         } else {
             return this.startTime.compareTo(s.startTime);
         }
+    }
+
+    public void createStream() {
+
     }
 }

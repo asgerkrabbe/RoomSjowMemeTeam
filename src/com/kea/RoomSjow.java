@@ -39,6 +39,12 @@ public class RoomSjow {
         streams = new ArrayList<>();
         File streamsFile = new File("Streams.txt");
         Scanner fileSc = new Scanner(streamsFile);
+        while(fileSc.hasNext()) {
+            String[] splittedLine = fileSc.nextLine().split(",");
+            Genre.valueOf(Genre.JAVA);
+            String s = new Stream(LocalDateTime.parse(splittedLine[0],splittedLine[1],splittedLine[2]));
+
+        }
     }
 
     public void promptEmail() {
