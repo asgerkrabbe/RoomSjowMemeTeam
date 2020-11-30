@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Profile {
     private String username;
+
+
     private String password;
     private String email;
     ArrayList<Stream> myStream = new ArrayList<>();
@@ -11,6 +13,13 @@ public class Profile {
     public Profile() {
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
     public Profile(String username, String password, String email) {
         this.username = username;
         this.password = password;

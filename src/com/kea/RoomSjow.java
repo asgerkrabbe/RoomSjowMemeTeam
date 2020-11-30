@@ -2,6 +2,7 @@ package com.kea;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -102,7 +103,6 @@ public class RoomSjow {
         } while (usernameBoo);
     }
 
-
     public void createProfile() {
         promptEmail();
         promptUsername();
@@ -110,6 +110,8 @@ public class RoomSjow {
 
         Profile profile = new Profile(username, password, email);
         profiles.add(profile);
+        FileWriter fileWriter = new FileWriter("Profiles.txt",true);
+        System.out.print(profile.getUsername()+","+profile.getPassword()+","+profile.getEmail());
     }
 
     public boolean isUserNameTaken(String userName) {
