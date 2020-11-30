@@ -116,7 +116,7 @@ public class RoomSjow {
         FileWriter fileWriter = new FileWriter("Profiles.txt", true);
         fileWriter.write("\n"+profile.getUsername()+","+profile.getPassword()+","+profile.getEmail());
         fileWriter.close();
-
+        homeMenu();
     }
 
     public boolean isUserNameTaken(String userName) {
