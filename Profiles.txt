@@ -3,4 +3,3 @@ Mads123,mads123@gmail.com,wfdij23ln
 Tobias,masdnio@sdcnio.com,aodcijecew
 Asger,nicocw£@dsf.com,aoiuhcw98cnuo
 username,password,email
-tester,password,email

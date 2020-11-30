@@ -39,7 +39,6 @@ public class RoomSjow {
         streams = new ArrayList<>();
         File streamsFile = new File("Streams.txt");
         Scanner fileSc = new Scanner(streamsFile);
-
     }
 
     public void promptEmail() {
@@ -106,11 +105,11 @@ public class RoomSjow {
 
 
     public void createProfile() throws IOException {
-        promptEmail();
         promptUsername();
+        promptEmail();
         promptPassword();
 
-        Profile profile = new Profile(username, password, email);
+        Profile profile = new Profile(username, email, password);
         profiles.add(profile);
 
         FileWriter fileWriter = new FileWriter("Profiles.txt", true);
@@ -140,12 +139,12 @@ public class RoomSjow {
                 if (p.getPassword().equals(password1)) {
                     Session session = new Session(p);
                 } else {
-                    System.out.println("Password was incorrect");
+                    System.out.println("Password is incorrect");
                     login();
                 }
             }
         } if (!isEmailFound){
-            System.out.println("Email was not found");
+            System.out.println("Email was not found.");
             login();
         }
     }
@@ -168,6 +167,5 @@ public class RoomSjow {
         } else {
             System.out.println("Input incorrect, please try again.");
         }
-
     }
 }

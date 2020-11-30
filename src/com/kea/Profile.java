@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Profile {
     private String username;
-
-
     private String password;
     private String email;
     ArrayList<Stream> myStream = new ArrayList<>();
