@@ -35,7 +35,7 @@ public class RoomSjow {
         }
     }
 
-    private void loadStreams() throws FileNotFoundException{
+    private void loadStreams() throws FileNotFoundException {
         streams = new ArrayList<>();
         File streamsFile = new File("Streams.txt");
         Scanner fileSc = new Scanner(streamsFile);
@@ -47,7 +47,7 @@ public class RoomSjow {
         String emailRegex = "email";
         boolean emailBoo = true;
 
-        do  {
+        do {
             System.out.println("Enter email address: ");
             String email1 = sc.nextLine();
             System.out.println("Confirm email address: ");
@@ -114,7 +114,7 @@ public class RoomSjow {
         profiles.add(profile);
 
         FileWriter fileWriter = new FileWriter("Profiles.txt", true);
-        fileWriter.write("\n"+profile.getUsername()+","+profile.getPassword()+","+profile.getEmail());
+        fileWriter.write("\n" + profile.getUsername() + "," + profile.getPassword() + "," + profile.getEmail());
         fileWriter.close();
         homeMenu();
     }
@@ -127,6 +127,30 @@ public class RoomSjow {
         return false;
     }
 
+    public void login() {
+        boolean isEmailFound = false;
+        System.out.println("Inter Email: ");
+        String email1 = sc.next();
+        System.out.println("Inter Parsword: ");
+        String password1 = sc.next();
+
+        for (Profile p : profiles) {
+            if (p.getEmail().equals(email1)) {
+                isEmailFound = true;
+                if (p.getPassword().equals(password1)) {
+                    Session session = new Session(p);
+                } else {
+                    System.out.println("password was incorrect");
+                    login();
+                }
+            }
+        } if (!isEmailFound){
+            System.out.println("Email was not found.");
+            login();
+        }
+    }
+
+
     public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
         System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
@@ -135,15 +159,13 @@ public class RoomSjow {
 
         if (choice.contains("1")) {
             System.out.println("Pressed 1");
-        }
-        else if (choice.contains("2")) {
+            login();
+        } else if (choice.contains("2")) {
             System.out.println("Pressed 2");
             createProfile();
-        }
-        else if (choice.contains("3")) {
+        } else if (choice.contains("3")) {
             System.out.println("Pressed 3");
-        }
-        else {
+        } else {
             System.out.println("Input incorrect, please try again.");
         }
 
