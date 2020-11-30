@@ -53,6 +53,10 @@ public class RoomSjow {
             String email2 = sc.nextLine();
 
             if (email1.matches(emailRegex)) {
+                if (isEmailTaken(email1)) {
+                    System.out.println("Typed user name is already taken, please try again.");
+                continue;
+                }
                 if (email1.equals(email2)) {
                     email = email1;
                     emailBoo = false;
@@ -121,6 +125,14 @@ public class RoomSjow {
     public boolean isUserNameTaken(String userName) {
         for (Profile p : profiles) {
             if (p.getUsername().equals(userName))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isEmailTaken(String email) {
+        for (Profile p : profiles) {
+            if (p.getEmail().equals(email))
                 return true;
         }
         return false;
