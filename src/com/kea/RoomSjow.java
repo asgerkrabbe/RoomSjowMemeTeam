@@ -2,15 +2,16 @@ package com.kea;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// RoomSjow Class
 public class RoomSjow {
     String username = null;
     String email = null;
     String password = null;
-
+    //final DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
     Scanner sc = new Scanner(System.in);
     ArrayList<Stream> streams = new ArrayList<Stream>();
     ArrayList<Profile> profiles = new ArrayList<>();
@@ -18,7 +19,6 @@ public class RoomSjow {
     public void run() throws FileNotFoundException {
         loadProfiles();
         loadStreams();
-
         homeMenu();
     }
 
@@ -33,7 +33,11 @@ public class RoomSjow {
         }
     }
 
-    private static void loadStreams() {
+    private void loadStreams() throws FileNotFoundException{
+        streams = new ArrayList<>();
+        File streamsFile = new File("Streams.txt");
+        Scanner fileSc = new Scanner(streamsFile);
+
     }
 
     public void promptEmail() {
