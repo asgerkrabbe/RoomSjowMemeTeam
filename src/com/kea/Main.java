@@ -17,7 +17,7 @@ public class Main {
         //rs.createProfile();
         //rs.homeMenu();
 
-        Stream s = new Stream(LocalDateTime.of(2020,11,5,16,0),"Once upon a time",Genre.BOLIG);
+        Stream s = new Stream(LocalDateTime.of(2020,11,5,16,0),"Once upon a time", Genre.JAVASCRIPT);
         //2020-11-5T16:00:01,Once upon a time,java
         //2020-11-5T16:00:01,Once upon a time,java
         //2020-11-03T17:00:00,Once upon a time,java)

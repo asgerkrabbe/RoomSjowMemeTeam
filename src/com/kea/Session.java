@@ -7,6 +7,7 @@ public class Session {
         this.profile = profile;
     }
 
+
     public void sessionMenu() {
     System.out.println("What do you want next?");
 

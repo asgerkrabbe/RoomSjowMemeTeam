@@ -41,9 +41,8 @@ public class RoomSjow {
         Scanner fileSc = new Scanner(streamsFile);
         while(fileSc.hasNext()) {
             String[] splittedLine = fileSc.nextLine().split(",");
-            Genre.valueOf(Genre.JAVA);
-            String s = new Stream(LocalDateTime.parse(splittedLine[0],splittedLine[1],splittedLine[2]));
-
+            Genre genreEnum = Genre.valueOf(splittedLine[2]);
+            Stream s = new Stream(LocalDateTime.parse(splittedLine[0]),splittedLine[1],genreEnum);
         }
     }
 
@@ -113,7 +112,6 @@ public class RoomSjow {
         } while (usernameBoo);
     }
 
-
     public void createProfile() throws IOException {
         promptUsername();
         promptEmail();
@@ -166,7 +164,6 @@ public class RoomSjow {
             login();
         }
     }
-
 
     public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
