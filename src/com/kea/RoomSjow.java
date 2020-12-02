@@ -69,32 +69,6 @@ public class RoomSjow {
     }
 
 
-    public void login() {
-        boolean isEmailFound = false;
-        System.out.println("Enter Email: ");
-        String email1 = sc.next();
-        System.out.println("Enter Password: ");
-        String password1 = sc.next();
-
-        for (Profile p : profiles) {
-            if (p.getEmail().equals(email1)) {
-                isEmailFound = true;
-                if (p.getPassword().equals(password1)) {
-                    Session session = new Session(p,streams);
-                    System.out.println("Username and password correct!!\n\n");
-                    session.sessionMenu();
-                } else {
-                    System.out.println("Password is incorrect");
-                    login();
-                }
-            }
-        }
-        if (!isEmailFound) {
-            System.out.println("Email was not found.");
-            login();
-        }
-    }
-
     public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
         System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
@@ -120,6 +94,32 @@ public class RoomSjow {
                 System.out.println("Input incorrect, please try again.");
                 homeMenu();
             }
+        }
+    }
+
+    public void login() {
+        boolean isEmailFound = false;
+        System.out.println("Enter Email: ");
+        String email1 = sc.next();
+        System.out.println("Enter Password: ");
+        String password1 = sc.next();
+
+        for (Profile p : profiles) {
+            if (p.getEmail().equals(email1)) {
+                isEmailFound = true;
+                if (p.getPassword().equals(password1)) {
+                    Session session = new Session(p,streams);
+                    System.out.println("Username and password correct!!\n\n");
+                    session.sessionMenu();
+                } else {
+                    System.out.println("Password is incorrect");
+                    login();
+                }
+            }
+        }
+        if (!isEmailFound) {
+            System.out.println("Email was not found.");
+            login();
         }
     }
 
