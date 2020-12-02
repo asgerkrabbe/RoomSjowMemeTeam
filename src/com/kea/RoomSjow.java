@@ -42,7 +42,7 @@ public class RoomSjow {
 
     public void run() throws IOException {
         loadProfiles();
-        //loadStreams();
+        loadStreams();
         homeMenu();
     }
 
@@ -56,7 +56,7 @@ public class RoomSjow {
             profiles.add(p);
         }
     }
-    /*
+
     private void loadStreams() throws FileNotFoundException {
         streams = new ArrayList<>();
         File streamsFile = new File("Streams.txt");
@@ -67,7 +67,77 @@ public class RoomSjow {
             Stream s = new Stream(LocalDateTime.parse(splittedLine[0]),splittedLine[1],genreEnum);
         }
     }
-     */
+
+
+    public void login() {
+        boolean isEmailFound = false;
+        System.out.println("Enter Email: ");
+        String email1 = sc.next();
+        System.out.println("Enter Password: ");
+        String password1 = sc.next();
+
+        for (Profile p : profiles) {
+            if (p.getEmail().equals(email1)) {
+                isEmailFound = true;
+                if (p.getPassword().equals(password1)) {
+                    Session session = new Session(p,streams);
+                    System.out.println("Username and password correct!!\n\n");
+                    session.sessionMenu();
+                } else {
+                    System.out.println("Password is incorrect");
+                    login();
+                }
+            }
+        }
+        if (!isEmailFound) {
+            System.out.println("Email was not found.");
+            login();
+        }
+    }
+
+    public void homeMenu() throws IOException {
+        System.out.println("Choose what to do next: ");
+        System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
+        String choice = sc.nextLine();
+
+        switch (choice) {
+            case "1": {
+                System.out.println("Pressed 1");
+                login();
+                break;
+            }
+            case "2": {
+                System.out.println("Pressed 2");
+                createProfile();
+                break;
+            }
+            case "3": {
+                System.out.println("Pressed 3");
+
+                break;
+            }
+            default: {
+                System.out.println("Input incorrect, please try again.");
+                homeMenu();
+            }
+        }
+    }
+
+
+    public void createProfile() throws IOException {
+        promptUsername();
+        promptEmail();
+        promptPassword();
+
+        Profile profile = new Profile(username, email, password);
+        profiles.add(profile);
+
+        FileWriter fileWriter = new FileWriter("Profiles.txt", true);
+        fileWriter.write("\n" + profile.getUsername() + "," + profile.getPassword() + "," + profile.getEmail());
+        fileWriter.close();
+        System.out.println("Your profile was successfully created.");
+        homeMenu();
+    }
 
     public void promptEmail() {
         //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
@@ -135,21 +205,6 @@ public class RoomSjow {
         } while (usernameBoo);
     }
 
-    public void createProfile() throws IOException {
-        promptUsername();
-        promptEmail();
-        promptPassword();
-
-        Profile profile = new Profile(username, email, password);
-        profiles.add(profile);
-
-        FileWriter fileWriter = new FileWriter("Profiles.txt", true);
-        fileWriter.write("\n" + profile.getUsername() + "," + profile.getPassword() + "," + profile.getEmail());
-        fileWriter.close();
-        System.out.println("Your profile was successfully created.");
-        homeMenu();
-    }
-
     public boolean isUserNameTaken(String userName) {
         for (Profile p : profiles) {
             if (p.getUsername().equals(userName))
@@ -164,59 +219,5 @@ public class RoomSjow {
                 return true;
         }
         return false;
-    }
-
-    public void login() {
-        boolean isEmailFound = false;
-        System.out.println("Enter Email: ");
-        String email1 = sc.next();
-        System.out.println("Enter Password: ");
-        String password1 = sc.next();
-
-        for (Profile p : profiles) {
-            if (p.getEmail().equals(email1)) {
-                isEmailFound = true;
-                if (p.getPassword().equals(password1)) {
-                    Session session = new Session(p,streams);
-                    System.out.println("Username and password correct!!\n\n");
-                    session.sessionMenu();
-                } else {
-                    System.out.println("Password is incorrect");
-                    login();
-                }
-            }
-        }
-        if (!isEmailFound) {
-            System.out.println("Email was not found.");
-            login();
-        }
-    }
-
-    public void homeMenu() throws IOException {
-        System.out.println("Choose what to do next: ");
-        System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
-        String choice = sc.nextLine();
-
-        switch (choice) {
-            case "1": {
-                System.out.println("Pressed 1");
-                login();
-                break;
-            }
-            case "2": {
-                System.out.println("Pressed 2");
-                createProfile();
-                break;
-            }
-            case "3": {
-                System.out.println("Pressed 3");
-
-                break;
-            }
-            default: {
-                System.out.println("Input incorrect, please try again.");
-                homeMenu();
-            }
-        }
     }
 }
