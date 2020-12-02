@@ -31,7 +31,6 @@ abstract public class Payment {
             System.out.println("Invalid input. Please try again.");
             pay();
         }
-
     }
 
     public void payCreditcard() {
@@ -51,7 +50,6 @@ abstract public class Payment {
 
             }
         } while (creditboo) ;
-
     }
 
     public void payMobilepay() {
