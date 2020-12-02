@@ -61,7 +61,7 @@ abstract public class Payment {
         Matcher m = p.matcher(mobileregex);
 
         do {
-            System.out.println("Enter a valid 8 diget phonenumber: ");
+            System.out.println("Enter a valid 8 digit phonenumber: ");
             double number = scan.nextDouble();
             if (m.matches()) {
                 System.out.println("X amount have been charged.");
