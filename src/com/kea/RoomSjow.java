@@ -20,7 +20,7 @@ public class RoomSjow {
         //rs.createProfile();
         //rs.homeMenu();
 
-        Stream s = new Stream(LocalDateTime.of(2020,11,5,16,0),"Once upon a time", Genre.JAVASCRIPT);
+        Stream s = new Stream(LocalDateTime.of(2020, 11, 5, 16, 0), "Once upon a time", Genre.JAVASCRIPT);
         //2020-11-5T16:00:01,Once upon a time,java
         //2020-11-5T16:00:01,Once upon a time,java
         //2020-11-03T17:00:00,Once upon a time,java)
@@ -31,6 +31,7 @@ public class RoomSjow {
 
          */
     }
+
     String username = null;
     String email = null;
     String password = null;
@@ -41,7 +42,7 @@ public class RoomSjow {
 
     public void run() throws IOException {
         loadProfiles();
-        loadStreams();
+        //loadStreams();
         homeMenu();
     }
 
@@ -55,7 +56,7 @@ public class RoomSjow {
             profiles.add(p);
         }
     }
-
+    /*
     private void loadStreams() throws FileNotFoundException {
         streams = new ArrayList<>();
         File streamsFile = new File("Streams.txt");
@@ -66,6 +67,7 @@ public class RoomSjow {
             Stream s = new Stream(LocalDateTime.parse(splittedLine[0]),splittedLine[1],genreEnum);
         }
     }
+     */
 
     public void promptEmail() {
         //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
@@ -81,7 +83,7 @@ public class RoomSjow {
             if (email1.matches(emailRegex)) {
                 if (isEmailTaken(email1)) {
                     System.out.println("Typed user name is already taken, please try again.");
-                continue;
+                    continue;
                 }
                 if (email1.equals(email2)) {
                     email = email1;
@@ -176,12 +178,15 @@ public class RoomSjow {
                 isEmailFound = true;
                 if (p.getPassword().equals(password1)) {
                     Session session = new Session(p);
+                    System.out.println("Username and password correct!!\n\n");
+                    session.sessionMenu();
                 } else {
                     System.out.println("Password is incorrect");
                     login();
                 }
             }
-        } if (!isEmailFound){
+        }
+        if (!isEmailFound) {
             System.out.println("Email was not found.");
             login();
         }
@@ -192,17 +197,26 @@ public class RoomSjow {
         System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
         String choice = sc.nextLine();
 
+        switch (choice) {
+            case "1": {
+                System.out.println("Pressed 1");
+                login();
+                break;
+            }
+            case "2": {
+                System.out.println("Pressed 2");
+                createProfile();
+                break;
+            }
+            case "3": {
+                System.out.println("Pressed 3");
 
-        if (choice.contains("1")) {
-            System.out.println("Pressed 1");
-            login();
-        } else if (choice.contains("2")) {
-            System.out.println("Pressed 2");
-            createProfile();
-        } else if (choice.contains("3")) {
-            System.out.println("Pressed 3");
-        } else {
-            System.out.println("Input incorrect, please try again.");
+                break;
+            }
+            default: {
+                System.out.println("Input incorrect, please try again.");
+                homeMenu();
+            }
         }
     }
 }
