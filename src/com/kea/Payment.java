@@ -44,10 +44,10 @@ public class Payment {
             double number = scan.nextDouble();
             if (m.matches()) {
                 System.out.println("X amount have been charged.");
+                creditboo = false;
             } else {
                 System.out.println("Creditnumber is not valid. Please try again.");
                 payCreditcard();
-
             }
         } while (creditboo) ;
     }
