@@ -24,5 +24,4 @@ public class Streamlist {
             Stream s = new Stream(LocalDateTime.parse(splittedLine[0]),splittedLine[1],genreEnum);
         }
     }
-
 }
