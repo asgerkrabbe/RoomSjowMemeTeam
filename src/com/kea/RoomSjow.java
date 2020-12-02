@@ -37,12 +37,12 @@ public class RoomSjow {
     String password = null;
     //final DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
     Scanner sc = new Scanner(System.in);
-    ArrayList<Stream> streams = new ArrayList<Stream>();
+
     ArrayList<Profile> profiles = new ArrayList<>();
 
     public void run() throws IOException {
         loadProfiles();
-        loadStreams();
+        Streamlist streamlist = new Streamlist();
         homeMenu();
     }
 
@@ -56,18 +56,6 @@ public class RoomSjow {
             profiles.add(p);
         }
     }
-
-    private void loadStreams() throws FileNotFoundException {
-        streams = new ArrayList<>();
-        File streamsFile = new File("Streams.txt");
-        Scanner fileSc = new Scanner(streamsFile);
-        while(fileSc.hasNext()) {
-            String[] splittedLine = fileSc.nextLine().split(",");
-            Genre genreEnum = Genre.valueOf(splittedLine[2]);
-            Stream s = new Stream(LocalDateTime.parse(splittedLine[0]),splittedLine[1],genreEnum);
-        }
-    }
-
 
     public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
@@ -108,7 +96,7 @@ public class RoomSjow {
             if (p.getEmail().equals(email1)) {
                 isEmailFound = true;
                 if (p.getPassword().equals(password1)) {
-                    Session session = new Session(p,streams);
+                    Session session = new Session(p);
                     System.out.println("Username and password correct!!\n\n");
                     session.sessionMenu();
                 } else {
@@ -123,7 +111,6 @@ public class RoomSjow {
         }
     }
 
-
     public void createProfile() throws IOException {
         promptUsername();
         promptEmail();
@@ -137,6 +124,29 @@ public class RoomSjow {
         fileWriter.close();
         System.out.println("Your profile was successfully created.");
         homeMenu();
+    }
+
+    public void promptUsername() {
+        //String userNameRegex = "username";
+        boolean usernameBoo = true;
+        do {
+            System.out.println("Enter username: ");
+            String userName1 = sc.nextLine();
+            if (isUserNameTaken(userName1)) {
+                System.out.println("Typed user name is already taken, please try again.");
+            } else/* (userName1.matches(userNameRegex))*/ {
+                username = userName1;
+                usernameBoo = false;
+            }
+        } while (usernameBoo);
+    }
+
+    public boolean isUserNameTaken(String userName) {
+        for (Profile p : profiles) {
+            if (p.getUsername().equals(userName))
+                return true;
+        }
+        return false;
     }
 
     public void promptEmail() {
@@ -167,6 +177,14 @@ public class RoomSjow {
         } while (emailBoo);
     }
 
+    public boolean isEmailTaken(String email) {
+        for (Profile p : profiles) {
+            if (p.getEmail().equals(email))
+                return true;
+        }
+        return false;
+    }
+
     public void promptPassword() {
         String passwordRegex = "password";
         boolean pwBoo = true;
@@ -190,34 +208,5 @@ public class RoomSjow {
         } while (pwBoo);
     }
 
-    public void promptUsername() {
-        //String userNameRegex = "username";
-        boolean usernameBoo = true;
-        do {
-            System.out.println("Enter username: ");
-            String userName1 = sc.nextLine();
-            if (isUserNameTaken(userName1)) {
-                System.out.println("Typed user name is already taken, please try again.");
-            } else/* (userName1.matches(userNameRegex))*/ {
-                username = userName1;
-                usernameBoo = false;
-            }
-        } while (usernameBoo);
-    }
 
-    public boolean isUserNameTaken(String userName) {
-        for (Profile p : profiles) {
-            if (p.getUsername().equals(userName))
-                return true;
-        }
-        return false;
-    }
-
-    public boolean isEmailTaken(String email) {
-        for (Profile p : profiles) {
-            if (p.getEmail().equals(email))
-                return true;
-        }
-        return false;
-    }
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-abstract public class Payment {
+public class Payment {
     protected int phoneNumber;
     protected int cardNumber;
     Scanner scan = new Scanner(System.in);
@@ -46,7 +46,7 @@ abstract public class Payment {
                 System.out.println("X amount have been charged.");
             } else {
                 System.out.println("Creditnumber is not valid. Please try again.");
-                payMobilepay();
+                payCreditcard();
 
             }
         } while (creditboo) ;
