@@ -6,7 +6,7 @@ public class Profile {
     private String username;
     private String password;
     private String email;
-    ArrayList<Stream> myStream = new ArrayList<>();
+    ArrayList<Stream> myStreams = new ArrayList<>();
 
     public Profile() {
     }

@@ -12,14 +12,15 @@ public class Session {
 
     public void sessionMenu() {
     System.out.println("What do you want next?");
-        System.out.println("1. Create Stream.\n 2. etc.");
+        System.out.println("1. Create Stream.\n2. etc.");
         Scanner sc = new Scanner(System.in);
 
         String choice = sc.next();
 
         switch (choice) {
-            case "1":
-                System.out.println("1. Create Stream");
+            case "1": {
+                System.out.println("You pressed 1");
+            }
         }
     }
 }
