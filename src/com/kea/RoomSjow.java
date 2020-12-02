@@ -177,7 +177,7 @@ public class RoomSjow {
             if (p.getEmail().equals(email1)) {
                 isEmailFound = true;
                 if (p.getPassword().equals(password1)) {
-                    Session session = new Session(p);
+                    Session session = new Session(p,streams);
                     System.out.println("Username and password correct!!\n\n");
                     session.sessionMenu();
                 } else {

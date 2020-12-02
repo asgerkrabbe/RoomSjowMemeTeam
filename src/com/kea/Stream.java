@@ -12,7 +12,6 @@ public class Stream implements Comparable<Stream> {
     private LocalDateTime startTime = LocalDateTime.of(2020,9,1,13,30 );
     private Genre genre;
 
-
     public Stream(LocalDateTime start, String title, Genre genre){
         startTime = start;
         this.title = title;

@@ -1,12 +1,15 @@
 package com.kea;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Session {
     Profile profile;
+    ArrayList<Stream> streams;
 
-    public Session(Profile profile) {
+    public Session(Profile profile, ArrayList<Stream> streams) {
         this.profile = profile;
+        this.streams = streams;
     }
 
 
