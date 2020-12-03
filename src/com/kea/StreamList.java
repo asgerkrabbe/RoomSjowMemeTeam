@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StreamList {
+    ArrayList<Stream> streams = new ArrayList<Stream>();
 
 
     public StreamList() throws FileNotFoundException {
         loadStreams();
     }
 
-    ArrayList<Stream> streams = new ArrayList<Stream>();
     private void loadStreams() throws FileNotFoundException {
         streams = new ArrayList<>();
         File streamsFile = new File("Streams.txt");
@@ -24,4 +24,13 @@ public class StreamList {
             Stream s = new Stream(LocalDateTime.parse(splittedLine[0]),splittedLine[1],genreEnum);
         }
     }
+    private void writeFile(){
+
+    };
+
+    public void add(Stream stream){
+        streams.add(stream);
+        writeFile();
+     };
+
 }

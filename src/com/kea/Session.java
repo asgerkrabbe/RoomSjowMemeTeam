@@ -33,7 +33,8 @@ public class Session {
         Stream stream = new Stream(startTime, streamTitle, enumGenre);
         if (checkOverlap(stream, profile.myStreams)) {
             profile.myStreams.add(stream);
-            streamList.streams.add(stream);
+            streamList.add(stream);
+
         } else {
             System.out.println("You already signed up for a stream at the selected time, would you like to choose another time?");
             System.out.println("1. Yes \n2. No");
@@ -53,15 +54,12 @@ public class Session {
 
     }
 
-    private boolean checkOverlap(Stream stream, ArrayList<Stream> myStreams) {
-        LocalDateTime thisDateTime = stream.getStartTime().plusHours(2);
+   private boolean checkOverlap(Stream stream, ArrayList<Stream> myStreams) {
+       /* LocalDateTime thisDateTime = stream.getStartTime().plusHours(2).;
         for (Stream s : myStreams){
             LocalDateTime DateTime = s.getStartTime().plusHours(2);
-            if thisDateTime "er minus end" DateTime...
-
-        }
-
-
+           //if thisDateTime "er minus end" DateTime...
+        }*/
         return false;
     }
 
