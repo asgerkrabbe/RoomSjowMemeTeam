@@ -18,6 +18,7 @@ public class Profile {
     public String getEmail() {
         return email;
     }
+
     public Profile(String username, String email, String password) {
         this.username = username;
         this.password = password;

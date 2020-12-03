@@ -18,9 +18,9 @@ public class RoomSjow {
         //Stream s = new Stream(LocalDateTime.of(2020, 11, 5, 16, 0), "Once upon a time", Genre.JAVASCRIPT);
 
         /**System.out.println("BASIC_ISO_DATE format:      " + (s.getStartTime()));
-        System.out.println("ISO_LOCAL_DATE format:      " + (DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()));
-        System.out.println("ISO_LOCAL_TIME format:      " + (DateTimeFormatter.ISO_LOCAL_TIME).format(s.getStartTime()));
-        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
+         System.out.println("ISO_LOCAL_DATE format:      " + (DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()));
+         System.out.println("ISO_LOCAL_TIME format:      " + (DateTimeFormatter.ISO_LOCAL_TIME).format(s.getStartTime()));
+         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
          */
     }
 
@@ -66,7 +66,8 @@ public class RoomSjow {
             }
             case "3": {
                 System.out.println("Pressed 3");
-                streamlist = new StreamList();
+                StreamList streamList1 = new StreamList();
+                streamList1.showList();
                 break;
             }
             default: {
@@ -88,7 +89,7 @@ public class RoomSjow {
             if (p.getEmail().equals(email1)) {
                 isEmailFound = true;
                 if (p.getPassword().equals(password1)) {
-                    Session session = new Session(p,streamlist);
+                    Session session = new Session(p, streamlist);
                     System.out.println("Username and password correct!!\n\n");
                     session.sessionMenu();
                 } else {

@@ -31,6 +31,7 @@ public class StreamList {
             Stream s = new Stream(splittedLine[0], LocalDateTime.parse(splittedLine[1]), genreEnum, 0, 5.0);
         }
     }
+
     public void add(Stream stream) {
         streams.add(stream);
     }
@@ -41,7 +42,7 @@ public class StreamList {
         }
         for (int i = 0; i < showStreams.size(); i++) {
             System.out.println(showStreams.get(i));
-            }
         }
     }
+}
 

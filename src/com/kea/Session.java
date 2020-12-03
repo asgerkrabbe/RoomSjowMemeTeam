@@ -20,7 +20,6 @@ public class Session {
     }
 
 
-
     public void createStream() throws IOException {
         System.out.println("Enter stream information.");
         Scanner sc = new Scanner(System.in);
@@ -35,16 +34,15 @@ public class Session {
 
         LocalDateTime startTime = promptDateTime();
 
-        Stream stream = new Stream(streamTitle,startTime, enumGenre,0,5.0);
+        Stream stream = new Stream(streamTitle, startTime, enumGenre, 0, 5.0);
         if (checkOverlap(stream, profile.myStreams)) {
             profile.myStreams.add(stream);
             streamList.add(stream);
 
 
-                FileWriter myWriter = new FileWriter("Streams.txt",true);
-                myWriter.write(String.valueOf(stream));
-                myWriter.close();
-
+            FileWriter myWriter = new FileWriter("Streams.txt", true);
+            myWriter.write(String.valueOf(stream));
+            myWriter.close();
 
 
         } else {
@@ -54,18 +52,18 @@ public class Session {
             switch (answer) {
                 case "1":
                     LocalDateTime startTime2 = promptDateTime();
-                    Stream stream2 = new Stream(streamTitle, startTime, enumGenre,0,5.0);
+                    Stream stream2 = new Stream(streamTitle, startTime, enumGenre, 0, 5.0);
                     if (checkOverlap(stream2, profile.myStreams))
                         System.out.println("You are also signed up for a stream at the selected time. \n");
                     System.out.println("You will be forwarded to the start menu. ");
-                        createStream();
+                    createStream();
                 case "2":
                     sessionMenu();
             }
         }
     }
 
-   private boolean checkOverlap(Stream stream, ArrayList<Stream> myStreams) {
+    private boolean checkOverlap(Stream stream, ArrayList<Stream> myStreams) {
        /* LocalDateTime thisDateTime = stream.getStartTime().plusHours(2).;
         for (Stream s : myStreams){
             LocalDateTime DateTime = s.getStartTime().plusHours(2);
@@ -103,7 +101,7 @@ public class Session {
                 System.out.println("You pressed 1");
                 createStream();
             }
-            case "2":{
+            case "2": {
                 System.out.println("You pressed 2");
                 streamList.showList();
             }
