@@ -33,7 +33,7 @@ public class RoomSjow {
 
     public void run() throws IOException {
         loadProfiles();
-        streamlist = new StreamList();
+
         homeMenu();
     }
 
@@ -66,7 +66,7 @@ public class RoomSjow {
             }
             case "3": {
                 System.out.println("Pressed 3");
-
+                streamlist = new StreamList();
                 break;
             }
             default: {
