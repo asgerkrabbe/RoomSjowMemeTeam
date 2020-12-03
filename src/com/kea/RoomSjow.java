@@ -77,7 +77,7 @@ public class RoomSjow {
 
     }
 
-    public void login() {
+    public void login() throws IOException {
         boolean isEmailFound = false;
         System.out.println("Enter Email: ");
         String email1 = sc.next();

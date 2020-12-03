@@ -1,5 +1,7 @@
 package com.kea;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,7 +18,9 @@ public class Session {
         //this.streams = streams;
     }
 
-    public void createStream() {
+
+
+    public void createStream() throws IOException {
         System.out.println("Enter stream information.");
         Scanner sc = new Scanner(System.in);
 
@@ -35,6 +39,13 @@ public class Session {
             profile.myStreams.add(stream);
             streamList.add(stream);
 
+
+                FileWriter myWriter = new FileWriter("Streams.txt",true);
+                myWriter.write(String.valueOf(stream));
+                myWriter.close();
+
+
+
         } else {
             System.out.println("You already signed up for a stream at the selected time, would you like to choose another time?");
             System.out.println("1. Yes \n2. No");
@@ -51,7 +62,6 @@ public class Session {
                     sessionMenu();
             }
         }
-
     }
 
    private boolean checkOverlap(Stream stream, ArrayList<Stream> myStreams) {
@@ -60,7 +70,7 @@ public class Session {
             LocalDateTime DateTime = s.getStartTime().plusHours(2);
            //if thisDateTime "er minus end" DateTime...
         }*/
-        return false;
+        return true;
     }
 
     public LocalDateTime promptDateTime() {
@@ -80,7 +90,7 @@ public class Session {
         return startTime;
     }
 
-    public void sessionMenu() {
+    public void sessionMenu() throws IOException {
         System.out.println("What do you want next?");
         System.out.println("1. Create Stream.\n2. viwe our Streams.");
         Scanner sc = new Scanner(System.in);

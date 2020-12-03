@@ -36,7 +36,8 @@ public class Stream implements Comparable<Stream> {
     }
     @Override
     public String toString(){
-        return "titel: " + title + "\n" + "Date: " + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\n" +
-        "Time: " + (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) + "\n" + "Gernre: " + genre + "\n" + "viewers" + "\n" + viewers + "\n" + "price" + price;
+        return "\n" + title + "," + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "," +
+        (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) + ","  + genre + "," +
+                + viewers + "," +  price + " DKK";
     }
 }
