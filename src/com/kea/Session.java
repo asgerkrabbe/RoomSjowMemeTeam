@@ -104,6 +104,7 @@ public class Session {
             case "2": {
                 System.out.println("You pressed 2");
                 streamList.showList();
+                sessionMenu();
             }
         }
     }

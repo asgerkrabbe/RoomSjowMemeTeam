@@ -55,20 +55,19 @@ public class RoomSjow {
 
         switch (choice) {
             case "1": {
-                System.out.println("Pressed 1");
                 login();
                 break;
             }
             case "2": {
-                System.out.println("Pressed 2");
+                System.out.println("Profile creation:\n");
                 createProfile();
                 break;
             }
             case "3": {
-                System.out.println("Pressed 3");
+                System.out.println("Our streams:\n");
                 StreamList streamList1 = new StreamList();
                 streamList1.showList();
-                break;
+                homeMenu();
             }
             default: {
                 System.out.println("Input incorrect, please try again.");

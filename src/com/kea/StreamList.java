@@ -11,6 +11,7 @@ public class StreamList {
     ArrayList<String> showStreams = new ArrayList<>();
     File streamsFile = new File("Streams.txt");
     Scanner fileSc = new Scanner(streamsFile);
+    Scanner sc = new Scanner(System.in);
 
 
     public StreamList() throws FileNotFoundException {
@@ -36,12 +37,23 @@ public class StreamList {
         streams.add(stream);
     }
 
-    public void showList() {
+    public void showList() throws IOException {
         while (fileSc.hasNext()) {
             showStreams.add(fileSc.nextLine());
         }
+
         for (int i = 0; i < showStreams.size(); i++) {
             System.out.println(showStreams.get(i));
+        }
+        System.out.println("\nPress enter to return to start menu.");
+        for(;;){
+            try{
+                int data = System.in.read();
+                if(data == 10){
+                    break;
+                }
+                System.out.print(data);
+            }catch(IOException e ){}
         }
     }
 }
