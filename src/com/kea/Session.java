@@ -82,7 +82,7 @@ public class Session {
 
     public void sessionMenu() {
         System.out.println("What do you want next?");
-        System.out.println("1. Create Stream.\n2. etc.");
+        System.out.println("1. Create Stream.\n2. viwe our Streams.");
         Scanner sc = new Scanner(System.in);
 
         String choice = sc.next();
@@ -91,6 +91,10 @@ public class Session {
             case "1": {
                 System.out.println("You pressed 1");
                 createStream();
+            }
+            case "2":{
+                System.out.println("You pressed 2");
+                streamList.showList();
             }
         }
     }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class StreamList {
@@ -32,5 +33,14 @@ public class StreamList {
         streams.add(stream);
         writeFile();
      };
+
+    public void showList() {
+        Collections.sort(streams);
+        for(int i=0; i<streams.size(); i++){
+            System.out.println(streams.get(i));
+        }
+
+
+    }
 
 }

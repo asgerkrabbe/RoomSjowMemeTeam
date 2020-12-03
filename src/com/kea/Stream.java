@@ -1,6 +1,7 @@
 package com.kea;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /*
 default time pattern to parse from a string
@@ -12,6 +13,7 @@ public class Stream implements Comparable<Stream> {
     private String title;
     private LocalDateTime startTime = LocalDateTime.of(2020, 9, 1, 13, 30);
     private Genre genre;
+    private int viewers;
 
     public Stream(LocalDateTime start, String title, Genre genre) {
         startTime = start;
@@ -31,5 +33,10 @@ public class Stream implements Comparable<Stream> {
         } else {
             return this.startTime.compareTo(s.startTime);
         }
+    }
+    @Override
+    public String toString(){
+        return "titel: " + title + "\n" + "Date: " + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\n" +
+        "Time: " + (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) + "\n" + "Gernre: " + genre + "\n" + "viewers" + "\n" + viewers + "\n" + "price" + price;
     }
 }
