@@ -1,16 +1,18 @@
 package com.kea;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Session {
     Profile profile;
-    ArrayList<Stream> streams;
+    StreamList streamList;
 
 
-    public Session(Profile profile) /*ArrayList<Stream> streams*/ {
+    public Session(Profile profile,StreamList streamList) /*ArrayList<Stream> streams*/ {
         this.profile = profile;
+        this.streamList = streamList;
         //this.streams = streams;
     }
 
@@ -26,17 +28,27 @@ public class Session {
         String genre = sc.nextLine();
         Genre enumGenre = Genre.valueOf(genre);
 
-        System.out.println("Enter stream duration (HH): ");
-        String durationHoursRegex;
-        int durationHours = sc.nextInt();
+        System.out.println("Type the stream date and start time in this format: YYYY MM DD HH MM");
+        String date = sc.nextLine();
+        Scanner stringSc = new Scanner(date);
+        int year = stringSc.nextInt();
+        int month = stringSc.nextInt();
+        int day = stringSc.nextInt();
+        int hours = stringSc.nextInt();
+        int minutes = stringSc.nextInt();
+        LocalDateTime startTime = LocalDateTime.of(year,month,day,hours,minutes);
+        System.out.println(startTime);
+        System.out.println("The start date chose is " + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime));
+        System.out.println("The start time chose is " + (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime));
+
+        Stream stream = new Stream(startTime,streamTitle,enumGenre);
+        profile.myStreams.add(stream);
+        streamList.streams.add(stream);
 
 
-        System.out.println("Stream time and date (YYYY,MM,DD,HH,MM): ");
-        String timeAndDateRegex;
-        String time = sc.next();
-
-       // LocalDateTime startTime = LocalDateTime.of();
-        LocalDateTime localTimeObj = LocalDateTime.parse(time);
+        //LocalDateTime startTime = LocalDateTime.of(year,month,day,5,2);
+        //System.out.println(startTime);
+        //LocalDateTime localTimeObj = LocalDateTime.parse(time);
 
     }
 

@@ -6,10 +6,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Streamlist {
+public class StreamList {
 
 
-    public Streamlist() throws FileNotFoundException {
+    public StreamList() throws FileNotFoundException {
         loadStreams();
     }
 

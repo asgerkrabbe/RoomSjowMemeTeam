@@ -5,44 +5,35 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RoomSjow {
     public static void main(String[] args) throws IOException {
-        //MobilePay mobilePay = new MobilePay();
-        //mobilePay.test();
 
         RoomSjow rs = new RoomSjow();
         rs.run();
         //System.out.println(rs.profiles);
-        //rs.createProfile();
-        //rs.homeMenu();
 
         Stream s = new Stream(LocalDateTime.of(2020, 11, 5, 16, 0), "Once upon a time", Genre.JAVASCRIPT);
-        //2020-11-5T16:00:01,Once upon a time,java
-        //2020-11-5T16:00:01,Once upon a time,java
-        //2020-11-03T17:00:00,Once upon a time,java)
 
-        /*System.out.println("BASIC_ISO_DATE format:      " + (s.getStartTime()));
+        /**System.out.println("BASIC_ISO_DATE format:      " + (s.getStartTime()));
         System.out.println("ISO_LOCAL_DATE format:      " + (DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()));
         System.out.println("ISO_LOCAL_TIME format:      " + (DateTimeFormatter.ISO_LOCAL_TIME).format(s.getStartTime()));
-
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
          */
     }
 
     String username = null;
     String email = null;
     String password = null;
-    //final DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
     Scanner sc = new Scanner(System.in);
-
     ArrayList<Profile> profiles = new ArrayList<>();
+    StreamList streamlist;
 
     public void run() throws IOException {
         loadProfiles();
-        Streamlist streamlist = new Streamlist();
+        streamlist = new StreamList();
         homeMenu();
     }
 
@@ -97,7 +88,7 @@ public class RoomSjow {
             if (p.getEmail().equals(email1)) {
                 isEmailFound = true;
                 if (p.getPassword().equals(password1)) {
-                    Session session = new Session(p);
+                    Session session = new Session(p,streamlist);
                     System.out.println("Username and password correct!!\n\n");
                     session.sessionMenu();
                 } else {
