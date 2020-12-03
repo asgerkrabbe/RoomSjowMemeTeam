@@ -2,6 +2,7 @@ package com.kea;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class Session {
 
         LocalDateTime startTime = promptDateTime();
 
-        Stream stream = new Stream(startTime, streamTitle, enumGenre);
+        Stream stream = new Stream(streamTitle,startTime, enumGenre,0,5.0);
         if (checkOverlap(stream, profile.myStreams)) {
             profile.myStreams.add(stream);
             streamList.add(stream);
@@ -53,7 +54,7 @@ public class Session {
             switch (answer) {
                 case "1":
                     LocalDateTime startTime2 = promptDateTime();
-                    Stream stream2 = new Stream(startTime2, streamTitle, enumGenre);
+                    Stream stream2 = new Stream(streamTitle, startTime, enumGenre,0,5.0);
                     if (checkOverlap(stream2, profile.myStreams))
                         System.out.println("You are also signed up for a stream at the selected time. \n");
                     System.out.println("You will be forwarded to the start menu. ");

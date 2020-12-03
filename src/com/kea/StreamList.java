@@ -11,20 +11,26 @@ public class StreamList {
 
 
     public StreamList() throws FileNotFoundException {
-       // loadStreams();
+        loadStreams();
 
     }
 
-    /*private void loadStreams() throws FileNotFoundException {
+    /**
+     *
+     * loadStreams method needs to be modified. New stream format consists of
+     * 6 index' instead of the current 3. Check Streams.txt for examples
+     */
+
+    private void loadStreams() throws FileNotFoundException {
         streams = new ArrayList<>();
         File streamsFile = new File("Streams.txt");
         Scanner fileSc = new Scanner(streamsFile);
         while(fileSc.hasNext()) {
             String[] splittedLine = fileSc.nextLine().split(",");
-            Genre genreEnum = Genre.valueOf(splittedLine[2]);
-            Stream s = new Stream(LocalDateTime.parse(splittedLine[0]),splittedLine[1],genreEnum);
+            Genre genreEnum = Genre.valueOf(splittedLine[3]);
+            Stream s = new Stream(splittedLine[0], LocalDateTime.parse(splittedLine[1]), genreEnum,0,5.0);
         }
-    }*/
+    }
 
 
     public void add(Stream stream){

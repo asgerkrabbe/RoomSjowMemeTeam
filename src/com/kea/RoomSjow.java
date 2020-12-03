@@ -15,7 +15,7 @@ public class RoomSjow {
         rs.run();
         //System.out.println(rs.profiles);
 
-        Stream s = new Stream(LocalDateTime.of(2020, 11, 5, 16, 0), "Once upon a time", Genre.JAVASCRIPT);
+        //Stream s = new Stream(LocalDateTime.of(2020, 11, 5, 16, 0), "Once upon a time", Genre.JAVASCRIPT);
 
         /**System.out.println("BASIC_ISO_DATE format:      " + (s.getStartTime()));
         System.out.println("ISO_LOCAL_DATE format:      " + (DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()));

@@ -15,12 +15,14 @@ public class Stream implements Comparable<Stream> {
     private Genre genre;
     private int viewers;
 
-    public Stream(LocalDateTime start, String title, Genre genre) {
-        startTime = start;
+    public Stream(String title, LocalDateTime startTime, Genre genre, int viewers,double price) {
         this.title = title;
+        this.startTime = startTime;
         this.genre = genre;
-        price = 5;
+        this.viewers = viewers;
+        this.price = price;
     }
+
 
     public LocalDateTime getStartTime() {
         return startTime;
