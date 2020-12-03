@@ -11,7 +11,7 @@ public class StreamList {
 
 
     public StreamList() throws FileNotFoundException {
-        loadStreams();
+        //loadStreams();
 
     }
 
@@ -21,7 +21,7 @@ public class StreamList {
      * 6 index' instead of the current 3. Check Streams.txt for examples
      */
 
-    private void loadStreams() throws FileNotFoundException {
+    /*private void loadStreams() throws FileNotFoundException {
         streams = new ArrayList<>();
         File streamsFile = new File("Streams.txt");
         Scanner fileSc = new Scanner(streamsFile);
@@ -30,7 +30,7 @@ public class StreamList {
             Genre genreEnum = Genre.valueOf(splittedLine[3]);
             Stream s = new Stream(splittedLine[0], LocalDateTime.parse(splittedLine[1]), genreEnum,0,5.0);
         }
-    }
+    }*/
 
 
     public void add(Stream stream){
