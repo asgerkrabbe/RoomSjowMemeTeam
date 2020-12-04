@@ -27,6 +27,9 @@ public class RoomSjow {
          */
     }
 
+    /**
+     * Sæt modifiers
+     */
     String username = null;
     String email = null;
     String password = null;
@@ -53,34 +56,33 @@ public class RoomSjow {
 
     public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
-        System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
-        String choice = sc.nextLine();
 
-        switch (choice) {
-            case "1": {
-                //StreamList streamlist = new StreamList();
-                //streamlist.signUpForStream();
-                login();
-                break;
-            }
-            case "2": {
-                System.out.println("Profile creation:\n");
-                createProfile();
-                break;
-            }
-            case "3": {
-                System.out.println("Our streams:\n");
-                StreamList streamList1 = new StreamList();
-                streamList1.showList();
-                homeMenu();
-            }
-            default: {
-                System.out.println("Input incorrect, please try again.");
-                homeMenu();
+
+            System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
+            String choice = sc.nextLine();
+            switch (choice) {
+                case "1": {
+                    //StreamList streamlist = new StreamList();
+                    //streamlist.signUpForStream();
+                    login();
+                }
+                case "2": {
+                    System.out.println("Profile creation:\n");
+                    createProfile();
+                }
+                case "3": {
+                    System.out.println("Our streams:\n");
+                    StreamList streamList1 = new StreamList();
+                    streamList1.showList();
+
+                }
+                default: {
+                    System.out.println("Input incorrect, please try again.");
+                }
             }
         }
 
-    }
+
 
     public void login() throws IOException {
         boolean isEmailFound = false;
@@ -95,6 +97,7 @@ public class RoomSjow {
                 if (p.getPassword().equals(password1)) {
                     Session session = new Session(p, streamlist);
                     System.out.println("Username and password correct!!\n\n");
+                    //streamlist.setCurrentUser("Asger");
                     session.sessionMenu();
                 } else {
                     System.out.println("Password is incorrect");
@@ -148,7 +151,7 @@ public class RoomSjow {
 
     public void promptEmail() {
         //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        String emailRegex = "email";
+        String emailRegex = "testemail";
         boolean emailBoo = true;
 
         do {
@@ -183,7 +186,7 @@ public class RoomSjow {
     }
 
     public void promptPassword() {
-        String passwordRegex = "password";
+        String passwordRegex = "testpassword";
         boolean pwBoo = true;
 
         do {

@@ -8,6 +8,12 @@ public class Profile {
     private String email;
     ArrayList<Stream> myStreams = new ArrayList<>();
 
+    public Profile(String username, String email, String password) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
     public Profile() {
     }
 
@@ -17,12 +23,6 @@ public class Profile {
 
     public String getEmail() {
         return email;
-    }
-
-    public Profile(String username, String email, String password) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
     }
 
     public String getUsername() {

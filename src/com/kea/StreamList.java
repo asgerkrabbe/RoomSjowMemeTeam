@@ -7,19 +7,23 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class StreamList {
+    /**
+     * Sæt modifiers
+     */
     ArrayList<Stream> streams = new ArrayList<>();
     ArrayList<String> showStreams = new ArrayList<>();
     File streamsFile = new File("Streams.txt");
     Scanner fileSc = new Scanner(streamsFile);
     Scanner sc = new Scanner(System.in);
 
+    private String currentUser;
 
     public StreamList() throws FileNotFoundException {
         //loadStreams();
     }
 
-    public void sortArrayList() {
-        Collections.sort(showStreams);
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
     }
 
     /**
@@ -45,6 +49,10 @@ public class StreamList {
         streams.add(stream);
     }
 
+    public void sortArrayList() {
+        Collections.sort(showStreams);
+    }
+
     public void showList() {
         while (fileSc.hasNext()) {
             showStreams.add(fileSc.nextLine());
@@ -67,10 +75,14 @@ public class StreamList {
         }
     }
 
-    public void signUpForStream() {
+    public void signUpForStream() throws IOException {
+        FileWriter fileWriter = new FileWriter("SignupStreams.txt", true);
+        setCurrentUser("Asger");
+
         while (fileSc.hasNext()) {
             showStreams.add(fileSc.nextLine());
         }
+        sortArrayList();
 
         for (int i = 0; i < showStreams.size(); i++) {
             System.out.println(showStreams.get(i));
@@ -80,8 +92,9 @@ public class StreamList {
 
         for (int i = 0; i < showStreams.size(); i++) {
 
-            if (showStreams.contains(search)) {
-                System.out.println(showStreams.get(i));
+            if (showStreams.get(i).contains(search)) {
+                fileWriter.write("\n" + currentUser + "," + showStreams.get(i));
+                fileWriter.close();
             }
         }
     }

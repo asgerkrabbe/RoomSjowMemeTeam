@@ -10,14 +10,15 @@ import java.util.Scanner;
 
 public class Session {
     Profile profile;
-    StreamList streamList = new StreamList();
+    private StreamList streamList;
 
 
 
-    public Session(Profile profile, StreamList streamList) throws FileNotFoundException /*ArrayList<Stream> streams*/ {
+    public Session(Profile profile, StreamList streamList) /*ArrayList<Stream> streams*/ {
         this.profile = profile;
         this.streamList = streamList;
         //this.streams = streams;
+
     }
 
 
@@ -90,7 +91,7 @@ public class Session {
 
     public void sessionMenu() throws IOException {
         System.out.println("What do you want next?");
-        System.out.println("1. Create Stream.\n2. viwe our Streams.");
+        System.out.println("1. Create Stream.\n2. View our Streams.\n3. Sign up for a stream");
         Scanner sc = new Scanner(System.in);
 
         String choice = sc.next();
@@ -106,6 +107,7 @@ public class Session {
                 sessionMenu();
             }
             case "3": {
+                streamList = new StreamList();
                 streamList.signUpForStream();
             }
         }
