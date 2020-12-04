@@ -81,6 +81,8 @@ public class StreamList {
                 System.out.print(data);
             } catch (IOException e) {
             }
+            break;
+
         }
     }
 

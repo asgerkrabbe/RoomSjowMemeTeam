@@ -56,24 +56,26 @@ public class RoomSjow {
 
     public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
-
-
             System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
             String choice = sc.nextLine();
+
             switch (choice) {
                 case "1": {
                     //StreamList streamlist = new StreamList();
                     //streamlist.signUpForStream();
                     login();
+                    break;
                 }
                 case "2": {
                     System.out.println("Profile creation:\n");
                     createProfile();
+
                 }
                 case "3": {
                     System.out.println("Our streams:\n");
                     StreamList streamList1 = new StreamList();
                     streamList1.showList();
+                    break;
 
                 }
                 default: {
