@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RoomSjow {
+    public RoomSjow() throws FileNotFoundException {
+    }
+
     public static void main(String[] args) throws IOException {
 
         RoomSjow rs = new RoomSjow();
@@ -31,9 +34,9 @@ public class RoomSjow {
     ArrayList<Profile> profiles = new ArrayList<>();
     StreamList streamlist;
 
-
     public void run() throws IOException {
         loadProfiles();
+
         homeMenu();
     }
 
@@ -55,9 +58,9 @@ public class RoomSjow {
 
         switch (choice) {
             case "1": {
-                StreamList streamlist = new StreamList();
-                streamlist.signUpForStream();
-                //login();
+                //StreamList streamlist = new StreamList();
+                //streamlist.signUpForStream();
+                login();
                 break;
             }
             case "2": {

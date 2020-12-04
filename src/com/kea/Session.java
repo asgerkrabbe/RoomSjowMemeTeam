@@ -39,11 +39,9 @@ public class Session {
             profile.myStreams.add(stream);
             streamList.add(stream);
 
-
             FileWriter myWriter = new FileWriter("Streams.txt", true);
             myWriter.write(String.valueOf(stream));
             myWriter.close();
-
 
         } else {
             System.out.println("You already signed up for a stream at the selected time, would you like to choose another time?");

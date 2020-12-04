@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class StreamList {
-    ArrayList<Stream> streams = new ArrayList<Stream>();
+    ArrayList<Stream> streams = new ArrayList<>();
     ArrayList<String> showStreams = new ArrayList<>();
     File streamsFile = new File("Streams.txt");
     Scanner fileSc = new Scanner(streamsFile);
@@ -16,6 +16,10 @@ public class StreamList {
 
     public StreamList() throws FileNotFoundException {
         //loadStreams();
+    }
+
+    public void sortArrayList() {
+        Collections.sort(showStreams);
     }
 
     /**
@@ -45,6 +49,7 @@ public class StreamList {
         while (fileSc.hasNext()) {
             showStreams.add(fileSc.nextLine());
         }
+        sortArrayList();
 
         for (int i = 0; i < showStreams.size(); i++) {
             System.out.println(showStreams.get(i));
