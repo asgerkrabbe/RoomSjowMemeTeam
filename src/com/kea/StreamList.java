@@ -63,6 +63,9 @@ public class StreamList {
     }
 
     public void signUpForStream() {
+        while (fileSc.hasNext()) {
+            showStreams.add(fileSc.nextLine());
+        }
 
         for (int i = 0; i < showStreams.size(); i++) {
             System.out.println(showStreams.get(i));
@@ -73,7 +76,7 @@ public class StreamList {
         for (int i = 0; i < showStreams.size(); i++) {
 
             if (showStreams.contains(search)) {
-                System.out.println(showStreams);
+                System.out.println(showStreams.get(i));
             }
         }
     }
