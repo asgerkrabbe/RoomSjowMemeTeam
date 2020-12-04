@@ -1,6 +1,5 @@
 package com.kea;
 
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -103,16 +102,20 @@ public class Session {
             }
             case "2": {
                 System.out.println("You pressed 2");
+                streamList = new StreamList();
                 streamList.showList();
                 sessionMenu();
             }
             case "3": {
                 streamList = new StreamList();
                 streamList.signUpForStream();
+                sessionMenu();
+                break;
             }
             case "4": {
                 streamList = new StreamList();
                 streamList.myStreams();
+
             }
         }
     }

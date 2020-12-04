@@ -52,6 +52,7 @@ public class StreamList {
             Genre genreEnum = Genre.valueOf(splittedLine[3]);
             Stream s = new Stream(splittedLine[0], LocalDateTime.parse(splittedLine[1]), genreEnum, 0, 5.0);
         }*/
+        fileSc.close();
     }
 
     public void add(Stream stream) {
@@ -66,29 +67,20 @@ public class StreamList {
         while (fileSc.hasNext()) {
             showStreams.add(fileSc.nextLine());
         }
+        fileSc.close();
         sortArrayList();
 
         for (int i = 0; i < showStreams.size(); i++) {
             System.out.println(showStreams.get(i));
         }
         System.out.println("\nPress enter to return to start menu.");
-        for (; ; ) {
-            try {
-                int data = System.in.read();
-                if (data == 10) {
-                    break;
-                }
-                System.out.print(data);
-            } catch (IOException e) {
-            }
-            break;
+        String exit = sc.nextLine();
 
-        }
     }
 
     public void signUpForStream() throws IOException {
         FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
-        setCurrentUser("Asger");
+        setCurrentUser("Ines");
 
         while (fileSc.hasNext()) {
             showStreams.add(fileSc.nextLine());
@@ -108,6 +100,7 @@ public class StreamList {
                 fileWriter.close();
             }
         }
+        fileSc.close();
     }
 
 public void myStreams() {

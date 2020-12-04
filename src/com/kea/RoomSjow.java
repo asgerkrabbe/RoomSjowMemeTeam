@@ -39,7 +39,6 @@ public class RoomSjow {
 
     public void run() throws IOException {
         loadProfiles();
-
         homeMenu();
     }
 
@@ -75,7 +74,7 @@ public class RoomSjow {
                     System.out.println("Our streams:\n");
                     StreamList streamList1 = new StreamList();
                     streamList1.showList();
-                    break;
+                    homeMenu();
 
                 }
                 default: {
@@ -122,7 +121,7 @@ public class RoomSjow {
         profiles.add(profile);
 
         FileWriter fileWriter = new FileWriter("Profiles.txt", true);
-        fileWriter.write("\n" + profile.getUsername() + "," + profile.getPassword() + "," + profile.getEmail());
+        fileWriter.write("\n" + profile.getUsername() + "," + profile.getEmail() + "," + profile.getPassword());
         fileWriter.close();
         System.out.println("Your profile was successfully created.");
         homeMenu();
@@ -153,7 +152,7 @@ public class RoomSjow {
 
     public void promptEmail() {
         //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        String emailRegex = "testemail";
+        String emailRegex = "mail";
         boolean emailBoo = true;
 
         do {
@@ -188,7 +187,7 @@ public class RoomSjow {
     }
 
     public void promptPassword() {
-        String passwordRegex = "testpassword";
+        String passwordRegex = "pass";
         boolean pwBoo = true;
 
         do {
