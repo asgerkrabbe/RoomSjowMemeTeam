@@ -15,7 +15,7 @@ public class Stream implements Comparable<Stream> {
     private Genre genre;
     private int viewers;
 
-    public Stream(String title, LocalDateTime startTime, Genre genre, int viewers,double price) {
+    public Stream(LocalDateTime startTime, String title, Genre genre, int viewers, double price) {
         this.title = title;
         this.startTime = startTime;
         this.genre = genre;
@@ -36,10 +36,12 @@ public class Stream implements Comparable<Stream> {
             return this.startTime.compareTo(s.startTime);
         }
     }
+
     @Override
-    public String toString(){
-        return "\n" + title + "," + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "," +
-        (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) + ","  + genre + "," +
-                + viewers + "," +  price + " DKK";
+    public String toString() {
+        return "\n" + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "," +
+                (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) + "," +
+                title + "," + genre + "," +
+                +viewers + "," + price + " DKK";
     }
 }
