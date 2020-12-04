@@ -55,6 +55,25 @@ public class StreamList {
                 System.out.print(data);
             }catch(IOException e ){}
         }
+
+
+    }
+    public void singUpFOrStream() throws IOException {
+
+        for (int i = 0; i < showStreams.size(); i++) {
+            System.out.println(showStreams.get(i));
+        }
+        System.out.println("Type stream you want to enter: ");
+        String search = sc.nextLine();
+
+        for (int i = 0; i < showStreams.size(); i++) {
+
+            if (showStreams.contains(search)){
+                System.out.println(showStreams);
+            }
+
+        }
+
     }
 }
 

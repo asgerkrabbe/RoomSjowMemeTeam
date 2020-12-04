@@ -55,7 +55,9 @@ public class RoomSjow {
 
         switch (choice) {
             case "1": {
-                login();
+                StreamList streamlist = new StreamList();
+                streamlist.singUpFOrStream();
+                //login();
                 break;
             }
             case "2": {

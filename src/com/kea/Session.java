@@ -106,6 +106,9 @@ public class Session {
                 streamList.showList();
                 sessionMenu();
             }
+            case "3": {
+                streamList.singUpFOrStream();
+            }
         }
     }
 }
