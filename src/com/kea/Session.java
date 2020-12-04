@@ -1,5 +1,6 @@
 package com.kea;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -9,11 +10,11 @@ import java.util.Scanner;
 
 public class Session {
     Profile profile;
-    StreamList streamList;
+    StreamList streamList = new StreamList();
 
 
 
-    public Session(Profile profile, StreamList streamList) /*ArrayList<Stream> streams*/ {
+    public Session(Profile profile, StreamList streamList) throws FileNotFoundException /*ArrayList<Stream> streams*/ {
         this.profile = profile;
         this.streamList = streamList;
         //this.streams = streams;
