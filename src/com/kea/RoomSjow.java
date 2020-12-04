@@ -31,9 +31,9 @@ public class RoomSjow {
     ArrayList<Profile> profiles = new ArrayList<>();
     StreamList streamlist;
 
+
     public void run() throws IOException {
         loadProfiles();
-
         homeMenu();
     }
 
@@ -56,7 +56,7 @@ public class RoomSjow {
         switch (choice) {
             case "1": {
                 StreamList streamlist = new StreamList();
-                streamlist.singUpFOrStream();
+                streamlist.signUpForStream();
                 //login();
                 break;
             }

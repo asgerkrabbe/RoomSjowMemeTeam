@@ -107,7 +107,7 @@ public class Session {
                 sessionMenu();
             }
             case "3": {
-                streamList.singUpFOrStream();
+                streamList.signUpForStream();
             }
         }
     }

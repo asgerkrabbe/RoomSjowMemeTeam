@@ -23,21 +23,25 @@ public class StreamList {
      * 6 index' instead of the current 3. Check Streams.txt for examples
      */
 
-    private void loadStreams() {
+    public void loadStreams() {
         streams = new ArrayList<>();
+
         while (fileSc.hasNext()) {
+            showStreams.add(fileSc.nextLine());
+        }
+       /* while (fileSc.hasNext()) {
             String[] splittedLine = fileSc.nextLine().split(",");
 
             Genre genreEnum = Genre.valueOf(splittedLine[3]);
             Stream s = new Stream(splittedLine[0], LocalDateTime.parse(splittedLine[1]), genreEnum, 0, 5.0);
-        }
+        }*/
     }
 
     public void add(Stream stream) {
         streams.add(stream);
     }
 
-    public void showList() throws IOException {
+    public void showList() {
         while (fileSc.hasNext()) {
             showStreams.add(fileSc.nextLine());
         }
@@ -46,19 +50,19 @@ public class StreamList {
             System.out.println(showStreams.get(i));
         }
         System.out.println("\nPress enter to return to start menu.");
-        for(;;){
-            try{
+        for (; ; ) {
+            try {
                 int data = System.in.read();
-                if(data == 10){
+                if (data == 10) {
                     break;
                 }
                 System.out.print(data);
-            }catch(IOException e ){}
+            } catch (IOException e) {
+            }
         }
-
-
     }
-    public void singUpFOrStream() throws IOException {
+
+    public void signUpForStream() {
 
         for (int i = 0; i < showStreams.size(); i++) {
             System.out.println(showStreams.get(i));
@@ -68,12 +72,10 @@ public class StreamList {
 
         for (int i = 0; i < showStreams.size(); i++) {
 
-            if (showStreams.contains(search)){
+            if (showStreams.contains(search)) {
                 System.out.println(showStreams);
             }
-
         }
-
     }
 }
 
