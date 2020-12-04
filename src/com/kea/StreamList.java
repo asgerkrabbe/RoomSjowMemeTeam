@@ -80,7 +80,7 @@ public class StreamList {
 
     public void signUpForStream() throws IOException {
         FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
-        setCurrentUser("Ines");
+        setCurrentUser("Hardy");
 
         while (fileSc.hasNext()) {
             showStreams.add(fileSc.nextLine());
@@ -96,7 +96,7 @@ public class StreamList {
         for (int i = 0; i < showStreams.size(); i++) {
 
             if (showStreams.get(i).contains(search)) {
-                fileWriter.write("\n" + currentUser + "," + showStreams.get(i));
+                fileWriter.write("\n" + showStreams.get(i) + "," + currentUser);
                 fileWriter.close();
             }
         }
@@ -104,7 +104,7 @@ public class StreamList {
     }
 
     public void myStreams() {
-        setCurrentUser("Tobias");
+        setCurrentUser("Hardy");
         while (myStreamsSc.hasNext()) {
             myStreams.add(myStreamsSc.nextLine());
         }
