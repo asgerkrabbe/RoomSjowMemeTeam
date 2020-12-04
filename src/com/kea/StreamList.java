@@ -12,7 +12,10 @@ public class StreamList {
      */
     ArrayList<Stream> streams = new ArrayList<>();
     ArrayList<String> showStreams = new ArrayList<>();
+    ArrayList<String> myStreams = new ArrayList<>();
     File streamsFile = new File("Streams.txt");
+    File myStreamsFile = new File("MyStreams.txt");
+    Scanner myStreamsSc = new Scanner(myStreamsFile);
     Scanner fileSc = new Scanner(streamsFile);
     Scanner sc = new Scanner(System.in);
 
@@ -30,6 +33,12 @@ public class StreamList {
      * loadStreams method needs to be modified. New stream format consists of
      * 6 index' instead of the current 3. Check Streams.txt for examples
      */
+
+    public void arrayListIndexing() {
+        /**
+         * Indexing arrays before usage in methods
+         */
+    }
 
     public void loadStreams() {
         streams = new ArrayList<>();
@@ -76,7 +85,7 @@ public class StreamList {
     }
 
     public void signUpForStream() throws IOException {
-        FileWriter fileWriter = new FileWriter("SignupStreams.txt", true);
+        FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
         setCurrentUser("Asger");
 
         while (fileSc.hasNext()) {
@@ -98,5 +107,19 @@ public class StreamList {
             }
         }
     }
+
+public void myStreams() {
+    setCurrentUser("Tobias");
+    while (myStreamsSc.hasNext()){
+        myStreams.add(myStreamsSc.nextLine());
+    }
+
+    for (int i = 0; i < myStreams.size(); i++) {
+        if (myStreams.get(i).contains(currentUser)){
+            System.out.println(myStreams.get(i));
+        }
+    }
+}
+
 }
 
