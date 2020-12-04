@@ -1,5 +1,6 @@
 package com.kea;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -8,12 +9,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Session {
+    RoomSjow roomSjow = new RoomSjow();
     Profile profile;
     private StreamList streamList;
 
 
 
-    public Session(Profile profile, StreamList streamList) /*ArrayList<Stream> streams*/ {
+    public Session(Profile profile, StreamList streamList) throws FileNotFoundException /*ArrayList<Stream> streams*/ {
         this.profile = profile;
         this.streamList = streamList;
         //this.streams = streams;
@@ -90,33 +92,46 @@ public class Session {
 
     public void sessionMenu() throws IOException {
         System.out.println("What do you want next?");
-        System.out.println("1. Create Stream.\n2. View our Streams.\n3. Sign up for a stream\n4. My Streams");
         Scanner sc = new Scanner(System.in);
+        boolean choiceBoo = true;
 
-        String choice = sc.next();
 
-        switch (choice) {
-            case "1": {
-                System.out.println("You pressed 1");
-                createStream();
-            }
-            case "2": {
-                System.out.println("You pressed 2");
-                streamList = new StreamList();
-                streamList.showList();
-                sessionMenu();
-            }
-            case "3": {
-                streamList = new StreamList();
-                streamList.signUpForStream();
-                sessionMenu();
-                break;
-            }
-            case "4": {
-                streamList = new StreamList();
-                streamList.myStreams();
+        while (choiceBoo)
+        {
+            System.out.println("1. Create Stream.\n2. View our Streams.\n3. Sign up for a stream\n4. My Streams\n5. Sign out");
+            String choice = sc.next();
+            switch (choice) {
+                case "1": {
+                    createStream();
+                    continue;
+                }
+                case "2": {
+                    streamList = new StreamList();
+                    streamList.showList();
+                    //sessionMenu();
+                    continue;
+                }
+                case "3": {
+                    streamList = new StreamList();
+                    streamList.signUpForStream();
+                    //sessionMenu();
+                    continue;
+                }
+                case "4": {
+                    streamList = new StreamList();
+                    streamList.myStreams();
+                    continue;
+                }
+                case "5": {
+                    choiceBoo = false;
+                    continue;
+                }
+                default: {
+                    System.out.println("ERROR 40, please try again.");
 
+                }
             }
         }
+        roomSjow.homeMenu();
     }
 }

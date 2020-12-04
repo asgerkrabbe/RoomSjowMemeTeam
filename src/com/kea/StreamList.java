@@ -103,18 +103,19 @@ public class StreamList {
         fileSc.close();
     }
 
-public void myStreams() {
-    setCurrentUser("Tobias");
-    while (myStreamsSc.hasNext()){
-        myStreams.add(myStreamsSc.nextLine());
-    }
-
-    for (int i = 0; i < myStreams.size(); i++) {
-        if (myStreams.get(i).contains(currentUser)){
-            System.out.println(myStreams.get(i));
+    public void myStreams() {
+        setCurrentUser("Tobias");
+        while (myStreamsSc.hasNext()) {
+            myStreams.add(myStreamsSc.nextLine());
         }
+
+        for (int i = 0; i < myStreams.size(); i++) {
+            if (myStreams.get(i).contains(currentUser)) {
+                System.out.println(myStreams.get(i));
+            }
+        }
+        System.out.println();
     }
-}
 
 }
 

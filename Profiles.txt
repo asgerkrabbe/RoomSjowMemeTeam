@@ -5,3 +5,4 @@ Asger,nicocw£@dsf.com,aoiuhcw98cnuo
 username,email,password
 testuser,testpassword,testemail
 name,mail,pass
+Hardy,Akira,Madsen

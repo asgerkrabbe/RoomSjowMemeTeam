@@ -55,7 +55,10 @@ public class RoomSjow {
 
     public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
-            System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.");
+        boolean choiceBoo = true;
+
+        while (choiceBoo) {
+            System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.\nPress 4 to exit application");
             String choice = sc.nextLine();
 
             switch (choice) {
@@ -68,21 +71,24 @@ public class RoomSjow {
                 case "2": {
                     System.out.println("Profile creation:\n");
                     createProfile();
-
+                    continue;
                 }
                 case "3": {
                     System.out.println("Our streams:\n");
                     StreamList streamList1 = new StreamList();
                     streamList1.showList();
-                    homeMenu();
-
+                    continue;
+                }
+                case "4": {
+                    choiceBoo = false;
+                    continue;
                 }
                 default: {
-                    System.out.println("Input incorrect, please try again.");
+                    System.out.println("ERROR 40, please try again.");
                 }
             }
         }
-
+    }
 
 
     public void login() throws IOException {
@@ -124,7 +130,6 @@ public class RoomSjow {
         fileWriter.write("\n" + profile.getUsername() + "," + profile.getEmail() + "," + profile.getPassword());
         fileWriter.close();
         System.out.println("Your profile was successfully created.");
-        homeMenu();
     }
 
     public void promptUsername() {
@@ -152,7 +157,7 @@ public class RoomSjow {
 
     public void promptEmail() {
         //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        String emailRegex = "mail";
+        String emailRegex = "Akira";
         boolean emailBoo = true;
 
         do {
@@ -187,7 +192,7 @@ public class RoomSjow {
     }
 
     public void promptPassword() {
-        String passwordRegex = "pass";
+        String passwordRegex = "Madsen";
         boolean pwBoo = true;
 
         do {
