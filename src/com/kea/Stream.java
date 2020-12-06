@@ -8,6 +8,10 @@ default time pattern to parse from a string
 
 LocalDateTime localTimeObj = LocalDateTime.parse(time);
  */
+
+/**
+ * declares variables and getters for them
+ */
 public class Stream implements Comparable<Stream> {
     private double price;
     private String title;
@@ -23,11 +27,19 @@ public class Stream implements Comparable<Stream> {
         this.price = price;
     }
 
-
+    /**
+     * getter for LocalDateTime
+     * @return start time
+     */
     public LocalDateTime getStartTime() {
         return startTime;
     }
 
+    /**
+     * compares stream time
+     * @param s the desired stream
+     * @return the start time or 0
+     */
     @Override
     public int compareTo(Stream s) {
         if (this.startTime == null || s.startTime == null) {
@@ -37,6 +49,10 @@ public class Stream implements Comparable<Stream> {
         }
     }
 
+    /**
+     * ToString method for the date and time
+     * @return date and time in a nice layout
+     */
     @Override
     public String toString() {
         return "\n" + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "," +

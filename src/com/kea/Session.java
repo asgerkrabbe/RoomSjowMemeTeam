@@ -6,15 +6,24 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
+/**
+ * Instantiation of RoomSjow, profile and streamlist
+ */
 public class Session {
     RoomSjow roomSjow = new RoomSjow();
     Profile profile;
     private StreamList streamList;
 
 
-
+    /**
+     * ?
+     * @param profile user profile
+     * @param streamList list of available streams
+     * @throws FileNotFoundException required exception when working with files
+     */
     public Session(Profile profile, StreamList streamList) throws FileNotFoundException /*ArrayList<Stream> streams*/ {
         this.profile = profile;
         this.streamList = streamList;
@@ -22,7 +31,10 @@ public class Session {
 
     }
 
-
+    /**
+     * Lets the user create a stream.
+     * @throws IOException
+     */
     public void createStream() throws IOException {
         System.out.println("Enter stream information.");
         Scanner sc = new Scanner(System.in);
@@ -36,7 +48,6 @@ public class Session {
         Genre enumGenre = Genre.valueOf(genre);
 
         LocalDateTime startTime = promptDateTime();
-
         Stream stream = new Stream(startTime, streamTitle,  enumGenre, 0, 5.0);
         if (checkOverlap(stream, profile.myStreams)) {
             profile.myStreams.add(stream);
@@ -64,6 +75,12 @@ public class Session {
         }
     }
 
+    /**
+     * checks if two streams overlap in time
+     * @param stream the desired stream the user wants to signup to
+     * @param myStreams list (ArrayList) of streams that is being checked
+     * @return boolean true if the streams overlap
+     */
     private boolean checkOverlap(Stream stream, ArrayList<Stream> myStreams) {
        /* LocalDateTime thisDateTime = stream.getStartTime().plusHours(2).;
         for (Stream s : myStreams){
@@ -73,6 +90,10 @@ public class Session {
         return true;
     }
 
+    /**
+     * lets the user type the date and time of the stream
+     * @return start time of the stream
+     */
     public LocalDateTime promptDateTime() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Type the stream date and start time in this format: YYYY MM DD HH MM");
@@ -90,6 +111,10 @@ public class Session {
         return startTime;
     }
 
+    /**
+     * displays the session menu to the user
+     * @throws IOException
+     */
     public void sessionMenu() throws IOException {
         System.out.println("What do you want next?");
         Scanner sc = new Scanner(System.in);

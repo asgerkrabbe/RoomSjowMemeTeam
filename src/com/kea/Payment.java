@@ -5,17 +5,27 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * declarates 2 variables and a scanner
+ */
 public class Payment {
     protected int phoneNumber;
     protected int cardNumber;
     Scanner scan = new Scanner(System.in);
 
+    /**
+     * Runs 3 methods
+     * @throws IOException
+     */
     public void runPay() throws IOException {
         pay();
         payMobilepay();
         payCreditcard();
     }
 
+    /**
+     * Prints pay menu and runs paying methods
+     */
     protected void pay() {
         System.out.println("Choose your payment method: ");
         System.out.println("1 Pay with Creditcard");
@@ -33,6 +43,9 @@ public class Payment {
         }
     }
 
+    /**
+     * Checks credit card credentials and withdraws money
+     */
     public void payCreditcard() {
         String creditregex = "^\\d{16}$";
         boolean creditboo = true;
@@ -52,6 +65,9 @@ public class Payment {
         } while (creditboo) ;
     }
 
+    /**
+     * Checks if mobile number is valid and withdraws money
+     */
     public void payMobilepay() {
         String mobileregex = "^\\d{8}$";
         boolean mobileboo = true;

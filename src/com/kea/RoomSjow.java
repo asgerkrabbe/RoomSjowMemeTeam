@@ -8,10 +8,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class RoomSjow {
     public RoomSjow() throws FileNotFoundException {
     }
 
+    /**
+     * main method
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
 
         RoomSjow rs = new RoomSjow();
@@ -28,7 +36,7 @@ public class RoomSjow {
     }
 
     /**
-     * Sæt modifiers
+     * declares variables, scanner, ArrayList and an instantiation of streamlist
      */
     String username = null;
     String email = null;
@@ -37,11 +45,19 @@ public class RoomSjow {
     ArrayList<Profile> profiles = new ArrayList<>();
     StreamList streamlist;
 
+    /**
+     * main run method that runs all the methods
+     * @throws IOException
+     */
     public void run() throws IOException {
         loadProfiles();
         homeMenu();
     }
 
+    /**
+     * loads profiles from txt file
+     * @throws FileNotFoundException required exception when files are used
+     */
     private void loadProfiles() throws FileNotFoundException {
         profiles = new ArrayList<>();
         File profilesFile = new File("Profiles.txt");
@@ -53,6 +69,10 @@ public class RoomSjow {
         }
     }
 
+    /**
+     * Shows the home menu to the user from where the program starts
+     * @throws IOException
+     */
     public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
         boolean choiceBoo = true;
@@ -90,7 +110,10 @@ public class RoomSjow {
         }
     }
 
-
+    /**
+     * asks the user to type their credentials and checks if they are taken/valid
+     * @throws IOException
+     */
     public void login() throws IOException {
         boolean isEmailFound = false;
         System.out.println("Enter Email: ");
@@ -118,6 +141,10 @@ public class RoomSjow {
         }
     }
 
+    /**
+     * adding the new credentials from the user to the master txt file
+     * @throws IOException
+     */
     public void createProfile() throws IOException {
         promptUsername();
         promptEmail();
@@ -132,6 +159,9 @@ public class RoomSjow {
         System.out.println("Your profile was successfully created.");
     }
 
+    /**
+     * ?
+     */
     public void promptUsername() {
         //String userNameRegex = "username";
         boolean usernameBoo = true;
@@ -147,6 +177,11 @@ public class RoomSjow {
         } while (usernameBoo);
     }
 
+    /**
+     * checks if username is already taken
+     * @param userName
+     * @return boolean true if username is taken
+     */
     public boolean isUserNameTaken(String userName) {
         for (Profile p : profiles) {
             if (p.getUsername().equals(userName))
@@ -155,6 +190,9 @@ public class RoomSjow {
         return false;
     }
 
+    /**
+     * ?
+     */
     public void promptEmail() {
         //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         String emailRegex = "Akira";
@@ -183,6 +221,11 @@ public class RoomSjow {
         } while (emailBoo);
     }
 
+    /**
+     * checks if the email is already taken
+     * @param email
+     * @return boolean true if email is taken
+     */
     public boolean isEmailTaken(String email) {
         for (Profile p : profiles) {
             if (p.getEmail().equals(email))
@@ -191,6 +234,9 @@ public class RoomSjow {
         return false;
     }
 
+    /**
+     * ?
+     */
     public void promptPassword() {
         String passwordRegex = "Madsen";
         boolean pwBoo = true;

@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * test for session
+ */
 class SessionTest {
 
 
