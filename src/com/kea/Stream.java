@@ -69,7 +69,9 @@ public class Stream implements Comparable<Stream> {
         LocalDateTime now = LocalDateTime.now();
         System.out.println(dtf.format(now));
     }
-/*
+
+    LocalDateTime date1 = LocalDateTime.now();
+    LocalDateTime date2 = LocalDateTime.of(2021, 2,17,22, 0, 0);
     public void CompareLocalDateTimeExample() {
         int diff = date1.compareTo(date2);
         if (diff > 0) {
@@ -80,7 +82,7 @@ public class Stream implements Comparable<Stream> {
             System.out.println(date1 + " is equal to " + date2);
         }
     }
-*/
+
     public void watchStream() {
         //show a list of my streams
         //user selects one
