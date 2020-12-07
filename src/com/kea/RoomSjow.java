@@ -12,7 +12,9 @@ import java.util.Scanner;
  *
  */
 public class RoomSjow {
+
     public RoomSjow() throws FileNotFoundException {
+        streamlist = new StreamList();
     }
 
     /**
@@ -34,16 +36,16 @@ public class RoomSjow {
          DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
          */
     }
-
     /**
      * declares variables, scanner, ArrayList and an instantiation of streamlist
      */
+    StreamList streamlist;
     String username = null;
     String email = null;
     String password = null;
     Scanner sc = new Scanner(System.in);
     ArrayList<Profile> profiles = new ArrayList<>();
-    StreamList streamlist;
+
 
     /**
      * main run method that runs all the methods
@@ -126,8 +128,7 @@ public class RoomSjow {
                 isEmailFound = true;
                 if (p.getPassword().equals(password1)) {
                     Session session = new Session(p, streamlist);
-                    System.out.println("Username and password correct!!\n\n");
-                    //streamlist.setCurrentUser("Asger");
+                    System.out.println("Username and password correct!!\n");
                     session.sessionMenu();
                 } else {
                     System.out.println("Password is incorrect");

@@ -1,12 +1,13 @@
 package com.kea;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -16,7 +17,27 @@ public class Session {
     RoomSjow roomSjow = new RoomSjow();
     Profile profile;
     private StreamList streamList;
+    File streamsFile = new File("Streams.txt");
+    Scanner fileSc = new Scanner(streamsFile);
+    ArrayList<String> showStreamsString = new ArrayList<>();
+    Scanner sc = new Scanner(System.in);
 
+    protected void runPay() {
+        System.out.println("Choose your payment method: ");
+        System.out.println("1 Pay with Creditcard");
+        System.out.println("2 Pay with Mobilepay");
+        int num = sc.nextInt();
+        if (num == 1) {
+            CardPayment cP = new CardPayment();
+            cP.pay();
+        } else if (num == 2) {
+            MobilePay mP = new MobilePay();
+            mP.pay();
+        } else {
+            System.out.println("Invalid input. Please try again.");
+            runPay();
+        }
+    }
 
     /**
      * ?
@@ -28,7 +49,6 @@ public class Session {
         this.profile = profile;
         this.streamList = streamList;
         //this.streams = streams;
-
     }
 
     /**
@@ -73,6 +93,31 @@ public class Session {
                     sessionMenu();
             }
         }
+    }
+
+    public void signUpForStream() throws IOException {
+
+        FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
+
+        while (fileSc.hasNext()) {
+            showStreamsString.add(fileSc.nextLine());
+        }
+        Collections.sort(showStreamsString);
+
+        for (int i = 0; i < showStreamsString.size(); i++) {
+            System.out.println(showStreamsString.get(i));
+        }
+        System.out.println("Type stream you want to enter: ");
+        String search = sc.nextLine();
+
+        for (int i = 0; i < showStreamsString.size(); i++) {
+
+            if (showStreamsString.get(i).contains(search)) {
+                fileWriter.write("\n" + showStreamsString.get(i) + "," + profile.getUsername());
+                fileWriter.close();
+            }
+        }
+        fileSc.close();
     }
 
     /**
@@ -131,19 +176,16 @@ public class Session {
                     continue;
                 }
                 case "2": {
-                    streamList = new StreamList();
                     streamList.showList();
                     //sessionMenu();
                     continue;
                 }
                 case "3": {
-                    streamList = new StreamList();
-                    streamList.signUpForStream();
+                    signUpForStream();
                     //sessionMenu();
                     continue;
                 }
                 case "4": {
-                    streamList = new StreamList();
                     streamList.myStreams();
                     continue;
                 }

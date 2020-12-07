@@ -50,18 +50,19 @@ public class StreamList {
      * loadStreams method needs to be modified. New stream format consists of
      * 6 index' instead of the current 3. Check Streams.txt for examples
      */
+
     public void loadStreams() {
         streams = new ArrayList<>();
 
         while (fileSc.hasNext()) {
             showStreams.add(fileSc.nextLine());
         }
-       /* while (fileSc.hasNext()) {
+        while (fileSc.hasNext()) {
             String[] splittedLine = fileSc.nextLine().split(",");
 
             Genre genreEnum = Genre.valueOf(splittedLine[3]);
-            Stream s = new Stream(splittedLine[0], LocalDateTime.parse(splittedLine[1]), genreEnum, 0, 5.0);
-        }*/
+            Stream s = new Stream(LocalDateTime.parse(splittedLine[0]), splittedLine[1], genreEnum, 0, 5.0);
+        }
         fileSc.close();
     }
 
@@ -102,30 +103,6 @@ public class StreamList {
      * Lets the user signup for a stream
      * @throws IOException
      */
-    public void signUpForStream() throws IOException {
-        FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
-        setCurrentUser("Hardy");
-
-        while (fileSc.hasNext()) {
-            showStreams.add(fileSc.nextLine());
-        }
-        sortArrayList();
-
-        for (int i = 0; i < showStreams.size(); i++) {
-            System.out.println(showStreams.get(i));
-        }
-        System.out.println("Type stream you want to enter: ");
-        String search = sc.nextLine();
-
-        for (int i = 0; i < showStreams.size(); i++) {
-
-            if (showStreams.get(i).contains(search)) {
-                fileWriter.write("\n" + showStreams.get(i) + "," + currentUser);
-                fileWriter.close();
-            }
-        }
-        fileSc.close();
-    }
 
     public void myStreams() {
         setCurrentUser("Hardy");
@@ -142,4 +119,3 @@ public class StreamList {
     }
 
 }
-
