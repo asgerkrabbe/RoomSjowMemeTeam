@@ -6,3 +6,4 @@ username,email,password
 testuser,testpassword,testemail
 name,mail,pass
 Hardy,Akira,Madsen
+asgerkrabbe,asgerkrabbe@gmail.com,krabbe123

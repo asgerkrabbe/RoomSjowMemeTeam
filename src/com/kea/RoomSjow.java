@@ -51,6 +51,8 @@ public class RoomSjow {
         homeMenu();
     }
 
+
+
     /**
      * loads profiles from txt file
      * @throws FileNotFoundException required exception when files are used
@@ -72,18 +74,17 @@ public class RoomSjow {
      */
     public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
+        Scanner sc1 = new Scanner(System.in);
         boolean choiceBoo = true;
 
         while (choiceBoo) {
             System.out.println("Press 1 to sign in. \nPress 2 to Create a new profile. \nPress 3 to see our streams.\nPress 4 to exit application");
-            String choice = sc.nextLine();
+            String choice = sc1.nextLine();
 
             switch (choice) {
                 case "1": {
-                    //StreamList streamlist = new StreamList();
-                    //streamlist.signUpForStream();
                     login();
-                    break;
+                    continue;
                 }
                 case "2": {
                     System.out.println("Profile creation:\n");
@@ -125,13 +126,13 @@ public class RoomSjow {
                     System.out.println("Username and password correct!!\n");
                     session.sessionMenu();
                 } else {
-                    System.out.println("Password is incorrect");
+                    System.out.println("Password or email was incorrect");
                     login();
                 }
             }
         }
         if (!isEmailFound) {
-            System.out.println("Email was not found.");
+            System.out.println("Password or email was incorrect");
             login();
         }
     }

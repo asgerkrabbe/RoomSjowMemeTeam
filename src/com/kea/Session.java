@@ -113,6 +113,7 @@ public class Session {
                     sessionMenu();
             }
         }
+
     }
 
     public void signUpForStream() throws IOException {
@@ -139,15 +140,15 @@ public class Session {
 
                 if (!checkOverlap(s, profile.myStreams)) {
                     fileWriter.write("\n" + showStreamsString.get(i) + "," + profile.getUsername());
-                    fileWriter.close();
                     profile.myStreams.add(s);
+                    fileWriter.close();
+                    break;
                 } else {
                     System.out.println("There is an overlap with one of your streams, you can not sign up to this stream.");
                     sessionMenu();
                 }
             }
         }
-        fileSc.close();
     }
 
     public static Stream convertStream(String[] splittedLine) {
@@ -207,12 +208,12 @@ public class Session {
     }
 
     /**
-     * displays the session menu to the user
+     * Shows the session menu to the user
      *
      * @throws IOException
      */
     public void sessionMenu() throws IOException {
-        System.out.println("What do you want next?");
+        System.out.println("What do you want to do next?");
         Scanner sc = new Scanner(System.in);
         boolean choiceBoo = true;
 
@@ -251,6 +252,5 @@ public class Session {
                 }
             }
         }
-        roomSjow.homeMenu();
     }
 }

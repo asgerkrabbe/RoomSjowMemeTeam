@@ -64,6 +64,12 @@ public class Stream implements Comparable<Stream> {
                 +viewers + "," + price;
     }
 
+    public void getDateAndTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(dtf.format(now));
+    }
+
     public static class watchStream {
         //show a list of my streams
         //user selects one
