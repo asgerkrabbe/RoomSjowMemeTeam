@@ -49,16 +49,7 @@ public class StreamList {
     public void loadStreams() {
         while (fileSc.hasNext()) {
             String[] splittedLine = fileSc.nextLine().split(",");
-
-            LocalDate date = LocalDate.parse(splittedLine[0]);
-            LocalTime time = LocalTime.parse(splittedLine[1]);
-            LocalDateTime dateTime = LocalDateTime.of(date,time);
-            String title = splittedLine[2];
-            Genre genreEnum = Genre.valueOf(splittedLine[3]);
-            int viewers = Integer.parseInt(splittedLine[4]);
-            double price = Double.parseDouble(splittedLine[5]);
-
-            Stream s = new Stream(dateTime, splittedLine[2], genreEnum,viewers,price);
+            Stream s = Session.convertStream(splittedLine);
             streams.add(s);
             for (Stream str : streams)
                 System.out.println(str);

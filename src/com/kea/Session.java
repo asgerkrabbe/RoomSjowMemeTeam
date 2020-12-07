@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +46,8 @@ public class Session {
 
     /**
      * ?
-     * @param profile user profile
+     *
+     * @param profile    user profile
      * @param streamList list of available streams
      * @throws FileNotFoundException required exception when working with files
      */
@@ -69,6 +72,7 @@ public class Session {
 
     /**
      * Lets the user create a stream.
+     *
      * @throws IOException
      */
     public void createStream() throws IOException {
@@ -84,10 +88,10 @@ public class Session {
         Genre enumGenre = Genre.valueOf(genre);
 
         LocalDateTime startTime = promptDateTime();
-        Stream stream = new Stream(startTime, streamTitle,  enumGenre, 0, 5.0);
-        if (checkOverlap(stream, profile.myStreams)) {
+        Stream stream = new Stream(startTime, streamTitle, enumGenre, 0, 5.0);
+        if (!checkOverlap(stream, profile.myStreams)) {
             profile.myStreams.add(stream);
-           // streamList.add(stream);
+            // streamList.add(stream);
 
             FileWriter myWriter = new FileWriter("Streams.txt", true);
             myWriter.write(String.valueOf(stream));
@@ -100,7 +104,7 @@ public class Session {
             switch (answer) {
                 case "1":
                     LocalDateTime startTime2 = promptDateTime();
-                    Stream stream2 = new Stream(startTime, streamTitle,  enumGenre, 0, 5.0);
+                    Stream stream2 = new Stream(startTime, streamTitle, enumGenre, 0, 5.0);
                     if (checkOverlap(stream2, profile.myStreams))
                         System.out.println("You are also signed up for a stream at the selected time. \n");
                     System.out.println("You will be forwarded to the start menu. ");
@@ -129,32 +133,62 @@ public class Session {
         for (int i = 0; i < showStreamsString.size(); i++) {
 
             if (showStreamsString.get(i).contains(search)) {
-                fileWriter.write("\n" + showStreamsString.get(i) + "," + profile.getUsername());
-                fileWriter.close();
+
+                String[] splittedLine = showStreamsString.get(i).split(",");
+                Stream s = convertStream(splittedLine);
+
+                if (!checkOverlap(s, profile.myStreams)) {
+                    fileWriter.write("\n" + showStreamsString.get(i) + "," + profile.getUsername());
+                    fileWriter.close();
+                    profile.myStreams.add(s);
+                } else {
+                    System.out.println("There is an overlap with one of your streams, you can not sign up to this stream.");
+                    sessionMenu();
+                }
+
             }
         }
         fileSc.close();
     }
 
+    public static Stream convertStream(String[] splittedLine) {
+        LocalDate date = LocalDate.parse(splittedLine[0]);
+        LocalTime time = LocalTime.parse(splittedLine[1]);
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
+        String title = splittedLine[2];
+        Genre genreEnum = Genre.valueOf(splittedLine[3]);
+        int viewers = Integer.parseInt(splittedLine[4]);
+        double price = Double.parseDouble(splittedLine[5]);
+        Stream s = new Stream(dateTime, splittedLine[2], genreEnum, viewers, price);
+        return s;
+    }
+
     /**
      * checks if two streams overlap in time
-     * @param stream the desired stream the user wants to signup to
+     *
+     * @param stream    the desired stream the user wants to signup to
      * @param myStreams list (ArrayList) of streams that is being checked
      * @return boolean true if the streams overlap
      */
-    private boolean checkOverlap(Stream stream, ArrayList<Stream> myStreams) {
-       /* LocalDateTime thisDateTime = stream.getStartTime().plusHours(2).;
-        for (Stream s : myStreams){
-            LocalDateTime DateTime = s.getStartTime().plusHours(2);
-           //if thisDateTime "er minus end" DateTime...
-        }*/
-        return true;
-    }
+    public boolean checkOverlap(Stream stream, ArrayList<Stream> myStreams) {
 
+        for (Stream s : myStreams) {
+            if (stream.getStartTime().isBefore(s.getStartTime())) {
+                if (!stream.getStartTime().plusHours(2).isBefore(s.getStartTime()))
+                    return true;
+            } else if (stream.getStartTime().isAfter(s.getStartTime())) {
+                if (!stream.getStartTime().isAfter(s.getStartTime().plusHours(2)))
+                    return true;
+            } else if (stream.getStartTime() == s.getStartTime())
+                return true;
+        }
+        return false;
+    }
 
 
     /**
      * lets the user type the date and time of the stream
+     *
      * @return start time of the stream
      */
     public LocalDateTime promptDateTime() {
@@ -176,6 +210,7 @@ public class Session {
 
     /**
      * displays the session menu to the user
+     *
      * @throws IOException
      */
     public void sessionMenu() throws IOException {
@@ -184,8 +219,7 @@ public class Session {
         boolean choiceBoo = true;
 
 
-        while (choiceBoo)
-        {
+        while (choiceBoo) {
             System.out.println("1. Create Stream.\n2. View our Streams.\n3. Sign up for a stream\n4. My Streams\n5. Sign out");
             String choice = sc.next();
             switch (choice) {
