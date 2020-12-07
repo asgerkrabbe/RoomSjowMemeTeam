@@ -145,7 +145,6 @@ public class Session {
                     System.out.println("There is an overlap with one of your streams, you can not sign up to this stream.");
                     sessionMenu();
                 }
-
             }
         }
         fileSc.close();
@@ -155,7 +154,6 @@ public class Session {
         LocalDate date = LocalDate.parse(splittedLine[0]);
         LocalTime time = LocalTime.parse(splittedLine[1]);
         LocalDateTime dateTime = LocalDateTime.of(date, time);
-        String title = splittedLine[2];
         Genre genreEnum = Genre.valueOf(splittedLine[3]);
         int viewers = Integer.parseInt(splittedLine[4]);
         double price = Double.parseDouble(splittedLine[5]);

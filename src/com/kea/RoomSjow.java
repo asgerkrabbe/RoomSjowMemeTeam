@@ -20,10 +20,11 @@ public class RoomSjow {
     public static void main(String[] args) throws IOException {
         RoomSjow rs = new RoomSjow();
         rs.run();
-        /**System.out.println("BASIC_ISO_DATE format:      " + (s.getStartTime()));
-         System.out.println("ISO_LOCAL_DATE format:      " + (DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()));
-         System.out.println("ISO_LOCAL_TIME format:      " + (DateTimeFormatter.ISO_LOCAL_TIME).format(s.getStartTime()));
-         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
+        /**
+         * System.out.println("BASIC_ISO_DATE format:      " + (s.getStartTime()));
+         * System.out.println("ISO_LOCAL_DATE format:      " + (DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()));
+         * System.out.println("ISO_LOCAL_TIME format:      " + (DateTimeFormatter.ISO_LOCAL_TIME).format(s.getStartTime()));
+         * DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
          */
     }
     /**
@@ -49,7 +50,6 @@ public class RoomSjow {
         loadProfiles();
         homeMenu();
     }
-
 
     /**
      * loads profiles from txt file
@@ -155,19 +155,22 @@ public class RoomSjow {
     }
 
     /**
-     * ?
+     * Method for setting username with appropriate format and ensuring unique username.
      */
     public void promptUsername() {
-        //String userNameRegex = "username";
+        String userNameRegex = "^[a-zA-Z0-9]{4,}$";
         boolean usernameBoo = true;
         do {
             System.out.println("Enter username: ");
             String userName1 = sc.nextLine();
             if (isUserNameTaken(userName1)) {
-                System.out.println("Typed user name is already taken, please try again.");
-            } else/* (userName1.matches(userNameRegex))*/ {
+                System.out.println("Username is already taken, please try again.");
+            } else if (userName1.matches(userNameRegex)) {
                 username = userName1;
                 usernameBoo = false;
+            }
+            else {
+                System.out.println("Username format wrong. \nFour characters consisting of:\na-z \nA-Z \n0-9");
             }
         } while (usernameBoo);
     }
@@ -186,11 +189,10 @@ public class RoomSjow {
     }
 
     /**
-     * ?
+     * Method for setting email with appropriate format and ensuring unique email.
      */
     public void promptEmail() {
-        //String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        String emailRegex = "Akira";
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[(a-zA-Z0-9.-]+$";
         boolean emailBoo = true;
 
         do {
@@ -198,6 +200,7 @@ public class RoomSjow {
             String email1 = sc.nextLine();
             System.out.println("Confirm email address: ");
             String email2 = sc.nextLine();
+
 
             if (email1.matches(emailRegex)) {
                 if (isEmailTaken(email1)) {
@@ -211,7 +214,8 @@ public class RoomSjow {
                     System.out.println("Emails do not match. Please try again.");
                 }
             } else {
-                System.out.println("Email format is invalid, please enter email again.");
+                System.out.println("Email format is invalid, please enter email again following format:");
+                System.out.println("Email must be sperated by @, and only consist of the following:\nA-Z\na-z\n0-9\n.-");
             }
         } while (emailBoo);
     }
@@ -230,10 +234,10 @@ public class RoomSjow {
     }
 
     /**
-     * ?
+     * Method for setting password with appropriate format.
      */
     public void promptPassword() {
-        String passwordRegex = "Madsen";
+        String passwordRegex = "[a-zA-Z0-9_!.-]{4,16}";
         boolean pwBoo = true;
 
         do {
@@ -250,10 +254,9 @@ public class RoomSjow {
                     System.out.println("Passwords does not match, please try again");
                 }
             } else {
-                System.out.println("Password format is invalid, please enter password again.");
+                System.out.println("Password format is invalid, please enter password again in following format.");
+                System.out.println("4 to 16 characters\na-z\nA-Z\n0-9\n._-!");
             }
         } while (pwBoo);
     }
-
-
 }

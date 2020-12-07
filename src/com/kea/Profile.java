@@ -23,11 +23,6 @@ public class Profile {
         this.email = email;
     }
 
-    /**
-     *
-     */
-    public Profile() {
-    }
 
     /**
      * Getter for password
@@ -54,7 +49,7 @@ public class Profile {
     }
 
     /**
-     * toString method that returns profile crendtials
+     * toString method that returns profile credentials
      * @return profile credentials in nice layout
      */
     public String toString() {

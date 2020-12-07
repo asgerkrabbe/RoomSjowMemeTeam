@@ -51,8 +51,7 @@ public class StreamList {
             String[] splittedLine = fileSc.nextLine().split(",");
             Stream s = Session.convertStream(splittedLine);
             streams.add(s);
-            for (Stream str : streams)
-                System.out.println(str);
+
         }
         //fileSc.close();
     }
@@ -76,18 +75,12 @@ public class StreamList {
      * Displays the list of streams
      */
     public void showList() {
-        while (fileSc.hasNext()) {
-            showStreams.add(fileSc.nextLine());
-        }
-        fileSc.close();
-        sortArrayList();
-
-        for (int i = 0; i < showStreams.size(); i++) {
-            System.out.println(showStreams.get(i));
+        Collections.sort(streams);
+        for (int i = 0; i < streams.size(); i++) {
+            System.out.println(streams.get(i));
         }
         System.out.println("\nPress enter to return to start menu.");
         String exit = sc.nextLine();
-
     }
 
     /**
