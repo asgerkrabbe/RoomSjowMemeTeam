@@ -12,10 +12,7 @@ public class StreamList {
      */
     ArrayList<Stream> streams = new ArrayList<>();
     ArrayList<String> showStreams = new ArrayList<>();
-    ArrayList<String> myStreams = new ArrayList<>();
     File streamsFile = new File("Streams.txt");
-    File myStreamsFile = new File("MyStreams.txt");
-    Scanner myStreamsSc = new Scanner(myStreamsFile);
     Scanner fileSc = new Scanner(streamsFile);
     Scanner sc = new Scanner(System.in);
 
@@ -103,19 +100,5 @@ public class StreamList {
      * Lets the user signup for a stream
      * @throws IOException
      */
-
-    public void myStreams() {
-        setCurrentUser("Hardy");
-        while (myStreamsSc.hasNext()) {
-            myStreams.add(myStreamsSc.nextLine());
-        }
-
-        for (int i = 0; i < myStreams.size(); i++) {
-            if (myStreams.get(i).contains(currentUser)) {
-                System.out.println(myStreams.get(i));
-            }
-        }
-        System.out.println();
-    }
 
 }

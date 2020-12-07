@@ -18,8 +18,11 @@ public class Session {
     Profile profile;
     private StreamList streamList;
     File streamsFile = new File("Streams.txt");
+    File myStreamsFile = new File("MyStreams.txt");
     Scanner fileSc = new Scanner(streamsFile);
     ArrayList<String> showStreamsString = new ArrayList<>();
+    ArrayList<String> myStreams = new ArrayList<>();
+    Scanner myStreamsSc = new Scanner(myStreamsFile);
     Scanner sc = new Scanner(System.in);
 
     protected void runPay() {
@@ -49,6 +52,19 @@ public class Session {
         this.profile = profile;
         this.streamList = streamList;
         //this.streams = streams;
+    }
+
+    public void myStreams() {
+        while (myStreamsSc.hasNext()) {
+            myStreams.add(myStreamsSc.nextLine());
+        }
+
+        for (int i = 0; i < myStreams.size(); i++) {
+            if (myStreams.get(i).contains(profile.getUsername())) {
+                System.out.println(myStreams.get(i));
+            }
+        }
+        System.out.println();
     }
 
     /**
@@ -135,6 +151,8 @@ public class Session {
         return true;
     }
 
+
+
     /**
      * lets the user type the date and time of the stream
      * @return start time of the stream
@@ -186,7 +204,7 @@ public class Session {
                     continue;
                 }
                 case "4": {
-                    streamList.myStreams();
+                    myStreams();
                     continue;
                 }
                 case "5": {
