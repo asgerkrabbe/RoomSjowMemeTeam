@@ -65,14 +65,7 @@ public class StreamList {
     }
 
     /**
-     * Sorts the ArrayList
-     */
-    public void sortArrayList() {
-        Collections.sort(showStreams);
-    }
-
-    /**
-     * Displays the list of streams
+     * Displays the list of streams sorted
      */
     public void showList() {
         Collections.sort(streams);

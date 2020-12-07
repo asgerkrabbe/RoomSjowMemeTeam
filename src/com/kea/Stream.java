@@ -69,8 +69,19 @@ public class Stream implements Comparable<Stream> {
         LocalDateTime now = LocalDateTime.now();
         System.out.println(dtf.format(now));
     }
-
-    public static class watchStream {
+/*
+    public void CompareLocalDateTimeExample() {
+        int diff = date1.compareTo(date2);
+        if (diff > 0) {
+            System.out.println(date1 + " is greater than " + date2);
+        } else if (diff < 0) {
+            System.out.println(date1 + " is less than " + date2);
+        } else {
+            System.out.println(date1 + " is equal to " + date2);
+        }
+    }
+*/
+    public void watchStream() {
         //show a list of my streams
         //user selects one
         //"stream has been watched" with a countdown

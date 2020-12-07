@@ -27,6 +27,8 @@ public class Session {
     Scanner myStreamsSc = new Scanner(myStreamsFile);
     Scanner sc = new Scanner(System.in);
 
+
+
     protected void runPay() {
         System.out.println("Choose your payment method: ");
         System.out.println("1 Pay with Creditcard");
@@ -239,7 +241,7 @@ public class Session {
                     continue;
                 }
                 case "5":{
-                    new Stream.watchStream();
+                    //new Stream.watchStream();
                     continue;
                 }
                 case "6": {
