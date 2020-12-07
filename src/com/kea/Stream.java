@@ -2,12 +2,7 @@ package com.kea;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-/*
-default time pattern to parse from a string
-
-LocalDateTime localTimeObj = LocalDateTime.parse(time);
- */
+import java.util.ArrayList;
 
 /**
  * declares variables and getters for them
@@ -18,6 +13,8 @@ public class Stream implements Comparable<Stream> {
     private LocalDateTime startTime = LocalDateTime.of(2020, 9, 1, 13, 30);
     private Genre genre;
     private int viewers;
+    private double rating;
+    ArrayList<String> comments;
 
     public Stream(LocalDateTime startTime, String title, Genre genre, int viewers, double price) {
         this.title = title;
@@ -25,8 +22,13 @@ public class Stream implements Comparable<Stream> {
         this.genre = genre;
         this.viewers = viewers;
         this.price = price;
+        rating = -1;
+        comments = new ArrayList<>();
     }
 
+    public double getRating() {
+        return rating;
+    }
     /**
      * getter for LocalDateTime
      * @return start time
@@ -40,6 +42,7 @@ public class Stream implements Comparable<Stream> {
      * @param s the desired stream
      * @return the start time or 0
      */
+
     @Override
     public int compareTo(Stream s) {
         if (this.startTime == null || s.startTime == null) {
@@ -55,9 +58,17 @@ public class Stream implements Comparable<Stream> {
      */
     @Override
     public String toString() {
-        return "\n Date: " + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + ", \n Time:" +
+        return "\n" + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + ", \n Time:" +
                 (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) + "," +
                 title + "," + genre + "," +
                 +viewers + "," + price + " DKK";
+    }
+
+    public static class watchStream {
+        //show a list of my streams
+        //user selects one
+        //"stream has been watched" with a countdown
+        //FoundStream.rate();
+        //FoundStream.comment();
     }
 }

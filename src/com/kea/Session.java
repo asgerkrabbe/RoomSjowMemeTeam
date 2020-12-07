@@ -220,7 +220,7 @@ public class Session {
 
 
         while (choiceBoo) {
-            System.out.println("1. Create Stream.\n2. View our Streams.\n3. Sign up for a stream\n4. My Streams\n5. Sign out");
+            System.out.println("1. Create Stream.\n2. View our Streams list.\n3. Sign up for a stream\n4. View my Streams\n5. Watch stream\n6. Sign out");
             String choice = sc.next();
             switch (choice) {
                 case "1": {
@@ -229,19 +229,21 @@ public class Session {
                 }
                 case "2": {
                     streamList.showList();
-                    //sessionMenu();
                     continue;
                 }
                 case "3": {
                     signUpForStream();
-                    //sessionMenu();
                     continue;
                 }
                 case "4": {
                     myStreams();
                     continue;
                 }
-                case "5": {
+                case "5":{
+                    new Stream.watchStream();
+                    continue;
+                }
+                case "6": {
                     choiceBoo = false;
                     continue;
                 }
