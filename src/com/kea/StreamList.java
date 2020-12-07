@@ -1,7 +1,9 @@
 package com.kea;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -10,7 +12,7 @@ public class StreamList {
     /**
      * Declares 3 ArrayLists, 2 files and 3 scanners.
      */
-    ArrayList<Stream> streams = new ArrayList<>();
+    ArrayList<Stream> streams;
     ArrayList<String> showStreams = new ArrayList<>();
     File streamsFile = new File("Streams.txt");
     Scanner fileSc = new Scanner(streamsFile);
@@ -23,7 +25,8 @@ public class StreamList {
      * @throws FileNotFoundException required exception when working with files
      */
     public StreamList() throws FileNotFoundException {
-        //loadStreams();
+        streams = new ArrayList<>();
+        loadStreams();
     }
 
     /**
@@ -49,18 +52,25 @@ public class StreamList {
      */
 
     public void loadStreams() {
-        streams = new ArrayList<>();
-
         while (fileSc.hasNext()) {
             showStreams.add(fileSc.nextLine());
         }
         while (fileSc.hasNext()) {
             String[] splittedLine = fileSc.nextLine().split(",");
 
+            LocalDate date = LocalDate.parse(splittedLine[0]);
+            LocalTime time = LocalTime.parse(splittedLine[1]);
+            LocalDateTime dateTime = LocalDateTime.of(date,time);
             Genre genreEnum = Genre.valueOf(splittedLine[3]);
-            Stream s = new Stream(LocalDateTime.parse(splittedLine[0]), splittedLine[1], genreEnum, 0, 5.0);
+            int viewers = Integer.parseInt(splittedLine[4]);
+            double price = Double.parseDouble(splittedLine[5]);
+            Stream s = new Stream(dateTime, splittedLine[2], genreEnum,viewers,price);
+            streams.add(s);
+            for (Stream str : streams)
+                System.out.println(str);
         }
-        fileSc.close();
+
+        //fileSc.close();
     }
 
     /**

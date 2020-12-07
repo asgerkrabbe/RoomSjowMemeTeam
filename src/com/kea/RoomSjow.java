@@ -12,24 +12,14 @@ import java.util.Scanner;
  *
  */
 public class RoomSjow {
-
-    public RoomSjow() throws FileNotFoundException {
-        streamlist = new StreamList();
-    }
-
     /**
      * main method
      * @param args
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-
         RoomSjow rs = new RoomSjow();
         rs.run();
-        //System.out.println(rs.profiles);
-
-        //Stream s = new Stream(LocalDateTime.of(2020, 11, 5, 16, 0), "Once upon a time", Genre.JAVASCRIPT);
-
         /**System.out.println("BASIC_ISO_DATE format:      " + (s.getStartTime()));
          System.out.println("ISO_LOCAL_DATE format:      " + (DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()));
          System.out.println("ISO_LOCAL_TIME format:      " + (DateTimeFormatter.ISO_LOCAL_TIME).format(s.getStartTime()));
@@ -44,8 +34,12 @@ public class RoomSjow {
     String email = null;
     String password = null;
     Scanner sc = new Scanner(System.in);
-    ArrayList<Profile> profiles = new ArrayList<>();
+    ArrayList<Profile> profiles;
 
+    public RoomSjow() throws FileNotFoundException {
+        streamlist = new StreamList();
+        profiles = new ArrayList<>();
+    }
 
     /**
      * main run method that runs all the methods
@@ -55,6 +49,7 @@ public class RoomSjow {
         loadProfiles();
         homeMenu();
     }
+
 
     /**
      * loads profiles from txt file
@@ -97,8 +92,7 @@ public class RoomSjow {
                 }
                 case "3": {
                     System.out.println("Our streams:\n");
-                    StreamList streamList1 = new StreamList();
-                    streamList1.showList();
+                    streamlist.showList();
                     continue;
                 }
                 case "4": {
