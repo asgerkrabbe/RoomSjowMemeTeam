@@ -143,7 +143,7 @@ public class Session {
         for (int i = 0; i < stringStreams.size(); i++) {
             System.out.println(stringStreams.get(i));
         }
-        System.out.println("Type stream you want to enter: ");
+        System.out.println("Type title of the stream you want to enter: ");
         String search = inputSc.nextLine();
 
         for (int i = 0; i < stringStreams.size(); i++) {

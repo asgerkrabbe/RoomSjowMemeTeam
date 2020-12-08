@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -71,61 +72,80 @@ public class Stream implements Comparable<Stream> {
     }
 
     public void watchStream(Profile profile) throws FileNotFoundException {
-        while (myStreamsSc.hasNext()) {
-            stringMyStreams.add(myStreamsSc.nextLine());
+
+        System.out.println("Type 1 for comments, 2 to watch stream");
+        Scanner scanner = new Scanner(System.in);
+        String choice = scanner.nextLine();
+
+        if(choice.contains("1")){
+            viewCommentsAndArray();
         }
-        Collections.sort(stringMyStreams);
-        for (int i = 0; i < stringMyStreams.size(); i++) {
-            if (stringMyStreams.get(i).contains(profile.getUsername())) {
-                System.out.println(stringMyStreams.get(i));
+        if(choice.contains("2")){
+            while (myStreamsSc.hasNext()) {
+                stringMyStreams.add(myStreamsSc.nextLine());
             }
-        }
-
-        System.out.println("Choose stream by typing.");
-        String streamChoice = sc.nextLine();
-
-        for (int i = 0; i < stringMyStreams.size(); i++) {
-            if (stringMyStreams.get(i).contains(streamChoice)) {
-                Stream s = convertStream(stringMyStreams.get(i));
-                this.startTime = s.startTime;
+            Collections.sort(stringMyStreams);
+            for (int i = 0; i < stringMyStreams.size(); i++) {
+                if (stringMyStreams.get(i).contains(profile.getUsername())) {
+                    System.out.println(stringMyStreams.get(i));
+                }
             }
-        }
 
-        int time = (int) LocalDateTime.now().until(startTime, ChronoUnit.MINUTES);
-        int diff = LocalDateTime.now().compareTo(startTime);
-        if (diff < 1) {
-            timeUntilStream();
-        } else {
-            if (time >= -120 && time <= 0) {
-                System.out.println("Your stream is live! Please enjoy your content.");
+            System.out.println("Choose stream by typing.");
+            String streamChoice = sc.nextLine();
 
-                long sTime = System.currentTimeMillis();
-                boolean stop = false;
-                int count = 0;
-                System.out.println("Streaming content. Enter a to exit.");
-                do {
-                    count++;
-                    try {
-                        if (System.in.available() > 0) {
-                            String s = sc.nextLine();
-                            if (s.equals("a")) {
-                                stop = true;
-                                System.out.println("Stop requested");
-                            }
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } while (System.currentTimeMillis() - sTime < 60000 && !stop);
-                System.out.println("Finished");
+            for (int i = 0; i < stringMyStreams.size(); i++) {
+                if (stringMyStreams.get(i).contains(streamChoice)) {
+                    Stream s = convertStream(stringMyStreams.get(i));
+                    this.startTime = s.startTime;
+                }
+            }
+
+            int time = (int) LocalDateTime.now().until(startTime, ChronoUnit.MINUTES);
+            int diff = LocalDateTime.now().compareTo(startTime);
+            if (diff < 1) {
+                timeUntilStream();
             } else {
-                System.out.println("Your stream has aired, please rate and comment");
+                if (time >= -120 && time <= 0) {
+                    System.out.println("Your stream is live! Please enjoy your content.");
+
+                    long sTime = System.currentTimeMillis();
+                    boolean stop = false;
+                    int count = 0;
+                    System.out.println("Streaming content. Enter a to exit.");
+                    do {
+                        count++;
+                        try {
+                            if (System.in.available() > 0) {
+                                String s = sc.nextLine();
+                                if (s.equals("a")) {
+                                    stop = true;
+                                    System.out.println("Stop requested");
+                                }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } while (System.currentTimeMillis() - sTime < 60000 && !stop);
+                    System.out.println("Finished");
+                } else {
+                    System.out.println("Your stream has aired, please rate and comment");
+                    rate();
+                    comment();
+                }
             }
-            rate();
-            comment();
+
         }
+
+
     }
 
+    public void viewCommentsAndArray(){
+        for (int i = 0; i < comments.size(); i++) {
+            System.out.println(comments.get(i));
+        }
+        System.out.println(Arrays.toString(rating));
+    }
 
     public void rate() {
         System.out.println("Give a rating between 1 to 5.");
@@ -151,21 +171,15 @@ public class Stream implements Comparable<Stream> {
             }
         }
         System.out.println("Your rating has been added.");
-        sc.close();
+
         //Implement Print rating average method?
     }
 
     private void comment() {
         Scanner inputScan = new Scanner(System.in);
-        for (String str : comments){
-            System.out.println(str);
-        }
         System.out.println("Write your comment here:");
         String comment = inputScan.nextLine();
         comments.add(comment);
-        for (String str : comments){
-            System.out.println(str);
-        }
         System.out.println("Your comment was added.");
     }
 
@@ -199,10 +213,6 @@ public class Stream implements Comparable<Stream> {
 
     public int getViewers() {
         return viewers;
-    }
-
-    public ArrayList<String> getComments() {
-        return comments;
     }
 
     public void addViewer() {
