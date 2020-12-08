@@ -28,7 +28,6 @@ public class Session {
     Scanner myStreamsSc = new Scanner(myStreamsFile);
     ArrayList<String> stringMyStreams = new ArrayList<>();
 
-
     /**
      * ?
      * @param profile    user profile
@@ -154,7 +153,11 @@ public class Session {
 
                 if (!checkOverlap(s, profile.getMyStreams())) {
                     System.out.println("You have now signed up to \""+s.getTitle()+"\"");
-                    fileWriter.write("\n" + stringStreams.get(i) + "," + profile.getUsername());
+                    s.addViewer();
+                    fileWriter.write("\n"+(DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()) + "," +
+                                    (DateTimeFormatter.ISO_LOCAL_TIME).format(s.getStartTime()) + "," +
+                                    s.getTitle() + "," + s.getGenre() + "," +
+                                    + s.getViewers() + "," + s.getPrice()+","+profile.getUsername());
                     profile.getMyStreams().add(s);
                     fileWriter.close();
                     break;
@@ -163,6 +166,7 @@ public class Session {
                     sessionMenu();
                 }
             }
+            System.out.println("The stream could not be found, try to type the exact title name.");
         }
     }
 

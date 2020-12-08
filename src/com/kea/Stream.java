@@ -21,8 +21,8 @@ public class Stream implements Comparable<Stream> {
     private LocalDateTime startTime;
     private Genre genre;
     private int viewers;
-    private double rating;
-    ArrayList<String> comments;
+    private int[] rating= new int[5];
+    ArrayList<String> comments = new ArrayList<>();
     File myStreamsFile = new File("MyStreams.txt");
     Scanner myStreamsSc = new Scanner(myStreamsFile);
     Scanner sc = new Scanner(System.in);
@@ -34,7 +34,6 @@ public class Stream implements Comparable<Stream> {
         this.genre = genre;
         this.viewers = viewers;
         this.price = price;
-        rating = -1;
         comments = new ArrayList<>();
     }
 
@@ -45,6 +44,7 @@ public class Stream implements Comparable<Stream> {
 
     /**
      * compares stream time
+     *
      * @param s the desired stream
      * @return the start time or 0
      */
@@ -59,14 +59,15 @@ public class Stream implements Comparable<Stream> {
 
     /**
      * ToString method for the date and time
+     *
      * @return date and time in a nice layout
      */
     @Override
     public String toString() {
-        return "\nTitle: "+title+"\tGenre: "+genre+"\nDate: "+
+        return "\nTitle: " + title + "\tGenre: " + genre + "\nDate: " +
                 (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\tTime: " +
                 (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) +
-                "\nViewers: " + viewers + "\tPrice: " + price +" dkk";
+                "\nViewers: " + viewers + "\tPrice: " + price + " dkk";
     }
 
     public void watchStream(Profile profile) throws FileNotFoundException {
@@ -84,7 +85,7 @@ public class Stream implements Comparable<Stream> {
         String streamChoice = sc.nextLine();
 
         for (int i = 0; i < stringMyStreams.size(); i++) {
-            if (stringMyStreams.get(i).contains(streamChoice)){
+            if (stringMyStreams.get(i).contains(streamChoice)) {
                 Stream s = convertStream(stringMyStreams.get(i));
                 this.startTime = s.startTime;
             }
@@ -92,10 +93,9 @@ public class Stream implements Comparable<Stream> {
 
         int time = (int) LocalDateTime.now().until(startTime, ChronoUnit.MINUTES);
         int diff = LocalDateTime.now().compareTo(startTime);
-        if (diff<1) {
+        if (diff < 1) {
             timeUntilStream();
-        }
-        else {
+        } else {
             if (time >= -120 && time <= 0) {
                 System.out.println("Your stream is live! Please enjoy your content.");
 
@@ -106,10 +106,9 @@ public class Stream implements Comparable<Stream> {
                 do {
                     count++;
                     try {
-                        if (System.in.available() > 0)
-                        {
+                        if (System.in.available() > 0) {
                             String s = sc.nextLine();
-                            if (s.equals("a")){
+                            if (s.equals("a")) {
                                 stop = true;
                                 System.out.println("Stop requested");
                             }
@@ -119,39 +118,94 @@ public class Stream implements Comparable<Stream> {
                     }
                 } while (System.currentTimeMillis() - sTime < 60000 && !stop);
                 System.out.println("Finished");
+            } else {
+                System.out.println("Your stream has aired, please rate and comment");
             }
-            else {
-                System.out.println("Your stream has aired, please rate and comment");;
-            }
-            //Call rate/comment method
+            rate();
+            comment();
         }
-        // "stream has been watched" with a countdown//Ines
-        //FoundStream.rate();
-        //FoundStream.comment();
+    }
+
+
+    public void rate() {
+        System.out.println("Give a rating between 1 to 5.");
+        String rate = sc.next();
+        switch (rate) {
+            case "1":
+                rating[0]++;
+                break;
+            case "2":
+                rating[1]++;
+                break;
+            case "3":
+                rating[2]++;
+                break;
+            case "4":
+                rating[3]++;
+                break;
+            case "5":
+                rating[4]++;
+                break;
+            default: {
+                System.out.println("ERROR 40, please try again.");
+            }
+        }
+        System.out.println("Your rating has been added.");
+        sc.close();
+        //Implement Print rating average method?
+    }
+
+    private void comment() {
+        Scanner inputScan = new Scanner(System.in);
+        for (String str : comments){
+            System.out.println(str);
+        }
+        System.out.println("Write your comment here:");
+        String comment = inputScan.nextLine();
+        comments.add(comment);
+        for (String str : comments){
+            System.out.println(str);
+        }
+        System.out.println("Your comment was added.");
     }
 
     public void timeUntilStream() {
         int time = (int) LocalDateTime.now().until(startTime, ChronoUnit.MINUTES);
         System.out.println("Your stream has not started yet.\n Time left till airing:");
-        System.out.println("Days: "+time/24/60 + "\nHours: " + time/60%24 + "\nMinutes: " + time%60);
+        System.out.println("Days: " + time / 24 / 60 + "\nHours: " + time / 60 % 24 + "\nMinutes: " + time % 60);
     }
 
 
     /**
      * getter for LocalDateTime
+     *
      * @return start time
      */
-    public LocalDateTime getStartTime() { return startTime;}
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
 
-    public double getPrice() { return price;}
+    public double getPrice() {
+        return price;
+    }
 
-    public String getTitle() { return title;}
+    public String getTitle() {
+        return title;
+    }
 
-    public Genre getGenre() { return genre;}
+    public Genre getGenre() {
+        return genre;
+    }
 
-    public int getViewers() { return viewers;}
+    public int getViewers() {
+        return viewers;
+    }
 
-    public ArrayList<String> getComments() {return comments; }
+    public ArrayList<String> getComments() {
+        return comments;
+    }
 
-    public double getRating() { return rating;}
+    public void addViewer() {
+        viewers++;
+    }
 }
