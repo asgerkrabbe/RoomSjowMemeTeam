@@ -9,7 +9,8 @@ public class Profile {
     private String username;
     private String password;
     private String email;
-    ArrayList<Stream> myStreams = new ArrayList<>();
+
+    private ArrayList<Stream> myStreams;
 
     /**
      * Declares profile attributes
@@ -21,8 +22,12 @@ public class Profile {
         this.username = username;
         this.password = password;
         this.email = email;
+        myStreams = new ArrayList<>();
     }
 
+    public ArrayList<Stream> getMyStreams() {
+        return myStreams;
+    }
 
     /**
      * Getter for password

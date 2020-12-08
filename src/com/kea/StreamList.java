@@ -1,9 +1,6 @@
 package com.kea;
 
 import java.io.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -13,72 +10,57 @@ public class StreamList {
      * Declares 3 ArrayLists, 2 files and 3 scanners.
      */
     ArrayList<Stream> streams;
-    ArrayList<String> showStreams = new ArrayList<>();
-    File streamsFile = new File("Streams.txt");
-    Scanner fileSc = new Scanner(streamsFile);
-    Scanner sc = new Scanner(System.in);
+    ArrayList<String> stringStreams;
+    File streamsFile;
+    Scanner fileSc;
+    Scanner inputSc;
 
     /**
-     * Displays the list of streams
+     * StreamList object constructor with field initializers
      * @throws FileNotFoundException required exception when working with files
      */
     public StreamList() throws FileNotFoundException {
         streams = new ArrayList<>();
+        stringStreams = new ArrayList<>();
+        streamsFile = new File("Streams.txt");
+        fileSc = new Scanner(streamsFile);
+        inputSc = new Scanner(System.in);
         loadStreams();
-    }
-
-    /**
-     * Setter for currentUser
-     * @param currentUser the user currently using the program
-     */
-
-
-
-    /**
-     * Indexing arrays before usage in methods
-     */
-    public void arrayListIndexing() {
-
     }
 
     /**
      * loadStreams method needs to be modified. New stream format consists of
      * 6 index' instead of the current 3. Check Streams.txt for examples
      */
-
     public void loadStreams() {
         while (fileSc.hasNext()) {
-            String[] splittedLine = fileSc.nextLine().split(",");
-            Stream s = Session.convertStream(splittedLine);
+            Stream s = Session.convertStream(fileSc.nextLine());
             streams.add(s);
-
         }
-        //fileSc.close();
     }
 
     /**
-     * adds a stream to the streamlist
-     * @param stream the desired stream
+     * Sorts an ArrayList
      */
-    public void add(Stream stream) {
-        streams.add(stream);
+    public void sortArrayList(ArrayList list) {
+        Collections.sort(list);
     }
 
     /**
-     * Displays the list of streams sorted
+     * Displays the list of streams
      */
     public void showList() {
-        Collections.sort(streams);
-        for (int i = 0; i < streams.size(); i++) {
-            System.out.println(streams.get(i));
+        while (fileSc.hasNext()) {
+            stringStreams.add(fileSc.nextLine());
+        }
+        fileSc.close();
+        sortArrayList(stringStreams);
+
+        for (int i = 0; i < stringStreams.size(); i++) {
+            System.out.println(stringStreams.get(i));
         }
         System.out.println("\nPress enter to return to start menu.");
-        String exit = sc.nextLine();
+        String exit = inputSc.nextLine();
     }
-
-    /**
-     * Lets the user signup for a stream
-     * @throws IOException
-     */
 
 }

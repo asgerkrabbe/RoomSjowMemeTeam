@@ -6,3 +6,5 @@
 2020-12-12,12:13:00,title,C_SHARP,0,5.0,asgerkrabbe
 2020-12-12,12:12:00,asd,JAVA,0,5.0,name
 2021-02-17,22:00:00,Hola Extermination 2,PYTHON,0,5.0,name
+2020-12-12,12:12:00,Python fundamentals,PYTHON,0,5.0,name
+2020-12-12,12:12:00,asd,JAVA,0,5.0,name

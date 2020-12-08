@@ -4,12 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ * This class contains the functionalities that a user that is not logged in encounters in the system.
  */
 public class RoomSjow {
     /**
@@ -18,19 +17,13 @@ public class RoomSjow {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        RoomSjow rs = new RoomSjow();
-        rs.run();
-        /**
-         * System.out.println("BASIC_ISO_DATE format:      " + (s.getStartTime()));
-         * System.out.println("ISO_LOCAL_DATE format:      " + (DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()));
-         * System.out.println("ISO_LOCAL_TIME format:      " + (DateTimeFormatter.ISO_LOCAL_TIME).format(s.getStartTime()));
-         * DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
-         */
+        new RoomSjow().run();
     }
+
     /**
      * declares variables, scanner, ArrayList and an instantiation of streamlist
      */
-    StreamList streamlist;
+    StreamList streamList;
     String username = null;
     String email = null;
     String password = null;
@@ -38,7 +31,7 @@ public class RoomSjow {
     ArrayList<Profile> profiles;
 
     public RoomSjow() throws FileNotFoundException {
-        streamlist = new StreamList();
+        streamList = new StreamList();
         profiles = new ArrayList<>();
     }
 
@@ -50,8 +43,6 @@ public class RoomSjow {
         loadProfiles();
         homeMenu();
     }
-
-
 
     /**
      * loads profiles from txt file
@@ -93,7 +84,7 @@ public class RoomSjow {
                 }
                 case "3": {
                     System.out.println("Our streams:\n");
-                    streamlist.showList();
+                    streamList.showList();
                     continue;
                 }
                 case "4": {
@@ -122,7 +113,7 @@ public class RoomSjow {
             if (p.getEmail().equals(email1)) {
                 isEmailFound = true;
                 if (p.getPassword().equals(password1)) {
-                    Session session = new Session(p, streamlist);
+                    Session session = new Session(p, streamList);
                     System.out.println("Username and password correct!!\n");
                     session.sessionMenu();
                 } else {

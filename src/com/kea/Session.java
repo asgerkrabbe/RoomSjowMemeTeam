@@ -16,24 +16,35 @@ import java.util.Scanner;
  * Instantiation of RoomSjow, profile and streamlist
  */
 public class Session {
-    RoomSjow roomSjow = new RoomSjow();
     Profile profile;
     private StreamList streamList;
+    Scanner inputSc = new Scanner(System.in);
+
     File streamsFile = new File("Streams.txt");
+    Scanner streamsFileSc = new Scanner(streamsFile);
+    ArrayList<String> stringStreams = new ArrayList<>();
+
     File myStreamsFile = new File("MyStreams.txt");
-    Scanner fileSc = new Scanner(streamsFile);
-    ArrayList<String> showStreamsString = new ArrayList<>();
-    ArrayList<String> myStreams = new ArrayList<>();
     Scanner myStreamsSc = new Scanner(myStreamsFile);
-    Scanner sc = new Scanner(System.in);
+    ArrayList<String> stringMyStreams = new ArrayList<>();
 
 
-
+    /**
+     * ?
+     * @param profile    user profile
+     * @param streamList list of available streams
+     * @throws FileNotFoundException required exception when working with files
+     */
+    public Session(Profile profile, StreamList streamList) throws FileNotFoundException{
+        this.profile = profile;
+        this.streamList = streamList;
+        //this.streams = streams;
+    }
     protected void runPay() {
         System.out.println("Choose your payment method: ");
         System.out.println("1 Pay with Creditcard");
         System.out.println("2 Pay with Mobilepay");
-        int num = sc.nextInt();
+        int num = inputSc.nextInt();
         if (num == 1) {
             CardPayment cP = new CardPayment();
             cP.pay();
@@ -46,27 +57,16 @@ public class Session {
         }
     }
 
-    /**
-     * ?
-     *
-     * @param profile    user profile
-     * @param streamList list of available streams
-     * @throws FileNotFoundException required exception when working with files
-     */
-    public Session(Profile profile, StreamList streamList) throws FileNotFoundException /*ArrayList<Stream> streams*/ {
-        this.profile = profile;
-        this.streamList = streamList;
-        //this.streams = streams;
-    }
+    public void showMyStreams() {
 
-    public void myStreams() {
         while (myStreamsSc.hasNext()) {
-            myStreams.add(myStreamsSc.nextLine());
+            stringMyStreams.add(myStreamsSc.nextLine());
         }
 
-        for (int i = 0; i < myStreams.size(); i++) {
-            if (myStreams.get(i).contains(profile.getUsername())) {
-                System.out.println(myStreams.get(i));
+        Collections.sort(stringMyStreams);
+        for (int i = 0; i < stringMyStreams.size(); i++) {
+            if (stringMyStreams.get(i).contains(profile.getUsername())) {
+                System.out.println(stringMyStreams.get(i));
             }
         }
         System.out.println();
@@ -91,12 +91,26 @@ public class Session {
 
         LocalDateTime startTime = promptDateTime();
         Stream stream = new Stream(startTime, streamTitle, enumGenre, 0, 5.0);
-        if (!checkOverlap(stream, profile.myStreams)) {
-            profile.myStreams.add(stream);
-            // streamList.add(stream);
 
+        if (!checkOverlap(stream, profile.getMyStreams())) {
+            System.out.println("\nYour stream has been created\n");
+            //updates MyStreams array
+            profile.getMyStreams().add(stream);
+            //updates MyStreams file
+            FileWriter writer1 = new FileWriter("MyStreams.txt",true);
+            writer1.write("\n"+(DateTimeFormatter.ISO_LOCAL_DATE).format(stream.getStartTime()) + "," +
+                    (DateTimeFormatter.ISO_LOCAL_TIME).format(stream.getStartTime()) + "," +
+                    stream.getTitle() + "," + stream.getGenre() + "," +
+                    + stream.getViewers() + "," + stream.getPrice()+","+profile.getUsername());
+            writer1.close();
+            //updates streams array
+            streamList.streams.add(stream);
+            //updates streams file
             FileWriter myWriter = new FileWriter("Streams.txt", true);
-            myWriter.write(String.valueOf(stream));
+            myWriter.write("\n"+(DateTimeFormatter.ISO_LOCAL_DATE).format(stream.getStartTime()) + "," +
+                    (DateTimeFormatter.ISO_LOCAL_TIME).format(stream.getStartTime()) + "," +
+                    stream.getTitle() + "," + stream.getGenre() + "," +
+                    + stream.getViewers() + "," + stream.getPrice());
             myWriter.close();
 
         } else {
@@ -107,7 +121,7 @@ public class Session {
                 case "1":
                     LocalDateTime startTime2 = promptDateTime();
                     Stream stream2 = new Stream(startTime, streamTitle, enumGenre, 0, 5.0);
-                    if (checkOverlap(stream2, profile.myStreams))
+                    if (checkOverlap(stream2, profile.getMyStreams()))
                         System.out.println("You are also signed up for a stream at the selected time. \n");
                     System.out.println("You will be forwarded to the start menu. ");
                     createStream();
@@ -121,28 +135,27 @@ public class Session {
     public void signUpForStream() throws IOException {
 
         FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
-
-        while (fileSc.hasNext()) {
-            showStreamsString.add(fileSc.nextLine());
+        while (streamsFileSc.hasNext()) {
+            stringStreams.add(streamsFileSc.nextLine());
         }
-        Collections.sort(showStreamsString);
+        Collections.sort(stringStreams);
 
-        for (int i = 0; i < showStreamsString.size(); i++) {
-            System.out.println(showStreamsString.get(i));
+        for (int i = 0; i < stringStreams.size(); i++) {
+            System.out.println(stringStreams.get(i));
         }
+        //TODO same title but different genre makes a mess
         System.out.println("Type stream you want to enter: ");
-        String search = sc.nextLine();
+        String search = inputSc.nextLine();
 
-        for (int i = 0; i < showStreamsString.size(); i++) {
+        for (int i = 0; i < stringStreams.size(); i++) {
 
-            if (showStreamsString.get(i).contains(search)) {
+            if (stringStreams.get(i).contains(search)) {
+                Stream s = convertStream(stringStreams.get(i));
 
-                String[] splittedLine = showStreamsString.get(i).split(",");
-                Stream s = convertStream(splittedLine);
-
-                if (!checkOverlap(s, profile.myStreams)) {
-                    fileWriter.write("\n" + showStreamsString.get(i) + "," + profile.getUsername());
-                    profile.myStreams.add(s);
+                if (!checkOverlap(s, profile.getMyStreams())) {
+                    System.out.println("You have now signed up to \""+s.getTitle()+"\"");
+                    fileWriter.write("\n" + stringStreams.get(i) + "," + profile.getUsername());
+                    profile.getMyStreams().add(s);
                     fileWriter.close();
                     break;
                 } else {
@@ -153,7 +166,8 @@ public class Session {
         }
     }
 
-    public static Stream convertStream(String[] splittedLine) {
+    public static Stream convertStream(String line) {
+        String[] splittedLine = line.split(",");
         LocalDate date = LocalDate.parse(splittedLine[0]);
         LocalTime time = LocalTime.parse(splittedLine[1]);
         LocalDateTime dateTime = LocalDateTime.of(date, time);
@@ -203,9 +217,9 @@ public class Session {
         int hours = stringSc.nextInt();
         int minutes = stringSc.nextInt();
         LocalDateTime startTime = LocalDateTime.of(year, month, day, hours, minutes);
-        System.out.println(startTime);
-        System.out.println("The start date chose is " + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime));
-        System.out.println("The start time chose is " + (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime));
+        System.out.println();
+        System.out.println("The start date chosen is: " + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime));
+        System.out.println("The start time chosen is: " + (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime));
         return startTime;
     }
 
@@ -221,7 +235,7 @@ public class Session {
 
 
         while (choiceBoo) {
-            System.out.println("1. Create Stream.\n2. View our Streams list.\n3. Sign up for a stream\n4. View my Streams\n5. Watch stream\n6. Sign out");
+            System.out.println("\n1. Create Stream.\n2. View our Streams list.\n3. Sign up for a stream\n4. View my Streams\n5. Watch stream\n6. Sign out");
             String choice = sc.next();
             switch (choice) {
                 case "1": {
@@ -237,10 +251,10 @@ public class Session {
                     continue;
                 }
                 case "4": {
-                    myStreams();
+                    showMyStreams();
                     continue;
                 }
-                case "5":{
+                case "5": {
                     //new Stream.watchStream();
                     continue;
                 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Stream implements Comparable<Stream> {
     private double price;
     private String title;
-    private LocalDateTime startTime = LocalDateTime.of(2020, 9, 1, 13, 30);
+    private LocalDateTime startTime;
     private Genre genre;
     private int viewers;
     private double rating;
@@ -26,23 +26,12 @@ public class Stream implements Comparable<Stream> {
         comments = new ArrayList<>();
     }
 
-    public double getRating() {
-        return rating;
-    }
-    /**
-     * getter for LocalDateTime
-     * @return start time
-     */
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
 
     /**
      * compares stream time
      * @param s the desired stream
      * @return the start time or 0
      */
-
     @Override
     public int compareTo(Stream s) {
         if (this.startTime == null || s.startTime == null) {
@@ -58,36 +47,41 @@ public class Stream implements Comparable<Stream> {
      */
     @Override
     public String toString() {
-        return (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "," +
-                (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) + "," +
-                title + "," + genre + "," +
-                +viewers + "," + price;
-    }
-
-    public void getDateAndTime() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        System.out.println(dtf.format(now));
-    }
-
-    LocalDateTime date1 = LocalDateTime.now();
-    LocalDateTime date2 = LocalDateTime.of(2021, 2,17,22, 0, 0);
-    public void CompareLocalDateTimeExample() {
-        int diff = date1.compareTo(date2);
-        if (diff > 0) {
-            System.out.println(date1 + " is greater than " + date2);
-        } else if (diff < 0) {
-            System.out.println(date1 + " is less than " + date2);
-        } else {
-            System.out.println(date1 + " is equal to " + date2);
-        }
+        return "\nTitle: "+title+"\tGenre: "+genre+"\nDate: "+
+                (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\tTime: " +
+                (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) +
+                "\nViewers: " + viewers + "\tPrice: " + price +" dkk";
     }
 
     public void watchStream() {
         //show a list of my streams
         //user selects one
-        //"stream has been watched" with a countdown
+        //show stream info
+
+        // show time left to startTime, method
+        // eller stream is live.
+        //eller stream is finished.
+
+        // "stream has been watched" with a countdown//Ines
         //FoundStream.rate();
         //FoundStream.comment();
     }
+
+    /**
+     * getter for LocalDateTime
+     * @return start time
+     */
+    public LocalDateTime getStartTime() { return startTime;}
+
+    public double getPrice() { return price;}
+
+    public String getTitle() { return title;}
+
+    public Genre getGenre() { return genre;}
+
+    public int getViewers() { return viewers;}
+
+    public ArrayList<String> getComments() {return comments; }
+
+    public double getRating() { return rating;}
 }
