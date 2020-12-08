@@ -1,11 +1,10 @@
-2010-06-15,21:00:00,Terminator,C_SHARP,0,5.0 DKK,Hardy
-1997-01-13,21:30:00,test,PYTHON,0,5.0DKK,name
-1997-01-13,21:30:00,test,PYTHON,0,5.0DKK,name
+2010-06-15,21:00:00,Terminator,C_SHARP,0,5.0,Hardy
+1997-01-13,21:30:00,test,PYTHON,0,5.0,name
 1337-04-20,12:12:00,GG Well Play,PYTHON,0,5.0,asgerkrabbe
 2020-12-12,12:12:00,asd,JAVA,0,5.0,name
 2020-12-12,12:13:00,title,C_SHARP,0,5.0,asgerkrabbe
 2020-12-12,12:12:00,asd,JAVA,0,5.0,name
 2021-02-17,22:00:00,Hola Extermination 2,PYTHON,0,5.0,name
 2020-12-12,12:12:00,Python fundamentals,PYTHON,0,5.0,name
-2020-12-12,12:12:00,asd,JAVA,0,5.0,name
-2020-12-08,11:00:00,Testeren,JAVA,0,5.0,name
+2020-12-12,12:12:00,asd,JAVA,0,5.0,asgerkrabbe
+2020-12-08,13:00:00,Testeren,JAVA,0,5.0,name

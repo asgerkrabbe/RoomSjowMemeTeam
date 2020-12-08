@@ -166,7 +166,7 @@ public class Session {
         }
     }
 
-    public static Stream convertStream(String line) {
+    public static Stream convertStream(String line) throws FileNotFoundException {
         String[] splittedLine = line.split(",");
         LocalDate date = LocalDate.parse(splittedLine[0]);
         LocalTime time = LocalTime.parse(splittedLine[1]);
@@ -255,7 +255,7 @@ public class Session {
                     continue;
                 }
                 case "5": {
-                    //new Stream.watchStream();
+                    new Stream().watchStream(profile);
                     continue;
                 }
                 case "6": {

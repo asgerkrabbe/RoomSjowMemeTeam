@@ -1,8 +1,16 @@
 package com.kea;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+import static com.kea.Session.convertStream;
 
 /**
  * declares variables and getters for them
@@ -10,13 +18,17 @@ import java.util.ArrayList;
 public class Stream implements Comparable<Stream> {
     private double price;
     private String title;
-    private LocalDateTime startTime = LocalDateTime.of(2020, 8,12,10,40);
+    private LocalDateTime startTime;
     private Genre genre;
     private int viewers;
     private double rating;
     ArrayList<String> comments;
+    File myStreamsFile = new File("MyStreams.txt");
+    Scanner myStreamsSc = new Scanner(myStreamsFile);
+    Scanner sc = new Scanner(System.in);
+    ArrayList<String> stringMyStreams = new ArrayList<>();
 
-    public Stream(LocalDateTime startTime, String title, Genre genre, int viewers, double price) {
+    public Stream(LocalDateTime startTime, String title, Genre genre, int viewers, double price) throws FileNotFoundException {
         this.title = title;
         this.startTime = startTime;
         this.genre = genre;
@@ -26,7 +38,7 @@ public class Stream implements Comparable<Stream> {
         comments = new ArrayList<>();
     }
 
-    public Stream() {
+    public Stream() throws FileNotFoundException {
 
     }
 
@@ -57,48 +69,94 @@ public class Stream implements Comparable<Stream> {
                 "\nViewers: " + viewers + "\tPrice: " + price +" dkk";
     }
 
-    public void watchStream() {
-        //show a list of my streams
-        //user selects one
-        //show stream info
+    public void watchStream(Profile profile) throws FileNotFoundException {
+        while (myStreamsSc.hasNext()) {
+            stringMyStreams.add(myStreamsSc.nextLine());
+        }
+        Collections.sort(stringMyStreams);
+        for (int i = 0; i < stringMyStreams.size(); i++) {
+            if (stringMyStreams.get(i).contains(profile.getUsername())) {
+                System.out.println(stringMyStreams.get(i));
+            }
+        }
 
-        // show time left to startTime, method
-        // eller stream is live.
-        //eller stream is finished.
+        System.out.println("Choose stream by typing.");
+        String streamChoice = sc.nextLine();
 
+        for (int i = 0; i < stringMyStreams.size(); i++) {
+            if (stringMyStreams.get(i).contains(streamChoice)){
+                Stream s = convertStream(stringMyStreams.get(i));
+                this.startTime = s.startTime;
+            }
+        }
+
+        int time = (int) LocalDateTime.now().until(startTime, ChronoUnit.MINUTES);
+        int diff = LocalDateTime.now().compareTo(startTime);
+        if (diff<1) {
+            timeUntilStream();
+        }
+        else {
+            if (time >= 120 && time <= 0) {
+                System.out.println("Your stream is live! Please enjoy your content.");
+
+                long sTime = System.currentTimeMillis();
+                boolean stop = false;
+                int count = 0;
+                System.out.println("Streaming content. Enter a to exit.");
+                do {
+                    count++;
+                    try {
+                        if (System.in.available() > 0)
+                        {
+                            String s = sc.nextLine();
+                            if (s.equals("a")){
+                                stop = true;
+                                System.out.println("Stop requested");
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } while (System.currentTimeMillis() - sTime < 60000 && !stop);
+                System.out.println("Finished");
+            }
+            else {
+                System.out.println("Your stream has aired, please rate and comment");;
+            }
+            //Call rate/comment method
+        }
         // "stream has been watched" with a countdown//Ines
         //FoundStream.rate();
         //FoundStream.comment();
     }
 
-    public void example() {
-        LocalDateTime date1 = LocalDateTime.now();
-        LocalDateTime date2 = startTime;
-        // isAfter() method
-        /*
-        if(date1.isAfter(date2)) {
-            System.out.println(date1 + " is after " + date2);
-        }
+    public void streamAirTime() {
+        int time = (int) LocalDateTime.now().until(startTime, ChronoUnit.MINUTES);
 
-        // isBefore() method
-        if(date1.isBefore(date2)) {
-            System.out.println(date1 + " is before " + date2);
+        if (time <= 120) {
+            System.out.println("Your stream is live! Please enjoy your content.");
         }
+        else {
+            System.out.println("");
+        }
+    }
 
-        // isEqual() method
-        if(date1.isEqual(date2)) {
-            System.out.println(date1 + " is equal to " + date2);
-        }
-*/
-        // compareTo() method
-        int diff = date1.compareTo(date2);
+    public void timeUntilStream() {
+        int time = (int) LocalDateTime.now().until(startTime, ChronoUnit.MINUTES);
+        System.out.println("Your stream has not started yet.\n Time left till airing:");
+        System.out.println("Days: "+time/24/60 + "\nHours: " + time/60%24 + "\nMinutes: " + time%60);
+
+/*
+        int diff = date1.compareTo(startTime);
         if(diff > 0) {
-            System.out.println(date1 + " is greater than " + date2);
+            System.out.println(date1 + " YOU CAN NOW RATE STREAM " + startTime);
         } else if (diff < 0) {
-            System.out.println(date1 + " is less than " + date2);
+            System.out.println(date1 + " STREAM WILL BEGIN: " + startTime);
         } else {
-            System.out.println(date1 + " is equal to " + date2);
+            System.out.println(date1 + " STREAM IS AIRING" + startTime);
         }
+        */
+
     }
 
 
