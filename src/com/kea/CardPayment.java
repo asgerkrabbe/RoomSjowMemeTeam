@@ -14,13 +14,11 @@ public class CardPayment extends Payment {
     public void pay() {
         String creditregex = "^\\d{16}$";
         boolean creditboo = true;
-        Pattern p = Pattern.compile(creditregex);
-        Matcher m = p.matcher(creditregex);
 
         do {
             System.out.println("Enter a valid 16 diget creditcard number: ");
-            double number = scan.nextDouble();
-            if (m.matches()) {
+            String number = scan.nextLine();
+            if (number.matches(creditregex)) {
                 System.out.println("X amount have been charged.");
                 creditboo = false;
             } else {

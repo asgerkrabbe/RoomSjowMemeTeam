@@ -96,7 +96,7 @@ public class Stream implements Comparable<Stream> {
             timeUntilStream();
         }
         else {
-            if (time >= 120 && time <= 0) {
+            if (time >= -120 && time <= 0) {
                 System.out.println("Your stream is live! Please enjoy your content.");
 
                 long sTime = System.currentTimeMillis();
