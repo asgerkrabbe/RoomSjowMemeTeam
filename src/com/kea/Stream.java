@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Stream implements Comparable<Stream> {
     private double price;
     private String title;
-    private LocalDateTime startTime;
+    private LocalDateTime startTime = LocalDateTime.of(2020, 8,12,10,40);
     private Genre genre;
     private int viewers;
     private double rating;
@@ -24,6 +24,10 @@ public class Stream implements Comparable<Stream> {
         this.price = price;
         rating = -1;
         comments = new ArrayList<>();
+    }
+
+    public Stream() {
+
     }
 
 
@@ -66,6 +70,37 @@ public class Stream implements Comparable<Stream> {
         //FoundStream.rate();
         //FoundStream.comment();
     }
+
+    public void example() {
+        LocalDateTime date1 = LocalDateTime.now();
+        LocalDateTime date2 = startTime;
+        // isAfter() method
+        /*
+        if(date1.isAfter(date2)) {
+            System.out.println(date1 + " is after " + date2);
+        }
+
+        // isBefore() method
+        if(date1.isBefore(date2)) {
+            System.out.println(date1 + " is before " + date2);
+        }
+
+        // isEqual() method
+        if(date1.isEqual(date2)) {
+            System.out.println(date1 + " is equal to " + date2);
+        }
+*/
+        // compareTo() method
+        int diff = date1.compareTo(date2);
+        if(diff > 0) {
+            System.out.println(date1 + " is greater than " + date2);
+        } else if (diff < 0) {
+            System.out.println(date1 + " is less than " + date2);
+        } else {
+            System.out.println(date1 + " is equal to " + date2);
+        }
+    }
+
 
     /**
      * getter for LocalDateTime

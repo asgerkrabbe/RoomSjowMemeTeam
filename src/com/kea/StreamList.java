@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class StreamList {
+public class StreamList implements Interface {
     /**
      * Declares 3 ArrayLists, 2 files and 3 scanners.
      */
@@ -50,14 +50,10 @@ public class StreamList {
      * Displays the list of streams
      */
     public void showList() {
-        while (fileSc.hasNext()) {
-            stringStreams.add(fileSc.nextLine());
-        }
-        fileSc.close();
-        sortArrayList(stringStreams);
+        sortArrayList(streams);
 
-        for (int i = 0; i < stringStreams.size(); i++) {
-            System.out.println(stringStreams.get(i));
+        for (int i = 0; i < streams.size(); i++) {
+            System.out.println(streams.get(i));
         }
         System.out.println("\nPress enter to return to start menu.");
         String exit = inputSc.nextLine();

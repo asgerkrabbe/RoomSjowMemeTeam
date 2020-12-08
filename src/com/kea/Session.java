@@ -40,6 +40,9 @@ public class Session {
         this.streamList = streamList;
         //this.streams = streams;
     }
+
+
+
     protected void runPay() {
         System.out.println("Choose your payment method: ");
         System.out.println("1 Pay with Creditcard");
@@ -129,11 +132,9 @@ public class Session {
                     sessionMenu();
             }
         }
-
     }
 
     public void signUpForStream() throws IOException {
-
         FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
         while (streamsFileSc.hasNext()) {
             stringStreams.add(streamsFileSc.nextLine());
@@ -143,7 +144,6 @@ public class Session {
         for (int i = 0; i < stringStreams.size(); i++) {
             System.out.println(stringStreams.get(i));
         }
-        //TODO same title but different genre makes a mess
         System.out.println("Type stream you want to enter: ");
         String search = inputSc.nextLine();
 
