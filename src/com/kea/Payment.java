@@ -27,7 +27,8 @@ abstract public class Payment {
      * Prints pay menu and runs paying methods
      */
     protected void paymentOptions() {
-        System.out.println("Choose your payment method: ");
+        System.out.println("All streams cost 5DKK to attend");
+        System.out.println("/n"+"Choose your payment method: ");
         System.out.println("1 Pay with Creditcard");
         System.out.println("2 Pay with Mobilepay");
         int num = scan.nextInt();

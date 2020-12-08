@@ -17,16 +17,14 @@ public class MobilePay extends Payment {
     public void pay() {
         String mobileregex = "^\\d{8}$";
         boolean mobileboo = true;
-        Pattern p = Pattern.compile(mobileregex);
-        Matcher m = p.matcher(mobileregex);
 
         do {
-            System.out.println("Enter a valid 8 digit phonenumber: ");
-            double number = scan.nextDouble();
-            if (m.matches()) {
-                System.out.println("X amount have been charged.");
+            System.out.println("Enter a valid 8 digit phone number: ");
+            String number = scan.nextLine();
+            if (number.matches(mobileregex)) {
+                System.out.println("5DKK has been charged.");
             } else {
-                System.out.println("Mobilenumber is not valid. Please try again.");
+                System.out.println("Mobile number is not valid. Please try again.");
                 pay();
 
             }

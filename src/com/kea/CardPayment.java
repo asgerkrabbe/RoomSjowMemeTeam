@@ -16,13 +16,13 @@ public class CardPayment extends Payment {
         boolean creditboo = true;
 
         do {
-            System.out.println("Enter a valid 16 diget creditcard number: ");
+            System.out.println("Enter a valid 16 digit credit card number: ");
             String number = scan.nextLine();
             if (number.matches(creditregex)) {
-                System.out.println("X amount have been charged.");
+                System.out.println("5DKK has been charged.");
                 creditboo = false;
             } else {
-                System.out.println("Creditnumber is not valid. Please try again.");
+                System.out.println("Credit number is not valid. Please try again.");
                 pay();
             }
         } while (creditboo) ;
