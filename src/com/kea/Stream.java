@@ -130,33 +130,10 @@ public class Stream implements Comparable<Stream> {
         //FoundStream.comment();
     }
 
-    public void streamAirTime() {
-        int time = (int) LocalDateTime.now().until(startTime, ChronoUnit.MINUTES);
-
-        if (time <= 120) {
-            System.out.println("Your stream is live! Please enjoy your content.");
-        }
-        else {
-            System.out.println("");
-        }
-    }
-
     public void timeUntilStream() {
         int time = (int) LocalDateTime.now().until(startTime, ChronoUnit.MINUTES);
         System.out.println("Your stream has not started yet.\n Time left till airing:");
         System.out.println("Days: "+time/24/60 + "\nHours: " + time/60%24 + "\nMinutes: " + time%60);
-
-/*
-        int diff = date1.compareTo(startTime);
-        if(diff > 0) {
-            System.out.println(date1 + " YOU CAN NOW RATE STREAM " + startTime);
-        } else if (diff < 0) {
-            System.out.println(date1 + " STREAM WILL BEGIN: " + startTime);
-        } else {
-            System.out.println(date1 + " STREAM IS AIRING" + startTime);
-        }
-        */
-
     }
 
 
