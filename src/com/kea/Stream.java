@@ -80,12 +80,12 @@ public class Stream implements Comparable<Stream> {
                     (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\tTime: " +
                     (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) +
                     "\nViewers: " + viewers + "\tPrice: " + price + " dkk" +
-                    "\nComments:\n" + comments+"\nRating: "+ rating;
+                    "\nComments:\n" + comments+"\nRating: "+ rating + "\n";
         } else {
             return "\nTitle: " + title + "\tGenre: " + genre + "\nDate: " +
                     (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\tTime: " +
                     (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) +
-                    "\nViewers: " + viewers + "\tPrice: " + price + " dkk";
+                    "\nViewers: " + viewers + "\tPrice: " + price + " dkk" + "\n";
         }
     }
 
