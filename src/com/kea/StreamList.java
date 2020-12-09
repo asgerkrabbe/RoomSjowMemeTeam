@@ -26,6 +26,7 @@ public class StreamList implements Interface {
         fileSc = new Scanner(streamsFile);
         inputSc = new Scanner(System.in);
         loadStreams();
+
     }
 
     /**
@@ -51,6 +52,7 @@ public class StreamList implements Interface {
      */
     public void showList() {
         sortArrayList(streams);
+        // streams.get(0).comments.add("This is a good test");
 
         for (int i = 0; i < streams.size(); i++) {
             System.out.println(streams.get(i));
