@@ -12,8 +12,9 @@ import java.util.Collections;
 import java.util.Scanner;
 
 import static com.kea.Session.convertStream;
+
 /**
- * declares variables and getters for them
+ * Stream object that represents a real stream
  */
 public class Stream implements Comparable<Stream> {
 
@@ -27,6 +28,15 @@ public class Stream implements Comparable<Stream> {
     private ArrayList<String> comments;
     Scanner sc = new Scanner(System.in);
 
+    /**
+     *
+     * @param startTime
+     * @param title
+     * @param genre
+     * @param viewers
+     * @param price
+     * @throws FileNotFoundException
+     */
     public Stream(LocalDateTime startTime, String title, Genre genre, int viewers, double price) throws FileNotFoundException {
         this.title = title;
         this.startTime = startTime;
@@ -46,7 +56,6 @@ public class Stream implements Comparable<Stream> {
 
     /**
      * compares stream time
-     *
      * @param s the desired stream
      * @return the start time or 0
      */
@@ -80,7 +89,6 @@ public class Stream implements Comparable<Stream> {
         }
     }
 
-
     public void viewCommentsAndArray(){
         for (int i = 0; i < comments.size(); i++) {
             System.out.println(comments.get(i));
@@ -112,8 +120,6 @@ public class Stream implements Comparable<Stream> {
             }
         }
         System.out.println("Your rating has been added.");
-
-        //Implement Print rating average method?
     }
 
     public void comment() {
@@ -122,7 +128,6 @@ public class Stream implements Comparable<Stream> {
         String comment = inputScan.nextLine();
         comments.add(comment);
         System.out.println("Your comment was added.");
-        //fjerne gammelt stream
     }
 
     public void timeUntilStream() {
@@ -133,7 +138,6 @@ public class Stream implements Comparable<Stream> {
 
     /**
      * getter for LocalDateTime
-     *
      * @return start time
      */
     public LocalDateTime getStartTime() {

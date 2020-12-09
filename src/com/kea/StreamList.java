@@ -26,7 +26,6 @@ public class StreamList implements Interface {
         fileSc = new Scanner(streamsFile);
         inputSc = new Scanner(System.in);
         loadStreams();
-
     }
 
     /**
