@@ -308,9 +308,10 @@ public class Session {
         int diff = LocalDateTime.now().compareTo(foundStream.getStartTime());
         if (diff < 1) {
             foundStream.timeUntilStream();
-        } else {
+        }
+        else {
             String s = null;
-            if (time >= -120 && time <= 0) {
+            /*if (time >= -120 && time <= 0) {
                 System.out.println("Your stream is live! Please enjoy your content.");
 
                 long sTime = System.currentTimeMillis();
@@ -332,7 +333,14 @@ public class Session {
                     }
                 } while (System.currentTimeMillis() - sTime < 60000 && !stop);
                 System.out.println("Finished");
-            } else {
+            } */
+            if (time >= -120 && time <= 0){
+                Content content = new Content();
+
+                content.createAndShowGUI();
+            }
+
+            else {
                 System.out.println("Your stream has aired, please rate and comment");
                 foundStream.rate();
                 foundStream.calculateRating();
