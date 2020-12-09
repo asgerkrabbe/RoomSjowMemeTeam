@@ -1,6 +1,9 @@
 package com.kea;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Declares 3 variables and an ArrayList
@@ -18,11 +21,22 @@ public class Profile {
      * @param email email for the user
      * @param password password for the user
      */
-    public Profile(String username, String email, String password) {
+    public Profile(String username, String email, String password) throws FileNotFoundException {
         this.username = username;
         this.password = password;
         this.email = email;
         myStreams = new ArrayList<>();
+        loadMyStreams();
+    }
+
+    public void loadMyStreams() throws FileNotFoundException {
+        File MyStreams = new File("MyStreams.txt");
+        Scanner fileScanner = new Scanner(MyStreams);
+        while(fileScanner.hasNext()){
+            String streamLine = fileScanner.nextLine();
+            Stream stream = Session.convertStream(streamLine);
+            myStreams.add(stream);
+        }
     }
 
     public ArrayList<Stream> getMyStreams() {

@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.Scanner;
 
 import static com.kea.Session.convertStream;
-
 /**
  * declares variables and getters for them
  */

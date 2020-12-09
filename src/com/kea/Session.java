@@ -143,10 +143,12 @@ public class Session {
         }
         System.out.println("Type title of the stream you want to enter: ");
         String search = inputSc.nextLine();
+        boolean isFound = false;
 
         for (int i = 0; i < stringStreams.size(); i++) {
 
             if (stringStreams.get(i).contains(search)) {
+                isFound = true;
                 Stream s = convertStream(stringStreams.get(i));
 
                 if (!checkOverlap(s, profile.getMyStreams())) {
@@ -164,7 +166,9 @@ public class Session {
                     sessionMenu();
                 }
             }
+        } if (!isFound) {
             System.out.println("The stream could not be found, try to type the exact title name.");
+            signUpForStream();
         }
     }
 
