@@ -134,10 +134,7 @@ public class Stream implements Comparable<Stream> {
                     comment();
                 }
             }
-
         }
-
-
     }
 
     public void viewCommentsAndArray(){

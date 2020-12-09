@@ -152,6 +152,7 @@ public class Session {
                 Stream s = convertStream(stringStreams.get(i));
 
                 if (!checkOverlap(s, profile.getMyStreams())) {
+                    runPay();
                     System.out.println("You have now signed up to \""+s.getTitle()+"\"");
                     s.addViewer();
                     fileWriter.write("\n"+(DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()) + "," +
