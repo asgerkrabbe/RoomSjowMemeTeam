@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -15,6 +16,7 @@ import java.util.Scanner;
 /**
  * Instantiation of RoomSjow, profile and streamlist
  */
+
 public class Session {
     Profile profile;
     private StreamList streamList;
@@ -34,13 +36,14 @@ public class Session {
      * @param streamList list of available streams
      * @throws FileNotFoundException required exception when working with files
      */
-    public Session(Profile profile, StreamList streamList) throws FileNotFoundException{
+    public Session(Profile profile, StreamList streamList) throws FileNotFoundException {
         this.profile = profile;
         this.streamList = streamList;
+        while (myStreamsSc.hasNext()) {
+            stringMyStreams.add(myStreamsSc.nextLine());
+        }
         //this.streams = streams;
     }
-
-
 
     protected void runPay() {
         System.out.println("Choose your payment method: ");
@@ -99,20 +102,20 @@ public class Session {
             //updates MyStreams array
             profile.getMyStreams().add(stream);
             //updates MyStreams file
-            FileWriter writer1 = new FileWriter("MyStreams.txt",true);
-            writer1.write("\n"+(DateTimeFormatter.ISO_LOCAL_DATE).format(stream.getStartTime()) + "," +
+            FileWriter writer1 = new FileWriter("MyStreams.txt", true);
+            writer1.write("\n" + (DateTimeFormatter.ISO_LOCAL_DATE).format(stream.getStartTime()) + "," +
                     (DateTimeFormatter.ISO_LOCAL_TIME).format(stream.getStartTime()) + "," +
                     stream.getTitle() + "," + stream.getGenre() + "," +
-                    + stream.getViewers() + "," + stream.getPrice()+","+profile.getUsername());
+                    +stream.getViewers() + "," + stream.getPrice() + "," + profile.getUsername());
             writer1.close();
             //updates streams array
             streamList.streams.add(stream);
             //updates streams file
             FileWriter myWriter = new FileWriter("Streams.txt", true);
-            myWriter.write("\n"+(DateTimeFormatter.ISO_LOCAL_DATE).format(stream.getStartTime()) + "," +
+            myWriter.write("\n" + (DateTimeFormatter.ISO_LOCAL_DATE).format(stream.getStartTime()) + "," +
                     (DateTimeFormatter.ISO_LOCAL_TIME).format(stream.getStartTime()) + "," +
                     stream.getTitle() + "," + stream.getGenre() + "," +
-                    + stream.getViewers() + "," + stream.getPrice());
+                    +stream.getViewers() + "," + stream.getPrice());
             myWriter.close();
 
         } else {
@@ -154,11 +157,12 @@ public class Session {
                 if (!checkOverlap(s, profile.getMyStreams())) {
                     runPay();
                     System.out.println("You have now signed up to \""+s.getTitle()+"\"");
+                    System.out.println("You have now signed up to \"" + s.getTitle() + "\"");
                     s.addViewer();
-                    fileWriter.write("\n"+(DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()) + "," +
-                                    (DateTimeFormatter.ISO_LOCAL_TIME).format(s.getStartTime()) + "," +
-                                    s.getTitle() + "," + s.getGenre() + "," +
-                                    + s.getViewers() + "," + s.getPrice()+","+profile.getUsername());
+                    fileWriter.write("\n" + (DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()) + "," +
+                            (DateTimeFormatter.ISO_LOCAL_TIME).format(s.getStartTime()) + "," +
+                            s.getTitle() + "," + s.getGenre() + "," +
+                            +s.getViewers() + "," + s.getPrice() + "," + profile.getUsername());
                     profile.getMyStreams().add(s);
                     fileWriter.close();
                     break;
@@ -260,7 +264,7 @@ public class Session {
                     continue;
                 }
                 case "5": {
-                    new Stream().watchStream(profile);
+                    watchStream();
                     continue;
                 }
                 case "6": {
@@ -274,4 +278,72 @@ public class Session {
             }
         }
     }
+
+    public void watchStream() throws FileNotFoundException {
+        String choice;
+        Stream foundStream = null;
+        int index = -1;
+
+        Collections.sort(stringMyStreams);
+        for (int i = 0; i < stringMyStreams.size(); i++) {
+            if (stringMyStreams.get(i).contains(profile.getUsername())) {
+                System.out.println(stringMyStreams.get(i));
+            }
+        }
+
+        System.out.println("Choose stream by typing its title.");
+        choice = inputSc.nextLine();
+
+        for (int i = 0; i < streamList.streams.size(); i++) {
+            if (streamList.streams.get(i).getTitle().contains(choice)) {
+                foundStream = streamList.streams.get(i);
+                index = i;
+  //          } else {
+  //              System.out.println("We could not find that Stream, please try again");
+  //              watchStream();
+         }
+        }
+
+        int time = (int) LocalDateTime.now().until(foundStream.getStartTime(), ChronoUnit.MINUTES);
+        int diff = LocalDateTime.now().compareTo(foundStream.getStartTime());
+        if (diff < 1) {
+            foundStream.timeUntilStream();
+        } else {
+            String s = null;
+            if (time >= -120 && time <= 0) {
+                System.out.println("Your stream is live! Please enjoy your content.");
+
+                long sTime = System.currentTimeMillis();
+                boolean stop = false;
+                int count = 0;
+                System.out.println("Streaming content. Enter a to exit.");
+                do {
+                    count++;
+                    try {
+                        if (System.in.available() > 0) {
+                            s = inputSc.nextLine();
+                            if (s.equals("a")) {
+                                stop = true;
+                                System.out.println("Stop requested");
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } while (System.currentTimeMillis() - sTime < 60000 && !stop);
+                System.out.println("Finished");
+            } else {
+                System.out.println("Your stream has aired, please rate and comment");
+                foundStream.rate();
+                foundStream.comment();
+                streamList.streams.remove(index);
+                streamList.streams.add(foundStream);
+            }
+        }
+
+    }
+
+
 }
+
+

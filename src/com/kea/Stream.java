@@ -65,77 +65,20 @@ public class Stream implements Comparable<Stream> {
      */
     @Override
     public String toString() {
-        return "\nTitle: " + title + "\tGenre: " + genre + "\nDate: " +
-                (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\tTime: " +
-                (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) +
-                "\nViewers: " + viewers + "\tPrice: " + price + " dkk";
-    }
-
-    public void watchStream(Profile profile) throws FileNotFoundException {
-
-        System.out.println("Type 1 for comments, 2 to watch stream");
-        Scanner scanner = new Scanner(System.in);
-        String choice = scanner.nextLine();
-
-        if(choice.contains("1")){
-            viewCommentsAndArray();
-        }
-        if(choice.contains("2")){
-            while (myStreamsSc.hasNext()) {
-                stringMyStreams.add(myStreamsSc.nextLine());
-            }
-            Collections.sort(stringMyStreams);
-            for (int i = 0; i < stringMyStreams.size(); i++) {
-                if (stringMyStreams.get(i).contains(profile.getUsername())) {
-                    System.out.println(stringMyStreams.get(i));
-                }
-            }
-
-            System.out.println("Choose stream by typing.");
-            String streamChoice = sc.nextLine();
-
-            for (int i = 0; i < stringMyStreams.size(); i++) {
-                if (stringMyStreams.get(i).contains(streamChoice)) {
-                    Stream s = convertStream(stringMyStreams.get(i));
-                    this.startTime = s.startTime;
-                }
-            }
-
-            int time = (int) LocalDateTime.now().until(startTime, ChronoUnit.MINUTES);
-            int diff = LocalDateTime.now().compareTo(startTime);
-            if (diff < 1) {
-                timeUntilStream();
-            } else {
-                if (time >= -120 && time <= 0) {
-                    System.out.println("Your stream is live! Please enjoy your content.");
-
-                    long sTime = System.currentTimeMillis();
-                    boolean stop = false;
-                    int count = 0;
-                    System.out.println("Streaming content. Enter a to exit.");
-                    do {
-                        count++;
-                        try {
-                            if (System.in.available() > 0) {
-                                String s = sc.nextLine();
-                                if (s.equals("a")) {
-                                    stop = true;
-                                    System.out.println("Stop requested");
-                                }
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } while (System.currentTimeMillis() - sTime < 60000 && !stop);
-                    System.out.println("Finished");
-                } else {
-                    System.out.println("Your stream has aired, please rate and comment");
-                    rate();
-                    comment();
-                }
-            }
+        if (comments!=null) {
+            return "\nTitle: " + title + "\tGenre: " + genre + "\nDate: " +
+                    (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\tTime: " +
+                    (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) +
+                    "\nViewers: " + viewers + "\tPrice: " + price + " dkk" +
+                    "\nComments:\n" + comments;
+        } else {
+            return "\nTitle: " + title + "\tGenre: " + genre + "\nDate: " +
+                    (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\tTime: " +
+                    (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) +
+                    "\nViewers: " + viewers + "\tPrice: " + price + " dkk";
         }
     }
+
 
     public void viewCommentsAndArray(){
         for (int i = 0; i < comments.size(); i++) {
@@ -172,12 +115,13 @@ public class Stream implements Comparable<Stream> {
         //Implement Print rating average method?
     }
 
-    private void comment() {
+    public void comment() {
         Scanner inputScan = new Scanner(System.in);
         System.out.println("Write your comment here:");
         String comment = inputScan.nextLine();
         comments.add(comment);
         System.out.println("Your comment was added.");
+        //fjerne gammelt stream
     }
 
     public void timeUntilStream() {
