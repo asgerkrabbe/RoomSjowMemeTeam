@@ -23,12 +23,13 @@ public class MobilePay extends Payment {
             String number = scan.nextLine();
             if (number.matches(mobileregex)) {
                 System.out.println("5DKK has been charged.");
+                mobileboo = false;
             } else {
                 System.out.println("Mobile number is not valid. Please try again.");
                 pay();
 
             }
-        } while (mobileboo) ;
+        } while (mobileboo);
 
     }
 }

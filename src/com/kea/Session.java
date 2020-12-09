@@ -164,7 +164,7 @@ public class Session {
                     break;
                 } else {
                     System.out.println("There is an overlap with one of your streams, you can not sign up to this stream.");
-                    sessionMenu();
+                    break;
                 }
             }
             System.out.println("The stream could not be found, try to type the exact title name.");
