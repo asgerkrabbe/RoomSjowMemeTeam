@@ -25,10 +25,6 @@ public class Session {
     Scanner streamsFileSc = new Scanner(streamsFile);
     ArrayList<String> stringStreams = new ArrayList<>();
 
-    File myStreamsFile = new File("MyStreams.txt");
-    Scanner myStreamsSc = new Scanner(myStreamsFile);
-    ArrayList<String> stringMyStreams = new ArrayList<>();
-
     /**
      * ?
      *
@@ -39,9 +35,6 @@ public class Session {
     public Session(Profile profile, StreamList streamList) throws FileNotFoundException {
         this.profile = profile;
         this.streamList = streamList;
-        while (myStreamsSc.hasNext()) {
-            stringMyStreams.add(myStreamsSc.nextLine());
-        }
     }
 
     protected void runPay() {
@@ -62,14 +55,10 @@ public class Session {
     }
 
     public void showMyStreams() {
-
-        Collections.sort(stringMyStreams);
-        for (int i = 0; i < stringMyStreams.size(); i++) {
-            if (stringMyStreams.get(i).contains(profile.getUsername())) {
-                System.out.println(stringMyStreams.get(i));
-            }
+        Collections.sort(profile.getMyStreams());
+        for (Stream str : profile.getMyStreams()){
+            System.out.println(str);
         }
-        System.out.println();
     }
 
     /**
@@ -222,10 +211,15 @@ public class Session {
         int hours = stringSc.nextInt();
         int minutes = stringSc.nextInt();
         LocalDateTime startTime = LocalDateTime.of(year, month, day, hours, minutes);
-        System.out.println();
-        System.out.println("The start date chosen is: " + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime));
-        System.out.println("The start time chosen is: " + (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime));
-        return startTime;
+        if (startTime.isAfter(LocalDateTime.now())) {
+            System.out.println();
+            System.out.println("The start date chosen is: " + (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime));
+            System.out.println("The start time chosen is: " + (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime));
+            return startTime;
+        } else {
+            System.out.println("You chose a passed date");
+            return promptDateTime();
+        }
     }
 
     /**
@@ -281,12 +275,6 @@ public class Session {
         Stream foundStream = null;
         int index = -1;
 
-//        Collections.sort(stringMyStreams);
-//        for (int i = 0; i < stringMyStreams.size(); i++) {
-//            if (stringMyStreams.get(i).contains(profile.getUsername())) {
-//                System.out.println(stringMyStreams.get(i));
-//            }
-//        }
         Collections.sort(profile.getMyStreams());
         System.out.println(profile.getMyStreams());
 
