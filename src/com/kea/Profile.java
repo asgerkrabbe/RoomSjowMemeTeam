@@ -34,8 +34,10 @@ public class Profile {
         Scanner fileScanner = new Scanner(MyStreams);
         while(fileScanner.hasNext()){
             String streamLine = fileScanner.nextLine();
-            Stream stream = Session.convertStream(streamLine);
-            myStreams.add(stream);
+            if (streamLine.contains(username)) {
+                Stream stream = Session.convertStream(streamLine);
+                myStreams.add(stream);
+            }
         }
     }
 

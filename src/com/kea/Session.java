@@ -12,7 +12,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-
 /**
  * Instantiation of RoomSjow, profile and streamlist
  */
@@ -75,7 +74,6 @@ public class Session {
 
     /**
      * Lets the user create a stream.
-     *
      * @throws IOException
      */
     public void createStream() throws IOException {
@@ -168,13 +166,11 @@ public class Session {
                     break;
                 }
             }
-        }
-        if (!isFound) {
+        } if (!isFound) {
             System.out.println("The stream could not be found, try to type the exact title name.");
             signUpForStream();
         }
     }
-
 
     public static Stream convertStream(String line) throws FileNotFoundException {
         String[] splittedLine = line.split(",");
@@ -278,7 +274,7 @@ public class Session {
                 }
             }
         }
-        System.out.println("The stream could not be found, returning to session menu.");
+
     }
 
     public void watchStream() throws FileNotFoundException {
@@ -286,12 +282,14 @@ public class Session {
         Stream foundStream = null;
         int index = -1;
 
-        Collections.sort(stringMyStreams);
-        for (int i = 0; i < stringMyStreams.size(); i++) {
-            if (stringMyStreams.get(i).contains(profile.getUsername())) {
-                System.out.println(stringMyStreams.get(i));
-            }
-        }
+//        Collections.sort(stringMyStreams);
+//        for (int i = 0; i < stringMyStreams.size(); i++) {
+//            if (stringMyStreams.get(i).contains(profile.getUsername())) {
+//                System.out.println(stringMyStreams.get(i));
+//            }
+//        }
+        Collections.sort(profile.getMyStreams());
+        System.out.println(profile.getMyStreams());
 
         System.out.println("Choose stream by typing its title.");
         choice = inputSc.nextLine();
@@ -300,19 +298,18 @@ public class Session {
             if (streamList.streams.get(i).getTitle().contains(choice)) {
                 foundStream = streamList.streams.get(i);
                 index = i;
+  //          } else {
+  //              System.out.println("We could not find that Stream, please try again");
+  //              watchStream();
             }
-                   /*else {
-                      System.out.println("We could not find that Stream, please try again");
-                   watchStream();
-        }*/
-    }
+        }
 
         int time = (int) LocalDateTime.now().until(foundStream.getStartTime(), ChronoUnit.MINUTES);
         int diff = LocalDateTime.now().compareTo(foundStream.getStartTime());
+
         if (diff < 1) {
             foundStream.timeUntilStream();
-        }
-        else {
+        } else {
             String s = null;
             if (time >= -120 && time <= 0) {
                 System.out.println("Your stream is live! Please enjoy your content.");

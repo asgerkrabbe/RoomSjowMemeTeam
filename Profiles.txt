@@ -1,10 +1,7 @@
 Ines123,inesluparia@hola.com,1234
 Mads123,mads123@gmail.com,wfdij23ln
-Tobias,masdnio@sdcnio.com,aodcijecew
-Asger,nicocw£@dsf.com,aoiuhcw98cnuo
 username,email,password
 testuser,testpassword,testemail
 name,mail,pass
-Hardy,Akira,Madsen
 asgerkrabbe,asgerkrabbe@gmail.com,krabbe123
 user5,email5@mail.com,pass5

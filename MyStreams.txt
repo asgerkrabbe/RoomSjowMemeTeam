@@ -7,7 +7,8 @@
 2021-02-17,22:00:00,Hola Extermination 2,PYTHON,0,5.0,name
 2020-12-12,12:12:00,Python fundamentals,PYTHON,0,5.0,name
 2020-12-12,12:12:00,asd,JAVA,0,5.0,asgerkrabbe
-2020-12-09,13:30:00,Testeren,JAVA,0,5.0,name
-2012-01-15,21:50:00,example,PYTHON,1,5.0,name
-1337-04-20,12:12:00,GG Well Play,PYTHON,1,5.0,name
-2020-09-12,17:20:00,Super,JAVA,0,5.0,name
+2020-12-08,11:00:00,Testeren,JAVA,1,5.0,name
+2021-01-30,12:00:00,whatever,JAVA,0,5.0,name
+2021-01-30,14:01:00,casdvv,JAVA,0,5.0,name
+2020-12-09,14:00:00,now,JAVA,0,5.0,name
+2020-12-09,14:00:00,New stream,JAVA,0,5.0,name
