@@ -12,6 +12,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+
 /**
  * Instantiation of RoomSjow, profile and streamlist
  */
@@ -74,6 +75,7 @@ public class Session {
 
     /**
      * Lets the user create a stream.
+     *
      * @throws IOException
      */
     public void createStream() throws IOException {
@@ -166,7 +168,8 @@ public class Session {
                     break;
                 }
             }
-        } if (!isFound) {
+        }
+        if (!isFound) {
             System.out.println("The stream could not be found, try to type the exact title name.");
             signUpForStream();
         }
@@ -205,7 +208,6 @@ public class Session {
         }
         return false;
     }
-
 
     /**
      * lets the user type the date and time of the stream
@@ -282,12 +284,6 @@ public class Session {
         Stream foundStream = null;
         int index = -1;
 
-//        Collections.sort(stringMyStreams);
-//        for (int i = 0; i < stringMyStreams.size(); i++) {
-//            if (stringMyStreams.get(i).contains(profile.getUsername())) {
-//                System.out.println(stringMyStreams.get(i));
-//            }
-//        }
         Collections.sort(profile.getMyStreams());
         System.out.println(profile.getMyStreams());
 
@@ -298,9 +294,9 @@ public class Session {
             if (streamList.streams.get(i).getTitle().contains(choice)) {
                 foundStream = streamList.streams.get(i);
                 index = i;
-  //          } else {
-  //              System.out.println("We could not find that Stream, please try again");
-  //              watchStream();
+                //          } else {
+                //              System.out.println("We could not find that Stream, please try again");
+                //              watchStream();
             }
         }
 
@@ -316,32 +312,7 @@ public class Session {
                 Content content = new Content();
 
                 content.createAndShowGUI();
-
-                /*
-                long sTime = System.currentTimeMillis();
-                boolean stop = false;
-                int count = 0;
-                System.out.println("Streaming content. Enter a to exit.");
-                do {
-                    count++;
-                    try {
-                        if (System.in.available() > 0) {
-                            s = inputSc.nextLine();
-                            if (s.equals("a")) {
-                                stop = true;
-                                System.out.println("Stop requested");
-                            }
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } while (System.currentTimeMillis() - sTime < 60000 && !stop);
-                System.out.println("Finished");
-            */
-
-            }
-
-            else {
+            } else {
                 System.out.println("Your stream has aired, please rate and comment");
                 foundStream.rate();
                 foundStream.calculateRating();
@@ -352,8 +323,4 @@ public class Session {
         }
 
     }
-
-
 }
-
-
