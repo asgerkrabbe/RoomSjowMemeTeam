@@ -42,7 +42,6 @@ public class Session {
         while (myStreamsSc.hasNext()) {
             stringMyStreams.add(myStreamsSc.nextLine());
         }
-        //this.streams = streams;
     }
 
     protected void runPay() {
@@ -64,10 +63,6 @@ public class Session {
 
     public void showMyStreams() {
 
-        while (myStreamsSc.hasNext()) {
-            stringMyStreams.add(myStreamsSc.nextLine());
-        }
-
         Collections.sort(stringMyStreams);
         for (int i = 0; i < stringMyStreams.size(); i++) {
             if (stringMyStreams.get(i).contains(profile.getUsername())) {
@@ -79,7 +74,6 @@ public class Session {
 
     /**
      * Lets the user create a stream.
-     *
      * @throws IOException
      */
     public void createStream() throws IOException {
@@ -148,10 +142,12 @@ public class Session {
         }
         System.out.println("Type title of the stream you want to enter: ");
         String search = inputSc.nextLine();
+        boolean isFound = false;
 
         for (int i = 0; i < stringStreams.size(); i++) {
 
             if (stringStreams.get(i).contains(search)) {
+                isFound = true;
                 Stream s = convertStream(stringStreams.get(i));
 
                 if (!checkOverlap(s, profile.getMyStreams())) {
@@ -171,7 +167,9 @@ public class Session {
                     break;
                 }
             }
+        } if (!isFound) {
             System.out.println("The stream could not be found, try to type the exact title name.");
+            signUpForStream();
         }
     }
 
@@ -335,6 +333,7 @@ public class Session {
             } else {
                 System.out.println("Your stream has aired, please rate and comment");
                 foundStream.rate();
+                foundStream.calculateRating();
                 foundStream.comment();
                 streamList.streams.remove(index);
                 streamList.streams.add(foundStream);

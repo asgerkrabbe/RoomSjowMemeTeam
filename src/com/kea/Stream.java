@@ -12,22 +12,20 @@ import java.util.Collections;
 import java.util.Scanner;
 
 import static com.kea.Session.convertStream;
-
 /**
  * declares variables and getters for them
  */
 public class Stream implements Comparable<Stream> {
+
     private double price;
     private String title;
     private LocalDateTime startTime;
     private Genre genre;
     private int viewers;
-    private int[] rating= new int[5];
-    ArrayList<String> comments = new ArrayList<>();
-    File myStreamsFile = new File("MyStreams.txt");
-    Scanner myStreamsSc = new Scanner(myStreamsFile);
+    private int[] ratings= new int[5];
+    double rating;
+    private ArrayList<String> comments;
     Scanner sc = new Scanner(System.in);
-    ArrayList<String> stringMyStreams = new ArrayList<>();
 
     public Stream(LocalDateTime startTime, String title, Genre genre, int viewers, double price) throws FileNotFoundException {
         this.title = title;
@@ -38,8 +36,11 @@ public class Stream implements Comparable<Stream> {
         comments = new ArrayList<>();
     }
 
-    public Stream() throws FileNotFoundException {
-
+    public void calculateRating(){
+        double number = ratings[0]+ratings[1]+ratings [2]+ratings[3]+ratings[4];
+        double sum = ratings[0]+(ratings[1]*2)+(ratings [2]*3)+(ratings[3]*4)+(ratings [4]*5);
+        double average = sum/number;
+        rating = average;
     }
 
 
@@ -65,12 +66,12 @@ public class Stream implements Comparable<Stream> {
      */
     @Override
     public String toString() {
-        if (comments!=null) {
+        if (comments.size()>0) {
             return "\nTitle: " + title + "\tGenre: " + genre + "\nDate: " +
                     (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\tTime: " +
                     (DateTimeFormatter.ISO_LOCAL_TIME).format(startTime) +
                     "\nViewers: " + viewers + "\tPrice: " + price + " dkk" +
-                    "\nComments:\n" + comments;
+                    "\nComments:\n" + comments+"\nRating: "+ rating;
         } else {
             return "\nTitle: " + title + "\tGenre: " + genre + "\nDate: " +
                     (DateTimeFormatter.ISO_LOCAL_DATE).format(startTime) + "\tTime: " +
@@ -84,7 +85,7 @@ public class Stream implements Comparable<Stream> {
         for (int i = 0; i < comments.size(); i++) {
             System.out.println(comments.get(i));
         }
-        System.out.println(Arrays.toString(rating));
+        System.out.println(Arrays.toString(ratings));
     }
 
     public void rate() {
@@ -92,19 +93,19 @@ public class Stream implements Comparable<Stream> {
         String rate = sc.next();
         switch (rate) {
             case "1":
-                rating[0]++;
+                ratings[0]++;
                 break;
             case "2":
-                rating[1]++;
+                ratings[1]++;
                 break;
             case "3":
-                rating[2]++;
+                ratings[2]++;
                 break;
             case "4":
-                rating[3]++;
+                ratings[3]++;
                 break;
             case "5":
-                rating[4]++;
+                ratings[4]++;
                 break;
             default: {
                 System.out.println("ERROR 40, please try again.");
@@ -129,7 +130,6 @@ public class Stream implements Comparable<Stream> {
         System.out.println("Your stream has not started yet.\n Time left till airing:");
         System.out.println("Days: " + time / 24 / 60 + "\nHours: " + time / 60 % 24 + "\nMinutes: " + time % 60);
     }
-
 
     /**
      * getter for LocalDateTime
