@@ -32,6 +32,7 @@ public class Session {
 
     /**
      * ?
+     *
      * @param profile    user profile
      * @param streamList list of available streams
      * @throws FileNotFoundException required exception when working with files
@@ -152,7 +153,6 @@ public class Session {
 
                 if (!checkOverlap(s, profile.getMyStreams())) {
                     runPay();
-                    System.out.println("You have now signed up to \""+s.getTitle()+"\"");
                     System.out.println("You have now signed up to \"" + s.getTitle() + "\"");
                     s.addViewer();
                     fileWriter.write("\n" + (DateTimeFormatter.ISO_LOCAL_DATE).format(s.getStartTime()) + "," +
@@ -172,6 +172,7 @@ public class Session {
             signUpForStream();
         }
     }
+
 
     public static Stream convertStream(String line) throws FileNotFoundException {
         String[] splittedLine = line.split(",");
@@ -275,6 +276,7 @@ public class Session {
                 }
             }
         }
+        System.out.println("The stream could not be found, returning to session menu.");
     }
 
     public void watchStream() throws FileNotFoundException {
@@ -296,10 +298,10 @@ public class Session {
             if (streamList.streams.get(i).getTitle().contains(choice)) {
                 foundStream = streamList.streams.get(i);
                 index = i;
-  //          } else {
-  //              System.out.println("We could not find that Stream, please try again");
-  //              watchStream();
-         }
+            } else {
+                System.out.println("We could not find that Stream, please try again");
+                watchStream();
+            }
         }
 
         int time = (int) LocalDateTime.now().until(foundStream.getStartTime(), ChronoUnit.MINUTES);
