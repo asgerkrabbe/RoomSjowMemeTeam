@@ -75,6 +75,7 @@ public class Session {
 
     /**
      * Lets the user create a stream.
+     *
      * @throws IOException
      */
     public void createStream() throws IOException {
@@ -167,7 +168,8 @@ public class Session {
                     break;
                 }
             }
-        } if (!isFound) {
+        }
+        if (!isFound) {
             System.out.println("The stream could not be found, try to type the exact title name.");
             signUpForStream();
         }
@@ -298,11 +300,12 @@ public class Session {
             if (streamList.streams.get(i).getTitle().contains(choice)) {
                 foundStream = streamList.streams.get(i);
                 index = i;
-            } else {
-                System.out.println("We could not find that Stream, please try again");
-                watchStream();
             }
-        }
+                   /*else {
+                      System.out.println("We could not find that Stream, please try again");
+                   watchStream();
+        }*/
+    }
 
         int time = (int) LocalDateTime.now().until(foundStream.getStartTime(), ChronoUnit.MINUTES);
         int diff = LocalDateTime.now().compareTo(foundStream.getStartTime());
@@ -311,9 +314,13 @@ public class Session {
         }
         else {
             String s = null;
-            /*if (time >= -120 && time <= 0) {
+            if (time >= -120 && time <= 0) {
                 System.out.println("Your stream is live! Please enjoy your content.");
+                Content content = new Content();
 
+                content.createAndShowGUI();
+
+                /*
                 long sTime = System.currentTimeMillis();
                 boolean stop = false;
                 int count = 0;
@@ -333,11 +340,8 @@ public class Session {
                     }
                 } while (System.currentTimeMillis() - sTime < 60000 && !stop);
                 System.out.println("Finished");
-            } */
-            if (time >= -120 && time <= 0){
-                Content content = new Content();
+            */
 
-                content.createAndShowGUI();
             }
 
             else {
