@@ -66,8 +66,8 @@ public class RoomSjow {
      * @throws IOException in case filewriter and reader can't find the file
      */
     public void homeMenu() throws IOException {
-        System.out.println("*** Welcome to RoomSjov");
-        System.out.println("Choose what to do next: ");
+        System.out.println("*** Welcome to RoomSjov ***");
+        System.out.println("\nWhat would you like to do next?\n");
         Scanner sc1 = new Scanner(System.in);
         boolean choiceBoo = true;
 
