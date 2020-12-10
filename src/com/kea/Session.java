@@ -67,8 +67,6 @@ public class Session {
         for (Stream str : profile.getMyStreams()){
             System.out.println(str);
         }
-        System.out.println("\nPress enter to return to start menu.");
-        String exit = inputSc.nextLine();
     }
 
     /**
@@ -113,7 +111,7 @@ public class Session {
             myWriter.close();
 
         } else {
-            System.out.println("You already signed up for a stream at the selected time, would you like to choose another time?");
+            System.out.println("You are already hosting a stream at the chosen time. Would you like to schedule a new stream at another time?");
             System.out.println("1. Yes \n2. No");
             String answer = sc.next();
             switch (answer) {
@@ -268,6 +266,8 @@ public class Session {
                 }
                 case "2": {
                     streamList.showList();
+                    System.out.println("\nPress enter to return to session menu.");
+                    String exit = inputSc.nextLine();
                     continue;
                 }
                 case "3": {
@@ -276,6 +276,8 @@ public class Session {
                 }
                 case "4": {
                     showMyStreams();
+                    System.out.println("\nPress enter to return to session menu.");
+                    String exit = inputSc.nextLine();
                     continue;
                 }
                 case "5": {
