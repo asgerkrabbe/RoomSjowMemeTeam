@@ -32,6 +32,10 @@ public class RoomSjow {
     Scanner sc = new Scanner(System.in);
     ArrayList<Profile> profiles;
 
+    /**
+     * Calls 2 classes for later usage
+     * @throws FileNotFoundException
+     */
     public RoomSjow() throws FileNotFoundException {
         streamList = new StreamList();
         profiles = new ArrayList<>();

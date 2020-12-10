@@ -24,7 +24,7 @@ public class Stream implements Comparable<Stream> {
     Scanner sc = new Scanner(System.in);
 
     /**
-     *
+     * Constructor containing information about a stream
      * @param startTime - LocalDateTime of stream, not null
      * @param title - String of stream title, not null
      * @param genre - Enum gerne tag for stream, not null
