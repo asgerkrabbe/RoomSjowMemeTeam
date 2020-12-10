@@ -282,6 +282,8 @@ public class Session {
                 }
                 case "5": {
                     watchStream();
+                    System.out.println("\nPress enter to return to session menu.");
+                    String exit = inputSc.nextLine();
                     continue;
                 }
                 case "6": {
@@ -328,8 +330,8 @@ public class Session {
         } else {
             String s = null;
             if (time >= -120 && time <= 0) {
-                System.out.println("Your stream is live! Please enjoy your content.");
-
+                System.out.println("Your stream is live! Please enjoy your content, press enter to watch the stream.");
+                String begin = inputSc.nextLine();
 
                 Content content = new Content();
 

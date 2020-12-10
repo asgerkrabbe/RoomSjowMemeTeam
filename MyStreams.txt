@@ -4,5 +4,4 @@
 2020-12-12,12:12:00,asd,JAVA,0,5.0,asgerkrabbe
 2020-12-09,15:00:00,New stream,JAVA,1,5.0,Tobi
 2020-12-10,13:00:00,Testo,JAVA,0,5.0,name
-2020-12-11,15:00:00,Testo1,JAVA,0,5.0,name
 2020-12-08,11:00:00,Testeren,JAVA,1,5.0,name
