@@ -135,6 +135,7 @@ public class Session {
      */
     public void signUpForStream() throws IOException {
         FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
+
         while (streamsFileSc.hasNext()) {
             stringStreams.add(streamsFileSc.nextLine());
         }
@@ -143,6 +144,7 @@ public class Session {
         for (int i = 0; i < stringStreams.size(); i++) {
             System.out.println(stringStreams.get(i));
         }
+
         System.out.println("Type title of the stream you want to enter: ");
         String search = inputSc.nextLine();
         boolean isFound = false;
@@ -323,6 +325,8 @@ public class Session {
             String s = null;
             if (time >= -120 && time <= 0) {
                 System.out.println("Your stream is live! Please enjoy your content.");
+
+
                 Content content = new Content();
 
                 content.createAndShowGUI();
