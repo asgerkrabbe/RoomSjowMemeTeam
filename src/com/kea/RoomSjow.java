@@ -14,7 +14,7 @@ public class RoomSjow {
     /**
      * main method
      * @param args
-     * @throws IOException
+     * @throws IOException in case filewriter and reader can't find the file
      */
     public static void main(String[] args) throws IOException {
         //Stream session = new Stream();
@@ -39,7 +39,7 @@ public class RoomSjow {
 
     /**
      * main run method that runs all the methods
-     * @throws IOException
+     * @throws IOException in case filewriter and reader can't find the file
      */
     public void run() throws IOException {
         loadProfiles();
@@ -63,7 +63,7 @@ public class RoomSjow {
 
     /**
      * Shows the home menu to the user from where the program starts
-     * @throws IOException
+     * @throws IOException in case filewriter and reader can't find the file
      */
     public void homeMenu() throws IOException {
         System.out.println("Choose what to do next: ");
@@ -102,7 +102,7 @@ public class RoomSjow {
 
     /**
      * asks the user to type their credentials and checks if they are taken/valid
-     * @throws IOException
+     * @throws IOException file reader can't find the file
      */
     public void login() throws IOException {
         boolean isEmailFound = false;
@@ -132,7 +132,7 @@ public class RoomSjow {
 
     /**
      * adding the new credentials from the user to the master txt file
-     * @throws IOException
+     * @throws IOException in case filewriter and reader can't find the file
      */
     public void createProfile() throws IOException {
         promptUsername();
@@ -171,7 +171,7 @@ public class RoomSjow {
 
     /**
      * checks if username is already taken
-     * @param userName
+     * @param userName String
      * @return boolean true if username is taken
      */
     public boolean isUserNameTaken(String userName) {
@@ -216,7 +216,7 @@ public class RoomSjow {
 
     /**
      * checks if the email is already taken
-     * @param email
+     * @param email String
      * @return boolean true if email is taken
      */
     public boolean isEmailTaken(String email) {

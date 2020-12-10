@@ -32,7 +32,7 @@ public class StreamList implements Interface {
      * loadStreams method needs to be modified. New stream format consists of
      * 6 index' instead of the current 3. Check Streams.txt for examples
      */
-    public void loadStreams() throws FileNotFoundException {
+    public void loadStreams() {
         while (fileSc.hasNext()) {
             Stream s = Session.convertStream(fileSc.nextLine());
             streams.add(s);
@@ -51,7 +51,6 @@ public class StreamList implements Interface {
      */
     public void showList() {
         sortArrayList(streams);
-        // streams.get(0).comments.add("This is a good test");
 
         for (int i = 0; i < streams.size(); i++) {
             System.out.println(streams.get(i));

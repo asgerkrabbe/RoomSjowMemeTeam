@@ -20,6 +20,7 @@ public class Profile {
      * @param username username for the user
      * @param email email for the user
      * @param password password for the user
+     * @throws FileNotFoundException used for FileWriter method, in case the file is missing
      */
     public Profile(String username, String email, String password) throws FileNotFoundException {
         this.username = username;
@@ -29,6 +30,10 @@ public class Profile {
         loadMyStreams();
     }
 
+    /**
+     * method to index myStreams ArrayList with streams from txt file with a filescanner
+     * @throws FileNotFoundException used for File, in case MyStreams.txt is not found
+     */
     public void loadMyStreams() throws FileNotFoundException {
         File MyStreams = new File("MyStreams.txt");
         Scanner fileScanner = new Scanner(MyStreams);
@@ -41,13 +46,17 @@ public class Profile {
         }
     }
 
+    /**
+     * Getter for my streams
+     * @return returning an ArrayList of the users own streams
+     */
     public ArrayList<Stream> getMyStreams() {
         return myStreams;
     }
 
     /**
      * Getter for password
-     * @return password
+     * @return String password
      */
     public String getPassword() {
         return password;
@@ -55,7 +64,7 @@ public class Profile {
 
     /**
      * Getter for email
-     * @return email
+     * @return String email
      */
     public String getEmail() {
         return email;
@@ -63,7 +72,7 @@ public class Profile {
 
     /**
      * Getter for username
-     * @return username
+     * @return String username
      */
     public String getUsername() {
         return username;

@@ -31,7 +31,7 @@ public class Session {
     ArrayList<String> stringMyStreams = new ArrayList<>();
 
     /**
-     * ?
+     * A constructor with while loop to update an ArrayList when called.
      *
      * @param profile    user profile
      * @param streamList list of available streams
@@ -45,7 +45,11 @@ public class Session {
         }
     }
 
+    /**
+     * runPay offers choice between 2 methods of payment via 'if' statements. The system input executes the chosen method.
+     */
     protected void runPay() {
+        System.out.println("All streams cost 5DKK to attend");
         System.out.println("Choose your payment method: ");
         System.out.println("1 Pay with Creditcard");
         System.out.println("2 Pay with Mobilepay");
@@ -62,6 +66,9 @@ public class Session {
         }
     }
 
+    /**
+     * showMyStreams() sorts and loops through an Arraylist containing information about  the users streams.
+     */
     public void showMyStreams() {
 
         Collections.sort(stringMyStreams);
@@ -76,7 +83,7 @@ public class Session {
     /**
      * Lets the user create a stream.
      *
-     * @throws IOException
+     * @throws IOException used for FileWriter method, in case the file is missing
      */
     public void createStream() throws IOException {
         System.out.println("Enter stream information.");
@@ -132,6 +139,11 @@ public class Session {
         }
     }
 
+    /**
+     * A method for the user to sign up for streams and add them to the users list of streams.
+     * A filewriter is used to save the matched stream from an Arraylist to a txt file.
+     * @throws IOException used for FileWriter method, in case the file is missing.
+     */
     public void signUpForStream() throws IOException {
         FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
         while (streamsFileSc.hasNext()) {
@@ -175,7 +187,13 @@ public class Session {
         }
     }
 
-    public static Stream convertStream(String line) throws FileNotFoundException {
+    /**
+     * convertStream is used to convert strings from a read text file, and seperate it in 5 sections, consisting
+     * of different types of information using 'splittedLine'.
+     * @param line - String, addition of the comma seperated String fields in the textfile.
+     * @return object 's', 5 sections saved as a Stream
+     */
+    public static Stream convertStream(String line) {
         String[] splittedLine = line.split(",");
         LocalDate date = LocalDate.parse(splittedLine[0]);
         LocalTime time = LocalTime.parse(splittedLine[1]);
@@ -232,9 +250,9 @@ public class Session {
     }
 
     /**
-     * Shows the session menu to the user
+     * Shows the session menu to the user with a switch case to call different methods.
      *
-     * @throws IOException
+     * @throws IOException used for FileWriter method, in case the file is missing.
      */
     public void sessionMenu() throws IOException {
         System.out.println("What do you want to do next?");
@@ -279,7 +297,11 @@ public class Session {
 
     }
 
-    public void watchStream() throws FileNotFoundException {
+    /**
+     * watchStream allows user to watch a stream if it is airing, or tell the time until the stream airs.
+     * If stream has aired, methods are called to rate and comment the aired stream.
+     */
+    public void watchStream() {
         String choice;
         Stream foundStream = null;
         int index = -1;
