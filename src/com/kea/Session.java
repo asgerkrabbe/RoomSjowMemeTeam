@@ -67,6 +67,8 @@ public class Session {
         for (Stream str : profile.getMyStreams()){
             System.out.println(str);
         }
+        System.out.println("\nPress enter to return to start menu.");
+        String exit = inputSc.nextLine();
     }
 
     /**
