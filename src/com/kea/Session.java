@@ -71,13 +71,10 @@ public class Session {
      */
     public void showMyStreams() {
 
-        Collections.sort(stringMyStreams);
-        for (int i = 0; i < stringMyStreams.size(); i++) {
-            if (stringMyStreams.get(i).contains(profile.getUsername())) {
-                System.out.println(stringMyStreams.get(i));
-            }
+        Collections.sort(profile.getMyStreams());
+        for (Stream str : profile.getMyStreams()) {
+            System.out.println(str);
         }
-        System.out.println();
     }
 
     /**

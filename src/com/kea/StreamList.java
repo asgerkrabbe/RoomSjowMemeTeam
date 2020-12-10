@@ -38,14 +38,12 @@ public class StreamList implements Interface {
             streams.add(s);
         }
     }
-
     /**
      * Sorts an ArrayList
      */
     public void sortArrayList(ArrayList list) {
         Collections.sort(list);
     }
-
     /**
      * Displays the list of streams
      */
@@ -58,5 +56,4 @@ public class StreamList implements Interface {
         System.out.println("\nPress enter to return to start menu.");
         String exit = inputSc.nextLine();
     }
-
 }
