@@ -10,10 +10,14 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * test for session
+ * test for the Session class.
  */
 class SessionTest {
 
+    /**
+     * Testing the capabilites of checkOverLap()
+     * @throws FileNotFoundException in case file reader can't find the file
+     */
     @Test
     void testCheckOverlap() throws FileNotFoundException {
         //arrange
