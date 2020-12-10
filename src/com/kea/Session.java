@@ -299,8 +299,7 @@ public class Session {
         Stream foundStream = null;
         int index = -1;
 
-        Collections.sort(profile.getMyStreams());
-        System.out.println(profile.getMyStreams());
+        showMyStreams();
 
         System.out.println("Choose stream by typing its title.");
         choice = inputSc.nextLine();
