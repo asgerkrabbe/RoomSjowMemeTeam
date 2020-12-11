@@ -312,13 +312,10 @@ public class Session {
         System.out.println("Choose stream by typing its title.");
         choice = inputSc.nextLine();
 
-        for (int i = 0; i < streamList.streams.size(); i++) {
-            if (streamList.streams.get(i).getTitle().contains(choice)) {
-                foundStream = streamList.streams.get(i);
+        for (int i = 0; i < profile.getMyStreams().size(); i++) {
+            if (profile.getMyStreams().get(i).getTitle().contains(choice)) {
+                foundStream = profile.getMyStreams().get(i);
                 index = i;
-                //          } else {
-                //              System.out.println("We could not find that Stream, please try again");
-                //              watchStream();
             }
         }
 
