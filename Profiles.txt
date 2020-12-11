@@ -6,3 +6,4 @@ name,mail,pass
 asgerkrabbe,asgerkrabbe@gmail.com,krabbe123
 user5,email5@mail.com,pass5
 Tobi,Tobi@gmail.com,1234
+PacMan,pacman@gmail.com,123456

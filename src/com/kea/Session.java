@@ -315,6 +315,9 @@ public class Session {
             if (profile.getMyStreams().get(i).getTitle().contains(choice)) {
                 foundStream = profile.getMyStreams().get(i);
                 index = i;
+            } if (foundStream == null){
+                System.out.println("Title was not found, please try again.");
+                watchStream();
             }
         }
 
