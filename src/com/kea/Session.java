@@ -135,6 +135,10 @@ public class Session {
     public void signUpForStream() throws IOException {
         FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
 
+        Collections.sort(streamList.streams);
+        for (Stream str: streamList.streams)
+            System.out.println(str);
+        /*
         while (streamsFileSc.hasNext()) {
             stringStreams.add(streamsFileSc.nextLine());
         }
@@ -143,16 +147,16 @@ public class Session {
         for (int i = 0; i < stringStreams.size(); i++) {
             System.out.println(stringStreams.get(i));
         }
-
+*/
         System.out.println("Type title of the stream you want to enter: ");
         String search = inputSc.nextLine();
         boolean isFound = false;
 
-        for (int i = 0; i < stringStreams.size(); i++) {
+        for (int i = 0; i < streamList.streams.size(); i++) {
 
-            if (stringStreams.get(i).contains(search)) {
+            if (streamList.streams.get(i).getTitle().contains(search)) {
                 isFound = true;
-                Stream s = convertStream(stringStreams.get(i));
+                Stream s = streamList.streams.get(i);
 
                 if (!checkOverlap(s, profile.getMyStreams())) {
                     runPay();
