@@ -17,9 +17,9 @@ public class Stream implements Comparable<Stream> {
     private Genre genre;
     private int viewers;
     private int[] ratings= new int[5];
-    double rating;
+    private double rating;
     private ArrayList<String> comments;
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     /**
      * Constructor containing information about a stream
