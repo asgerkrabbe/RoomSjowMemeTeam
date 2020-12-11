@@ -1,11 +1,5 @@
-2010-06-15,21:00:00,Terminator,C_SHARP,0,5.0,Hardy
-1337-04-20,12:12:00,GG Well Play,PYTHON,0,5.0,asgerkrabbe
-2020-12-12,12:13:00,title,C_SHARP,0,5.0,asgerkrabbe
-2020-12-12,12:12:00,asd,JAVA,0,5.0,asgerkrabbe
-2020-12-09,15:00:00,New stream,JAVA,1,5.0,Tobi
-2020-12-10,13:00:00,Testo,JAVA,0,5.0,name
-2020-12-08,11:00:00,Testeren,JAVA,1,5.0,name
-2020-12-11,11:12:00,Mail Man,JAVA,0,5.0,name
-2020-12-04,22:00:00,Hola Extermination,C_SHARP,1,5.0,name
-1337-04-20,12:12:00,GG Well Play,PYTHON,1,5.0,name
-2020-12-12,12:12:00,asd,JAVA,1,5.0,Abemanden
+2020-12-24,15:00:00,DAT20B,JAVA,0,5.0,Asgerkrabbe
+2021-01-13,15:00:00,JAVA for starters,JAVA,0,5.0,Inesluparia
+2021-01-20,13:00:00,Slange Mesteren,PYTHON,0,5.0,Tobiasandersen
+2020-12-28,20:00:00,Sharp edges in C,C_SHARP,0,5.0,Anneolsen
+2021-02-01,12:00:00,Scripting with Java,JAVASCRIPT,0,5.0,Madsnissen

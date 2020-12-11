@@ -8,3 +8,9 @@ user5,email5@mail.com,pass5
 Tobi,Tobi@gmail.com,1234
 PacMan,pacman@gmail.com,123456
 Abemanden,abc@gmail.com,pass
+Asgerkrabbe,Asgerkrabbe@gmail.com,Krabbe123
+Example,Example@mail.com,Example123
+Anneolsen,Anneolsen@gmail.com,Olsen123
+Tobiasandersen,Tobiasandersen@gmail.com,Andersen123
+Madsnissen,Madsnissen@gmail.com,Nissen123
+Inesluparia,Inesluparia@gmail.com,Luparia123
