@@ -19,7 +19,6 @@ public class MobilePay extends Payment {
             } else {
                 System.out.println("Mobile number is not valid. Please try again.");
                 pay();
-
             }
         } while (mobileboo);
     }

@@ -1,11 +1,9 @@
 package com.kea;
 
-import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -49,7 +47,6 @@ public class Stream implements Comparable<Stream> {
         double average = sum/number;
         rating = average;
     }
-
 
     /**
      * compares stream time

@@ -17,8 +17,6 @@ public class RoomSjow {
      * @throws IOException in case filewriter and reader can't find the file
      */
     public static void main(String[] args) throws IOException {
-        //Stream session = new Stream();
-        //session.example();
         new RoomSjow().run();
     }
 
