@@ -44,6 +44,7 @@ public class StreamList implements Interface {
     public void sortArrayList(ArrayList list) {
         Collections.sort(list);
     }
+
     /**
      * Displays the list of streams
      */

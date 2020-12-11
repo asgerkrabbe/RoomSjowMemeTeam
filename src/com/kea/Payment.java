@@ -1,6 +1,5 @@
 package com.kea;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 /**

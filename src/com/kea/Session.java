@@ -71,7 +71,6 @@ public class Session {
 
     /**
      * Lets the user create a stream.
-     *
      * @throws IOException used for FileWriter method, in case the file is missing
      */
     public void createStream() throws IOException {
@@ -342,6 +341,5 @@ public class Session {
                 streamList.streams.add(foundStream);
             }
         }
-
     }
 }
