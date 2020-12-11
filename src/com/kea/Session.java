@@ -1,6 +1,5 @@
 package com.kea;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,10 +21,6 @@ public class Session {
     private StreamList streamList;
     Scanner inputSc = new Scanner(System.in);
 
-    File streamsFile = new File("Streams.txt");
-    Scanner streamsFileSc = new Scanner(streamsFile);
-    ArrayList<String> stringStreams = new ArrayList<>();
-
     /**
      * A constructor with while loop to update an ArrayList when called.
      *
@@ -33,7 +28,7 @@ public class Session {
      * @param streamList list of available streams
      * @throws FileNotFoundException required exception when working with files
      */
-    public Session(Profile profile, StreamList streamList) throws FileNotFoundException {
+    public Session(Profile profile, StreamList streamList) {
         this.profile = profile;
         this.streamList = streamList;
     }
@@ -138,16 +133,7 @@ public class Session {
         Collections.sort(streamList.streams);
         for (Stream str: streamList.streams)
             System.out.println(str);
-        /*
-        while (streamsFileSc.hasNext()) {
-            stringStreams.add(streamsFileSc.nextLine());
-        }
-        Collections.sort(stringStreams);
 
-        for (int i = 0; i < stringStreams.size(); i++) {
-            System.out.println(stringStreams.get(i));
-        }
-*/
         System.out.println("Type title of the stream you want to enter: ");
         String search = inputSc.nextLine();
         boolean isFound = false;
