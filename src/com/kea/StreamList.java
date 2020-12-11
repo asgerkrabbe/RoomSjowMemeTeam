@@ -10,7 +10,6 @@ public class StreamList implements Interface {
      * Declares 3 ArrayLists, 2 files and 3 scanners.
      */
     ArrayList<Stream> streams;
-    ArrayList<String> stringStreams;
     File streamsFile;
     Scanner fileSc;
     Scanner inputSc;
@@ -21,7 +20,6 @@ public class StreamList implements Interface {
      */
     public StreamList() throws FileNotFoundException {
         streams = new ArrayList<>();
-        stringStreams = new ArrayList<>();
         streamsFile = new File("Streams.txt");
         fileSc = new Scanner(streamsFile);
         inputSc = new Scanner(System.in);

@@ -24,7 +24,6 @@ public class Session {
 
     File streamsFile = new File("Streams.txt");
     Scanner streamsFileSc = new Scanner(streamsFile);
-    ArrayList<String> stringStreams = new ArrayList<>();
 
     /**
      * A constructor with while loop to update an ArrayList when called.
@@ -138,16 +137,7 @@ public class Session {
         Collections.sort(streamList.streams);
         for (Stream str: streamList.streams)
             System.out.println(str);
-        /*
-        while (streamsFileSc.hasNext()) {
-            stringStreams.add(streamsFileSc.nextLine());
-        }
-        Collections.sort(stringStreams);
 
-        for (int i = 0; i < stringStreams.size(); i++) {
-            System.out.println(stringStreams.get(i));
-        }
-*/
         System.out.println("Type title of the stream you want to enter: ");
         String search = inputSc.nextLine();
         boolean isFound = false;
