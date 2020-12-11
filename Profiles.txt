@@ -1,8 +1,5 @@
 Ines123,inesluparia@hola.com,1234
 Mads123,mads123@gmail.com,wfdij23ln
-username,email,password
-testuser,testpassword,testemail
-name,mail,pass
 asgerkrabbe,asgerkrabbe@gmail.com,krabbe123
 user5,email5@mail.com,pass5
 Tobi,Tobi@gmail.com,1234
