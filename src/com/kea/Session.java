@@ -329,8 +329,7 @@ public class Session {
         } else {
             String s = null;
             if (time >= -120 && time <= 0) {
-                System.out.println("Your stream is live! Please enjoy your content, press enter to watch the stream.");
-                //String begin = inputSc.nextLine();
+                System.out.println("Your stream is live! Please enjoy your content.");
 
                 Content content = new Content();
 
