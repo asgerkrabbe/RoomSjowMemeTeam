@@ -111,7 +111,7 @@ public class Session {
             myWriter.close();
 
         } else {
-            System.out.println("You already signed up for a stream at the selected time, would you like to choose another time?");
+            System.out.println("You are already hosting a stream at the chosen time. Would you like to schedule a new stream at another time?");
             System.out.println("1. Yes \n2. No");
             String answer = sc.next();
             switch (answer) {
@@ -135,6 +135,7 @@ public class Session {
      */
     public void signUpForStream() throws IOException {
         FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
+
         while (streamsFileSc.hasNext()) {
             stringStreams.add(streamsFileSc.nextLine());
         }
@@ -143,6 +144,7 @@ public class Session {
         for (int i = 0; i < stringStreams.size(); i++) {
             System.out.println(stringStreams.get(i));
         }
+
         System.out.println("Type title of the stream you want to enter: ");
         String search = inputSc.nextLine();
         boolean isFound = false;
@@ -264,6 +266,8 @@ public class Session {
                 }
                 case "2": {
                     streamList.showList();
+                    System.out.println("\nPress enter to return to session menu.");
+                    String exit = inputSc.nextLine();
                     continue;
                 }
                 case "3": {
@@ -272,10 +276,14 @@ public class Session {
                 }
                 case "4": {
                     showMyStreams();
+                    System.out.println("\nPress enter to return to session menu.");
+                    String exit = inputSc.nextLine();
                     continue;
                 }
                 case "5": {
                     watchStream();
+                    System.out.println("\nPress enter to return to session menu.");
+                    String exit = inputSc.nextLine();
                     continue;
                 }
                 case "6": {
@@ -299,8 +307,7 @@ public class Session {
         Stream foundStream = null;
         int index = -1;
 
-        Collections.sort(profile.getMyStreams());
-        System.out.println(profile.getMyStreams());
+        showMyStreams();
 
         System.out.println("Choose stream by typing its title.");
         choice = inputSc.nextLine();
@@ -323,7 +330,9 @@ public class Session {
         } else {
             String s = null;
             if (time >= -120 && time <= 0) {
-                System.out.println("Your stream is live! Please enjoy your content.");
+                System.out.println("Your stream is live! Please enjoy your content, press enter to watch the stream.");
+                String begin = inputSc.nextLine();
+
                 Content content = new Content();
 
                 content.createAndShowGUI();

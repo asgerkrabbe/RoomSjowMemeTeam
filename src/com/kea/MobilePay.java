@@ -2,8 +2,6 @@ package com.kea;
 
 public class MobilePay extends Payment {
 
-
-
     /**
      * Checks if mobile number format is valid and withdraws money with the help from a do while loop
      */

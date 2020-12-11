@@ -10,5 +10,9 @@ abstract public class Payment {
     protected int phoneNumber;
     protected int cardNumber;
     Scanner scan = new Scanner(System.in);
+
+    /**
+     * Empty bodied method for later use in 2 sub classes
+     */
     abstract void pay();
 }

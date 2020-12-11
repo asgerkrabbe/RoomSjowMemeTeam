@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SessionTest {
 
     /**
-     * Testing the capabilites of checkOverLap()
+     * Testing the capabilities of checkOverLap()
      * @throws FileNotFoundException in case file reader can't find the file
      */
     @Test

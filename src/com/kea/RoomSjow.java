@@ -32,6 +32,10 @@ public class RoomSjow {
     Scanner sc = new Scanner(System.in);
     ArrayList<Profile> profiles;
 
+    /**
+     * Calls 2 classes for later usage
+     * @throws FileNotFoundException
+     */
     public RoomSjow() throws FileNotFoundException {
         streamList = new StreamList();
         profiles = new ArrayList<>();
@@ -88,6 +92,8 @@ public class RoomSjow {
                 case "3": {
                     System.out.println("Our streams:\n");
                     streamList.showList();
+                    System.out.println("\nPress enter to return to start menu.");
+                    String exit = sc.nextLine();
                     continue;
                 }
                 case "4": {

@@ -53,7 +53,5 @@ public class StreamList implements Interface {
         for (int i = 0; i < streams.size(); i++) {
             System.out.println(streams.get(i));
         }
-        System.out.println("\nPress enter to return to start menu.");
-        String exit = inputSc.nextLine();
     }
 }
