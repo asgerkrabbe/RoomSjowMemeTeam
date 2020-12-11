@@ -11,7 +11,7 @@ public class CardPayment extends Payment {
 
         do {
             System.out.println("Enter a valid 16 digit credit card number: ");
-            String number = scan.nextLine();
+            String number = getScan().nextLine();
             if (number.matches(creditregex)) {
                 System.out.println("5 DKK has been charged.");
                 creditboo = false;

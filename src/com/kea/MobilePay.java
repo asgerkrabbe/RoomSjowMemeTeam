@@ -12,7 +12,7 @@ public class MobilePay extends Payment {
 
         do {
             System.out.println("Enter a valid 8 digit phone number: ");
-            String number = scan.nextLine();
+            String number = getScan().nextLine();
             if (number.matches(mobileregex)) {
                 System.out.println("5 DKK has been charged.");
                 mobileboo = false;

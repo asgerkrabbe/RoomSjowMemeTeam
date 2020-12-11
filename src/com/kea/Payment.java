@@ -8,7 +8,15 @@ import java.util.Scanner;
 abstract public class Payment {
     protected int phoneNumber;
     protected int cardNumber;
-    Scanner scan = new Scanner(System.in);
+    private Scanner scan = new Scanner(System.in);
+
+    public Scanner getScan() {
+        return scan;
+    }
+
+    public void setScan(Scanner scan) {
+        this.scan = scan;
+    }
 
     /**
      * Empty bodied method for later use in 2 sub classes

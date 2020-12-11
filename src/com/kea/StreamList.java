@@ -9,10 +9,9 @@ public class StreamList implements Interface {
     /**
      * Declares 3 ArrayLists, 2 files and 3 scanners.
      */
-    ArrayList<Stream> streams;
-    File streamsFile;
-    Scanner fileSc;
-    Scanner inputSc;
+    private ArrayList<Stream> streams;
+    private File streamsFile;
+    private Scanner fileSc;
 
     /**
      * StreamList object constructor with field initializers
@@ -22,7 +21,6 @@ public class StreamList implements Interface {
         streams = new ArrayList<>();
         streamsFile = new File("Streams.txt");
         fileSc = new Scanner(streamsFile);
-        inputSc = new Scanner(System.in);
         loadStreams();
     }
 
@@ -52,5 +50,9 @@ public class StreamList implements Interface {
         for (int i = 0; i < streams.size(); i++) {
             System.out.println(streams.get(i));
         }
+    }
+
+    public ArrayList<Stream> getStreams() {
+        return streams;
     }
 }

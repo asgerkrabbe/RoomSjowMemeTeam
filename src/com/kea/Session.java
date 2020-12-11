@@ -1,6 +1,5 @@
 package com.kea;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,21 +17,17 @@ import java.util.Scanner;
  */
 
 public class Session {
-    Profile profile;
+    private Profile profile;
     private StreamList streamList;
-    Scanner inputSc = new Scanner(System.in);
-
-    File streamsFile = new File("Streams.txt");
-    Scanner streamsFileSc = new Scanner(streamsFile);
+    private Scanner inputSc = new Scanner(System.in);
 
     /**
      * A constructor with while loop to update an ArrayList when called.
      *
      * @param profile    user profile
      * @param streamList list of available streams
-     * @throws FileNotFoundException required exception when working with files
      */
-    public Session(Profile profile, StreamList streamList) throws FileNotFoundException {
+    public Session(Profile profile, StreamList streamList) {
         this.profile = profile;
         this.streamList = streamList;
     }
@@ -99,7 +94,7 @@ public class Session {
                     +stream.getViewers() + "," + stream.getPrice() + "," + profile.getUsername());
             writer1.close();
             //updates streams array
-            streamList.streams.add(stream);
+            streamList.getStreams().add(stream);
             //updates streams file
             FileWriter myWriter = new FileWriter("Streams.txt", true);
             myWriter.write("\n" + (DateTimeFormatter.ISO_LOCAL_DATE).format(stream.getStartTime()) + "," +
@@ -134,19 +129,19 @@ public class Session {
     public void signUpForStream() throws IOException {
         FileWriter fileWriter = new FileWriter("MyStreams.txt", true);
 
-        Collections.sort(streamList.streams);
-        for (Stream str: streamList.streams)
+        Collections.sort(streamList.getStreams());
+        for (Stream str: streamList.getStreams())
             System.out.println(str);
 
         System.out.println("Type title of the stream you want to enter: ");
         String search = inputSc.nextLine();
         boolean isFound = false;
 
-        for (int i = 0; i < streamList.streams.size(); i++) {
+        for (int i = 0; i < streamList.getStreams().size(); i++) {
 
-            if (streamList.streams.get(i).getTitle().contains(search)) {
+            if (streamList.getStreams().get(i).getTitle().contains(search)) {
                 isFound = true;
-                Stream s = streamList.streams.get(i);
+                Stream s = streamList.getStreams().get(i);
 
                 if (!checkOverlap(s, profile.getMyStreams())) {
                     runPay();
@@ -334,8 +329,8 @@ public class Session {
                 foundStream.rate();
                 foundStream.calculateRating();
                 foundStream.comment();
-                streamList.streams.remove(index);
-                streamList.streams.add(foundStream);
+                streamList.getStreams().remove(index);
+                streamList.getStreams().add(foundStream);
             }
         }
     }

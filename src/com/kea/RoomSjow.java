@@ -23,12 +23,12 @@ public class RoomSjow {
     /**
      * declares variables, scanner, ArrayList and an instantiation of streamlist
      */
-    StreamList streamList;
-    String username = null;
-    String email = null;
-    String password = null;
-    Scanner sc = new Scanner(System.in);
-    ArrayList<Profile> profiles;
+    private StreamList streamList;
+    private String username = null;
+    private String email = null;
+    private String password = null;
+    private Scanner sc = new Scanner(System.in);
+    private ArrayList<Profile> profiles;
 
     /**
      * Calls 2 classes for later usage
